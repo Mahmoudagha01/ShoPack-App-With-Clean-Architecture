@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/colors/colors.dart';
+import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import 'package:shop_app/features/login/presentation/widgets/maintextformfield.dart';
+import '../../../../core/utilities/constants.dart';
+import '../bloc/login_bloc.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -58,32 +62,64 @@ class _LoginViewState extends State<LoginView> {
                       validateText: "Password is Required!",
                       isPassword: hidePass,
                       suffix: IconButton(
-                        icon:
-                        hidePass ? Icon(Icons.visibility_off ): Icon(Icons.visibility),
+                        color: ColorManager.orangeLight,
+                        icon: hidePass
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
                         onPressed: () {
-                           setState(() {
-                          hidePass = !hidePass;
-                        });
+                          setState(() {
+                            hidePass = !hidePass;
+                          });
                         },
                       ),
-                      
                       borderRadius: 16,
-                      inputType: TextInputType.emailAddress),
+                      inputType: TextInputType.text),
                   const SizedBox(
                     height: 30,
                   ),
-                  MainButton(
-                      text: "LOGIN",
-                      ontab: () {
-                        if (formKey.currentState!.validate()) {
-
-                        }
-                      }),
-                      const SizedBox(
+                  BlocConsumer<LoginBloc, LoginState>(
+                    listener: (context, state) {
+                      if (state is LoginFinishedState && state.data.status) {
+                        showSnackbar(
+                            state.data.message, context, ColorManager.green);
+                        Navigator.pushNamed(context, AppRoutes.register);
+                      } else if (state is LoginFinishedState) {
+                        showSnackbar(state.data.message, context, Colors.red);
+                      } else if (state is LoginErrorState) {
+                        showSnackbar(state.message, context, Colors.red);
+                      }
+                    },
+                    builder: (context, state) {
+                      return state is LoginLoadingState
+                          ? const CircularProgressIndicator()
+                          : MainButton(
+                              text: "LOGIN",
+                              ontab: () {
+                                if (formKey.currentState!.validate()) {
+                                  BlocProvider.of<LoginBloc>(context).add(
+                                      UserLogin(emailController.text,
+                                          passController.text));
+                                }
+                              });
+                    },
+                  ),
+                  const SizedBox(
                     height: 20,
                   ),
-                      Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("Don't Have an account?",style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.bold),),TextButton(onPressed: (){}, child: Text("Register"))],)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't Have an account?",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      TextButton(
+                          onPressed: () {}, child: const Text("Register"))
+                    ],
+                  )
                 ],
               ),
             ),

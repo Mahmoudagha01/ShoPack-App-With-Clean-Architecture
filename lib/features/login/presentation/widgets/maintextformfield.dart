@@ -40,7 +40,6 @@ class MainTFF extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
       obscureText: isPassword,
       keyboardType: inputType,
       controller: controller,
@@ -51,7 +50,7 @@ class MainTFF extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
-        suffixIcon: suffix,
+          suffixIcon: suffix,
           contentPadding:
               const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           label: Text(labelText!),

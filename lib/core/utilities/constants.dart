@@ -1,4 +1,6 @@
 //ENDPOINTS
+import 'package:flutter/material.dart';
+
 import '../error/failure.dart';
 
 const String baseUrlPath = 'https://student.valuxapps.com/api/';
@@ -30,3 +32,13 @@ String mapFailureToMessage(Failure failure) {
       return "Unexpected Error , Please try again later .";
   }
 }
+// Functin to show SnackBar
+  showSnackbar(String message, context,Color color) {
+                          final snackbar = SnackBar(
+                            content: Text(message),
+                            duration: const Duration(seconds: 2),
+                            backgroundColor: color,
+                          );
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        }

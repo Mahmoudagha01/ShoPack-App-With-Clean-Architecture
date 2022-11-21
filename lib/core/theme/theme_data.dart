@@ -3,7 +3,7 @@ import 'package:shop_app/core/colors/colors.dart';
 
 ThemeData lightTheme() {
   return ThemeData(
-  
+    
     iconTheme:const IconThemeData(color:ColorManager.orangeLight ) ,
     focusColor: ColorManager.orangeLight,
     primaryColor: ColorManager.orangeLight,
@@ -53,7 +53,7 @@ ThemeData lightTheme() {
         foregroundColor: MaterialStateProperty.all(ColorManager.orangeLight),
       ),
     ),
-    splashColor: ColorManager.orangeLight,
+progressIndicatorTheme: ProgressIndicatorThemeData(color: ColorManager.orangeLight),
     buttonTheme: const ButtonThemeData(buttonColor: ColorManager.orangeLight),
   );
   
