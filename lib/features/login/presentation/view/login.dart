@@ -82,7 +82,7 @@ class _LoginViewState extends State<LoginView> {
                       if (state is LoginFinishedState && state.data.status) {
                         showSnackbar(
                             state.data.message, context, ColorManager.green);
-                        Navigator.pushNamed(context, AppRoutes.register);
+                        Navigator.pushReplacementNamed(context, AppRoutes.home);
                       } else if (state is LoginFinishedState) {
                         showSnackbar(state.data.message, context, Colors.red);
                       } else if (state is LoginErrorState) {
@@ -113,11 +113,15 @@ class _LoginViewState extends State<LoginView> {
                         "Don't Have an account?",
                         style: Theme.of(context)
                             .textTheme
-                            .labelLarge!
-                            .copyWith(fontWeight: FontWeight.bold),
+                            .labelLarge
                       ),
                       TextButton(
-                          onPressed: () {}, child: const Text("Register"))
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.register);
+                          },
+                          child: const Text("Register"),),
+                           Container(width:20,height: 10 ,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/arrow.png"))),)
+
                     ],
                   )
                 ],

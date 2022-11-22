@@ -3,8 +3,7 @@ import 'package:shop_app/core/colors/colors.dart';
 
 ThemeData lightTheme() {
   return ThemeData(
-    
-    iconTheme:const IconThemeData(color:ColorManager.orangeLight ) ,
+    iconTheme: const IconThemeData(color: ColorManager.orangeLight),
     focusColor: ColorManager.orangeLight,
     primaryColor: ColorManager.orangeLight,
     fontFamily: "Metropolis",
@@ -53,8 +52,8 @@ ThemeData lightTheme() {
         foregroundColor: MaterialStateProperty.all(ColorManager.orangeLight),
       ),
     ),
-progressIndicatorTheme: ProgressIndicatorThemeData(color: ColorManager.orangeLight),
+    progressIndicatorTheme:
+        const ProgressIndicatorThemeData(color: ColorManager.orangeLight),
     buttonTheme: const ButtonThemeData(buttonColor: ColorManager.orangeLight),
   );
-  
 }

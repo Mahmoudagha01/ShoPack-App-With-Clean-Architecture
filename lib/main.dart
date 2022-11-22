@@ -5,6 +5,7 @@ import 'package:shop_app/dependancy_injection.dart';
 import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
+import 'features/register/presentation/bloc/register_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized;
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => sl<LoginBloc>(),
+        ),
+         BlocProvider(
+          create: (context) => sl<RegisterBloc>(),
         ),
       ],
       child: MaterialApp(

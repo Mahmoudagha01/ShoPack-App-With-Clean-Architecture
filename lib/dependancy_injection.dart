@@ -8,6 +8,11 @@ import 'package:shop_app/features/login/data/repositories/login_repostory_impl.d
 import 'package:shop_app/features/login/domin/repositories/login_repository.dart';
 import 'package:shop_app/features/login/domin/usecases/login_usecase.dart';
 import 'package:shop_app/features/login/presentation/bloc/login_bloc.dart';
+import 'package:shop_app/features/register/data/datasources/register_datasource.dart';
+import 'package:shop_app/features/register/data/repositories/register_repository_impl.dart';
+import 'package:shop_app/features/register/domain/repositories/register_repository.dart';
+import 'package:shop_app/features/register/domain/usecases/register_usecase.dart';
+import 'package:shop_app/features/register/presentation/bloc/register_bloc.dart';
 
 GetIt sl = GetIt.instance;
 
@@ -15,14 +20,19 @@ Future<void> init() async {
   //---Login---//
   //BLoC
   sl.registerFactory(() => LoginBloc(sl()));
+  sl.registerFactory(() => RegisterBloc(sl()));
 
   //Usecase
   sl.registerLazySingleton(() => LoginUsecase(sl()));
+  sl.registerLazySingleton(() => RegisterUsecase(sl()));
   //Repository
   sl.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(sl(), sl()));
+      sl.registerLazySingleton<RegisterBaseRepository>(
+      () => RegisterRepositoryImpl(sl(), sl()));
   //DataSource
   sl.registerLazySingleton<LoginDatasource>(() => LoginDatasourceImpl(sl()));
+    sl.registerLazySingleton<RegisterBaseDatasource>(() => RegisterDataSourceImpl(sl()));
   //---Core---//
   //API Provider
   sl.registerLazySingleton<APIProvider>(() => APIProviderImpl());

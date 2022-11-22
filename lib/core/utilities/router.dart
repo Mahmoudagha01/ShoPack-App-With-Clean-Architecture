@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shop_app/features/register/presentation/views/register.dart';
+import '../../features/home/presentation/view/home.dart';
 import '../../features/login/presentation/view/login.dart';
 import 'routes.dart';
 
@@ -11,6 +12,8 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const LoginView());
     case AppRoutes.register:
       return MaterialPageRoute(builder: (context) => const RegisterView());  
+      case AppRoutes.home:
+      return MaterialPageRoute(builder: (context) => const HomeView());  
     default:
     return MaterialPageRoute(builder: (context) => const LoginView());
       
