@@ -55,8 +55,8 @@ class APIProviderImpl implements APIProvider {
       ProgressCallback? progressCallback,
       CancelToken? cancelToken,
       int? timeOut,
-      bool isMultipart = false}) async{
-          if (timeOut != null) {
+      bool isMultipart = false}) async {
+    if (timeOut != null) {
       dio.options.connectTimeout = timeOut;
     }
 
@@ -65,7 +65,7 @@ class APIProviderImpl implements APIProvider {
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
       if (token != null) 'Authorization': token,
-      'lang' : 'en',
+      'lang': 'en',
     };
 
     debugPrint('URL => ${dio.options.baseUrl + endPoint}');
@@ -80,7 +80,7 @@ class APIProviderImpl implements APIProvider {
       onSendProgress: progressCallback,
       cancelToken: cancelToken,
     );
-      }
+  }
 
   @override
   Future<Response> put(
@@ -89,10 +89,10 @@ class APIProviderImpl implements APIProvider {
       data,
       query,
       String? token,
-         ProgressCallback? progressCallback,
+      ProgressCallback? progressCallback,
       CancelToken? cancelToken,
       int? timeOut,
-      bool isMultipart = false}) async{
+      bool isMultipart = false}) async {
     if (timeOut != null) {
       dio.options.connectTimeout = timeOut;
     }
@@ -102,7 +102,7 @@ class APIProviderImpl implements APIProvider {
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
       if (token != null) 'Authorization': token,
-      'lang' : 'en',
+      'lang': 'en',
     };
 
     debugPrint('URL => ${dio.options.baseUrl + endPoint}');

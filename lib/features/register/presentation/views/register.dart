@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/colors/colors.dart';
 import 'package:shop_app/core/utilities/routes.dart';
+import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import 'package:shop_app/features/login/presentation/widgets/maintextformfield.dart';
 import '../../../../core/utilities/constants.dart';
@@ -18,7 +19,6 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool hidePass = true;
   bool checked = false;
@@ -26,7 +26,9 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0,),
+      appBar: AppBar(
+        elevation: 0,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -39,7 +41,7 @@ class _RegisterViewState extends State<RegisterView> {
                   Row(
                     children: [
                       Text(
-                        "Login",
+                        AppStrings.register,
                         style: Theme.of(context).textTheme.headline4!.copyWith(
                             fontWeight: FontWeight.bold,
                             color: ColorManager.dark),
@@ -48,10 +50,19 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   MainTFF(
-                      labelText: "Name",
-                      hintText: "Nmae",
+                      labelText: AppStrings.nameHint,
+                      hintText: AppStrings.nameHint,
                       controller: nameController,
-                      validateText: "Name is Required!",
+                      validate: (value) {
+                        if (value!.isEmpty) {
+                          return AppStrings.nameEmpty;
+                        } else {
+                          if (value.length < 3) {
+                            return AppStrings.nameError;
+                          }
+                        }
+                        return null;
+                      },
                       isPassword: false,
                       borderRadius: 16,
                       inputType: TextInputType.text),
@@ -59,10 +70,19 @@ class _RegisterViewState extends State<RegisterView> {
                     height: 10,
                   ),
                   MainTFF(
-                      labelText: "Email",
-                      hintText: "Email",
+                      labelText: AppStrings.emailHint,
+                      hintText: AppStrings.emailHint,
                       controller: emailController,
-                      validateText: "Email is Required!",
+                      validate: (value) {
+                        if (value!.isEmpty) {
+                          return AppStrings.emptyEmail;
+                        } else {
+                          if (!value.contains('@')) {
+                            return AppStrings.invalidEmail;
+                          }
+                        }
+                        return null;
+                      },
                       isPassword: false,
                       borderRadius: 16,
                       inputType: TextInputType.emailAddress),
@@ -70,21 +90,19 @@ class _RegisterViewState extends State<RegisterView> {
                     height: 10,
                   ),
                   MainTFF(
-                      labelText: "Phone",
-                      hintText: "Phone",
-                      controller: phoneController,
-                      validateText: "Phone is Required!",
-                      isPassword: false,
-                      borderRadius: 16,
-                      inputType: TextInputType.number),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  MainTFF(
-                      labelText: "Password",
-                      hintText: "Password",
+                      labelText: AppStrings.passwordHint,
+                      hintText: AppStrings.passwordHint,
                       controller: passController,
-                      validateText: "Password is Required!",
+                      validate: (value) {
+                        if (value!.isEmpty) {
+                          return AppStrings.passwordEmpty;
+                        } else {
+                          if (value.length < 6) {
+                            return AppStrings.passwordError;
+                          }
+                        }
+                        return null;
+                      },
                       isPassword: hidePass,
                       suffix: IconButton(
                         color: ColorManager.orangeLight,
@@ -104,12 +122,11 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                   BlocConsumer<RegisterBloc, RegisterState>(
                     listener: (context, state) {
-                      if (state is RegisterFinishedState && state.data.status) {
+                      if (state is RegisterFinishedState) {
                         showSnackbar(
-                            state.data.message, context, ColorManager.green);
+                            AppStrings.registeruccess, context, ColorManager.green);
                         Navigator.pushReplacementNamed(context, AppRoutes.home);
-                      } else if (state is RegisterFinishedState) {
-                        showSnackbar(state.data.message, context, Colors.red);
+                      
                       } else if (state is RegisterErrorState) {
                         showSnackbar(state.message, context, Colors.red);
                       }
@@ -118,15 +135,14 @@ class _RegisterViewState extends State<RegisterView> {
                       return state is RegisterLoadingState
                           ? const CircularProgressIndicator()
                           : MainButton(
-                              text: "SIGN UP",
+                              text: AppStrings.registerText.toUpperCase(),
                               ontab: () {
                                 if (formKey.currentState!.validate()) {
                                   BlocProvider.of<RegisterBloc>(context).add(
                                     UserRegister(
+                                       name: nameController.text,
                                       email: emailController.text,
-                                      name: nameController.text,
                                       password: passController.text,
-                                      phone: phoneController.text,
                                     ),
                                   );
                                 }
@@ -139,22 +155,24 @@ class _RegisterViewState extends State<RegisterView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Already have an account?",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                          
-                      ),
+                      Text(AppStrings.haveAccount,
+                          style: Theme.of(context).textTheme.labelLarge),
                       TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text("Login"),),
-                      Container(width:20,height: 10 ,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/arrow.png"))),)
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(AppStrings.login),
+                      ),
+                      Container(
+                        width: 20,
+                        height: 10,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/images/arrow.png"))),
+                      )
                     ],
                   ),
-                   const SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],

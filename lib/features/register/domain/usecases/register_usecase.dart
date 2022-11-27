@@ -16,7 +16,7 @@ class RegisterUsecase
         name: params.name,
         email: params.email,
         password: params.password,
-        phone: params.phone));
+        ));
   }
 }
 
@@ -24,11 +24,11 @@ class RegisterUsecaseParams {
   final String name;
   final String email;
   final String password;
-  final String phone;
+  
 
   RegisterUsecaseParams(
       {required this.name,
       required this.email,
       required this.password,
-      required this.phone});
+  });
 }

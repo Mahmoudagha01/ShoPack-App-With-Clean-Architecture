@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/colors/colors.dart';
 import 'package:shop_app/core/utilities/routes.dart';
+import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import 'package:shop_app/features/login/presentation/widgets/maintextformfield.dart';
 import '../../../../core/utilities/constants.dart';
@@ -36,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
                   Row(
                     children: [
                       Text(
-                        "Login",
+                        AppStrings.login,
                         style: Theme.of(context).textTheme.headline4!.copyWith(
                             fontWeight: FontWeight.bold,
                             color: ColorManager.dark),
@@ -44,11 +45,20 @@ class _LoginViewState extends State<LoginView> {
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                  MainTFF(
-                      labelText: "Email",
-                      hintText: "Email",
+                 MainTFF(
+                      labelText: AppStrings.emailHint,
+                      hintText: AppStrings.emailHint,
                       controller: emailController,
-                      validateText: "Email is Required!",
+                      validate: (value) {
+                        if (value!.isEmpty) {
+                          return AppStrings.emptyEmail;
+                        } else {
+                          if (!value.contains('@')) {
+                            return AppStrings.invalidEmail;
+                          }
+                        }
+                        return null;
+                      },
                       isPassword: false,
                       borderRadius: 16,
                       inputType: TextInputType.emailAddress),
@@ -56,10 +66,19 @@ class _LoginViewState extends State<LoginView> {
                     height: 10,
                   ),
                   MainTFF(
-                      labelText: "Password",
-                      hintText: "Password",
+                      labelText: AppStrings.passwordHint,
+                      hintText: AppStrings.passwordHint,
                       controller: passController,
-                      validateText: "Password is Required!",
+                      validate: (value) {
+                        if (value!.isEmpty) {
+                          return AppStrings.passwordEmpty;
+                        } else {
+                          if (value.length < 6) {
+                            return AppStrings.passwordError;
+                          }
+                        }
+                        return null;
+                      },
                       isPassword: hidePass,
                       suffix: IconButton(
                         color: ColorManager.orangeLight,
@@ -79,12 +98,10 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   BlocConsumer<LoginBloc, LoginState>(
                     listener: (context, state) {
-                      if (state is LoginFinishedState && state.data.status) {
+                      if (state is LoginFinishedState) {
                         showSnackbar(
-                            state.data.message, context, ColorManager.green);
+                           AppStrings.loginsuccess, context, ColorManager.green);
                         Navigator.pushReplacementNamed(context, AppRoutes.home);
-                      } else if (state is LoginFinishedState) {
-                        showSnackbar(state.data.message, context, Colors.red);
                       } else if (state is LoginErrorState) {
                         showSnackbar(state.message, context, Colors.red);
                       }
@@ -93,7 +110,7 @@ class _LoginViewState extends State<LoginView> {
                       return state is LoginLoadingState
                           ? const CircularProgressIndicator()
                           : MainButton(
-                              text: "LOGIN",
+                              text: AppStrings.login.toUpperCase(),
                               ontab: () {
                                 if (formKey.currentState!.validate()) {
                                   BlocProvider.of<LoginBloc>(context).add(
@@ -119,7 +136,7 @@ class _LoginViewState extends State<LoginView> {
                           onPressed: () {
                             Navigator.pushNamed(context, AppRoutes.register);
                           },
-                          child: const Text("Register"),),
+                          child: const Text(AppStrings.register),),
                            Container(width:20,height: 10 ,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/arrow.png"))),)
 
                     ],

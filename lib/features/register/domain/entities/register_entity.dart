@@ -1,45 +1,24 @@
 import 'package:equatable/equatable.dart';
 
 class RegisterEntity extends Equatable {
-  final bool status;
-  final String message;
-  final RegisterDataEntity? data;
+  final String id;
+  final String name;
+  final String email;
+  final DateTime createdAt;
+  final String role;
+  final String token;
+
   const RegisterEntity({
-    required this.status,
-    required this.message,
-    this.data,
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.token,
+    required this.createdAt,
+    required this.role,
   });
 
   @override
-  List<Object?> get props => [status, message, data];
-}
-
-class RegisterDataEntity extends Equatable {
-  final int id;
-  final String name;
-  final String email;
-  final String phone;
-  final String image;
-  final String token;
-
-  const RegisterDataEntity(
-      {required this.id,
-      required this.name,
-      required this.email,
-      required this.phone,
-      required this.image,
-      required this.token});
-
-  @override
   List<Object> get props {
-    return [
-      id,
-      name,
-      email,
-      phone,
-      image,
-
-      token,
-    ];
+    return [id, name, email, token, role, createdAt];
   }
 }

@@ -3,7 +3,7 @@ import 'package:shop_app/features/register/domain/entities/register_entity.dart'
 import 'package:shop_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shop_app/features/register/domain/repositories/register_repository.dart';
-import '../../../../core/error/exception.dart';
+import '../../../../core/error/error_handler.dart';
 import '../../../../core/network/network_info.dart';
 
 class RegisterRepositoryImpl implements RegisterBaseRepository {
@@ -18,11 +18,11 @@ class RegisterRepositoryImpl implements RegisterBaseRepository {
       try {
         final response = await registerBaseDatasource.register(params);
         return (right(response));
-      } on ServerException {
-        return left(ServerFailure());
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
       }
     } else {
-      return Left(OfflineFailure());
+      return Left(OfflineFailure(""));
     }
   }
 }

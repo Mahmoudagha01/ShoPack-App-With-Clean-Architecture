@@ -13,11 +13,10 @@ class RegisterDataSourceImpl implements RegisterBaseDatasource {
   RegisterDataSourceImpl(this.apiProvider);
   @override
   Future<RegisterModel> register(RegisterParams params) async {
-    final response = await apiProvider.post(endPoint: registerEndPoint, data: {
+    final response = await apiProvider.post(endPoint:registerEndPoint, data: {
       "name": params.name,
       "email": params.email,
       "password": params.password,
-      "phone": params.phone
     });
     return RegisterModel.fromJson(response.data);
   }

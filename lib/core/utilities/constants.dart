@@ -1,11 +1,11 @@
 //ENDPOINTS
 import 'package:flutter/material.dart';
 
-import '../error/failure.dart';
-
-const String baseUrlPath = 'https://student.valuxapps.com/api/';
-const String loginEndPoint = '/login';
-const String registerEndPoint = '/register';
+//ENDPOINTS
+const String baseUrlPath =
+    'https://ecommerce-mernstack-dev.herokuapp.com/api/v1';
+const String loginEndPoint = '/users/login';
+const String registerEndPoint = '/users/register';
 const String homeEndPoint = '/home';
 const String getCatEndPoint = '/categories';
 const String favoritesEndPoint = '/favorites';
@@ -21,24 +21,14 @@ const String emptyCacheFailureMessage = 'No Data';
 const String offlineFailureMessage = 'Please Check your Internet Connection';
 const String tokenKey = 'tokenKey';
 
-// Function To Handle Error Message
-String mapFailureToMessage(Failure failure) {
-  switch (failure.runtimeType) {
-    case ServerFailure:
-      return serverFailureMessage;
-    case OfflineFailure:
-      return offlineFailureMessage;
-    default:
-      return "Unexpected Error , Please try again later .";
-  }
-}
+
 // Functin to show SnackBar
-  showSnackbar(String message, context,Color color) {
-                          final snackbar = SnackBar(
-                            content: Text(message),
-                            duration: const Duration(seconds: 2),
-                            backgroundColor: color,
-                          );
-                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                        }
+showSnackbar(String message, context, Color color) {
+  final snackbar = SnackBar(
+    content: Text(message),
+    duration: const Duration(seconds: 2),
+    backgroundColor: color,
+  );
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+}
