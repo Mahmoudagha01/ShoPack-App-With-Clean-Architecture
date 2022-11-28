@@ -5,17 +5,6 @@
 
 //import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:shop_app/features/login/data/models/error_model.dart';
-
-class ServerException implements Exception {
- final ErrorModel errorModel;
-
-  ServerException(this.errorModel);
-}
-
-class EmptyCacheException implements Exception {}
-
-class OfflineException implements Exception {}
 
 
 

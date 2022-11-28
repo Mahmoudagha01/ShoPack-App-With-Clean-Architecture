@@ -1,7 +1,7 @@
-import 'package:dio/dio.dart';
+
 import 'package:shop_app/core/error/error_handler.dart';
-import 'package:shop_app/core/error/exception.dart';
 import 'package:shop_app/core/network/network_info.dart';
+import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/data/datasources/login_datasource.dart';
 import 'package:shop_app/features/login/domin/entities/login_entity.dart';
 import 'package:shop_app/core/error/failure.dart';
@@ -20,12 +20,12 @@ class LoginRepositoryImpl implements LoginBaseRepository {
       try {
         final response = await loginDatasource.login(params);
         
-        return (right(response));
+        return right(response);
       }  catch (error) {
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
-      return Left(OfflineFailure(""));
+      return const Left(OfflineFailure(AppStrings.noInternetError));
     }
   }
 }

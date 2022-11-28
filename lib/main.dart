@@ -6,7 +6,7 @@ import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
 import 'features/register/presentation/bloc/register_bloc.dart';
-
+import 'features/forgotpass&verifyemail/presentation/forgotpassword_bloc/forgetpassword_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized;
   await init();
@@ -25,6 +25,9 @@ class MyApp extends StatelessWidget {
         ),
          BlocProvider(
           create: (context) => sl<RegisterBloc>(),
+        ),
+          BlocProvider(
+          create: (context) => sl<ForgetpasswordBloc>(),
         ),
       ],
       child: MaterialApp(

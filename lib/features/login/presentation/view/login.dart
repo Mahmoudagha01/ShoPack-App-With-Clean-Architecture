@@ -45,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                 MainTFF(
+                  MainTFF(
                       labelText: AppStrings.emailHint,
                       hintText: AppStrings.emailHint,
                       controller: emailController,
@@ -93,14 +93,19 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       borderRadius: 16,
                       inputType: TextInputType.text),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, AppRoutes.forgotPassword);
+                          },
+                          child: const Text(AppStrings.forgetPassword))),
                   BlocConsumer<LoginBloc, LoginState>(
                     listener: (context, state) {
                       if (state is LoginFinishedState) {
-                        showSnackbar(
-                           AppStrings.loginsuccess, context, ColorManager.green);
+                        showSnackbar(AppStrings.loginsuccess, context,
+                            ColorManager.green);
                         Navigator.pushReplacementNamed(context, AppRoutes.home);
                       } else if (state is LoginErrorState) {
                         showSnackbar(state.message, context, Colors.red);
@@ -126,19 +131,21 @@ class _LoginViewState extends State<LoginView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Don't Have an account?",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                      ),
+                      Text(AppStrings.donthaveAccount,
+                          style: Theme.of(context).textTheme.labelLarge),
                       TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, AppRoutes.register);
-                          },
-                          child: const Text(AppStrings.register),),
-                           Container(width:20,height: 10 ,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/arrow.png"))),)
-
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.register);
+                        },
+                        child: const Text(AppStrings.register),
+                      ),
+                      Container(
+                        width: 20,
+                        height: 10,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/images/arrow.png"))),
+                      )
                     ],
                   )
                 ],

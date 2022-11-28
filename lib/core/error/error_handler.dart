@@ -1,9 +1,6 @@
-
 // ignore_for_file: constant_identifier_names
-
 import 'package:dio/dio.dart';
 import 'package:shop_app/core/error/failure.dart';
-
 import '../utilities/strings.dart';
 
 
@@ -70,35 +67,35 @@ extension DataSourceExtension on DataSource {
   Failure getFailure() {
     switch (this) {
       case DataSource.BAD_REQUEST:
-        return ServerFailure( ResponseMessage.BAD_REQUEST, );
+        return const ServerFailure( ResponseMessage.BAD_REQUEST, );
       case DataSource.FORBIDDEN:
-        return ServerFailure( ResponseMessage.FORBIDDEN);
+        return const ServerFailure( ResponseMessage.FORBIDDEN);
       case DataSource.UNAUTHORISED:
-        return ServerFailure( ResponseMessage.UNAUTHORISED);
+        return const ServerFailure( ResponseMessage.UNAUTHORISED);
       case DataSource.NOT_FOUND:
-        return ServerFailure( ResponseMessage.NOT_FOUND);
+        return const ServerFailure( ResponseMessage.NOT_FOUND);
       case DataSource.INTERNAL_SERVER_ERROR:
-        return ServerFailure(
+        return const ServerFailure(
             ResponseMessage.INTERNAL_SERVER_ERROR);
       case DataSource.CONNECT_TIMEOUT:
-        return ServerFailure(
+        return const ServerFailure(
             ResponseMessage.CONNECT_TIMEOUT);
       case DataSource.CANCEL:
-        return ServerFailure( ResponseMessage.CANCEL);
+        return const ServerFailure( ResponseMessage.CANCEL);
       case DataSource.RECEIVE_TIMEOUT:
-        return ServerFailure(
+        return const ServerFailure(
              ResponseMessage.RECEIVE_TIMEOUT);
       case DataSource.SEND_TIMEOUT:
-        return ServerFailure( ResponseMessage.SEND_TIMEOUT);
+        return const ServerFailure( ResponseMessage.SEND_TIMEOUT);
       case DataSource.CACHE_ERROR:
-        return ServerFailure( ResponseMessage.CACHE_ERROR);
+        return const ServerFailure( ResponseMessage.CACHE_ERROR);
       case DataSource.NO_INTERNET_CONNECTION:
-        return ServerFailure(
+        return const ServerFailure(
             ResponseMessage.NO_INTERNET_CONNECTION);
       case DataSource.DEFAULT:
-        return ServerFailure( ResponseMessage.DEFAULT);
+        return const ServerFailure( ResponseMessage.DEFAULT);
       default:
-        return ServerFailure( ResponseMessage.DEFAULT);
+        return const ServerFailure( ResponseMessage.DEFAULT);
     }
   }
 }

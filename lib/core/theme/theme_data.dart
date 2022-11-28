@@ -5,10 +5,12 @@ ThemeData lightTheme() {
   return ThemeData(
     iconTheme: const IconThemeData(color: ColorManager.orangeLight),
     focusColor: ColorManager.orangeLight,
-    primaryColor: ColorManager.orangeLight,
-    fontFamily: "Metropolis",
+    primaryColorLight: ColorManager.orangeLight,
+    fontFamily: "Roboto",
+    
     appBarTheme: const AppBarTheme(
       backgroundColor: ColorManager.light,
+      
       iconTheme: IconThemeData(
         color: ColorManager.dark,
       ),

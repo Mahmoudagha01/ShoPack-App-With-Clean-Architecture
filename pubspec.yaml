@@ -38,7 +38,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
-  freezed_annotation: ^2.2.0
   get_it: ^7.2.0
   internet_connection_checker: ^1.0.0+1
   
@@ -61,19 +60,11 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Metropolis
-      fonts:
-        - asset: assets/fonts/Metropolis-RegularItalic.otf
-          style: italic
-        - asset: assets/fonts/Metropolis-Bold.otf
-          weight: 700
-        - asset: assets/fonts/Metropolis-SemiBold.otf
-          weight: 600
-        - asset: assets/fonts/Metropolis-Medium.otf
-          weight: 500
-        - asset: assets/fonts/Metropolis-Regular.otf
-          weight: 400
-        - asset: assets/fonts/Metropolis-Light.otf
-          weight: 300
+     - family: Roboto
+       fonts:
+         - asset: assets/fonts/Roboto-Black.ttf
+         - asset: assets/fonts/Roboto-BlackItalic.ttf
+         - asset: assets/fonts/Roboto-Bold.ttf
+         - asset: assets/fonts/Roboto-BoldItalic.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

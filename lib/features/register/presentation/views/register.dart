@@ -28,6 +28,11 @@ class _RegisterViewState extends State<RegisterView> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios),),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -123,10 +128,9 @@ class _RegisterViewState extends State<RegisterView> {
                   BlocConsumer<RegisterBloc, RegisterState>(
                     listener: (context, state) {
                       if (state is RegisterFinishedState) {
-                        showSnackbar(
-                            AppStrings.registeruccess, context, ColorManager.green);
+                        showSnackbar(AppStrings.registeruccess, context,
+                            ColorManager.green);
                         Navigator.pushReplacementNamed(context, AppRoutes.home);
-                      
                       } else if (state is RegisterErrorState) {
                         showSnackbar(state.message, context, Colors.red);
                       }
@@ -140,7 +144,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 if (formKey.currentState!.validate()) {
                                   BlocProvider.of<RegisterBloc>(context).add(
                                     UserRegister(
-                                       name: nameController.text,
+                                      name: nameController.text,
                                       email: emailController.text,
                                       password: passController.text,
                                     ),
