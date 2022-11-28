@@ -1,5 +1,5 @@
 import 'package:shop_app/core/network/api_provider.dart';
-import 'package:shop_app/core/utilities/constants.dart';
+import 'package:shop_app/core/utilities/endpoints.dart';
 import 'package:shop_app/features/forgotpass&verifyemail/data/models/forrgetpassword_model.dart';
 import 'package:shop_app/features/forgotpass&verifyemail/domain/repositories/forgotpassword_repository.dart';
 

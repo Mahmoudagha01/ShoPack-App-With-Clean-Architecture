@@ -1,0 +1,4 @@
+enum VerifyStatus{
+  forgotPassword,
+  verifyEmail
+}

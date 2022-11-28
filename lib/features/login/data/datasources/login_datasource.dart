@@ -1,5 +1,5 @@
 import 'package:shop_app/core/network/api_provider.dart';
-import 'package:shop_app/core/utilities/constants.dart';
+import 'package:shop_app/core/utilities/endpoints.dart';
 import 'package:shop_app/features/login/data/models/login_model.dart';
 import 'package:shop_app/features/login/domin/repositories/login_repository.dart';
 

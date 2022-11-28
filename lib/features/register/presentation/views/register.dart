@@ -5,7 +5,7 @@ import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import 'package:shop_app/features/login/presentation/widgets/maintextformfield.dart';
-import '../../../../core/utilities/constants.dart';
+import '../../../login/presentation/widgets/alert_snackbar.dart';
 import '../bloc/register_bloc.dart';
 
 class RegisterView extends StatefulWidget {
@@ -55,8 +55,8 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   MainTFF(
-                      labelText: AppStrings.nameHint,
-                      hintText: AppStrings.nameHint,
+                      labelText: AppStrings.name,
+                      hintText: AppStrings.name,
                       controller: nameController,
                       validate: (value) {
                         if (value!.isEmpty) {
@@ -75,8 +75,8 @@ class _RegisterViewState extends State<RegisterView> {
                     height: 10,
                   ),
                   MainTFF(
-                      labelText: AppStrings.emailHint,
-                      hintText: AppStrings.emailHint,
+                      labelText: AppStrings.email,
+                      hintText: AppStrings.email,
                       controller: emailController,
                       validate: (value) {
                         if (value!.isEmpty) {
@@ -95,8 +95,8 @@ class _RegisterViewState extends State<RegisterView> {
                     height: 10,
                   ),
                   MainTFF(
-                      labelText: AppStrings.passwordHint,
-                      hintText: AppStrings.passwordHint,
+                      labelText: AppStrings.password,
+                      hintText: AppStrings.password,
                       controller: passController,
                       validate: (value) {
                         if (value!.isEmpty) {

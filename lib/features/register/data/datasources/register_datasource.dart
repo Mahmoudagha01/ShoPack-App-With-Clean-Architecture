@@ -1,4 +1,4 @@
-import 'package:shop_app/core/utilities/constants.dart';
+import 'package:shop_app/core/utilities/endpoints.dart';
 import 'package:shop_app/features/register/data/models/register_model.dart';
 import '../../../../core/network/api_provider.dart';
 import '../../domain/repositories/register_repository.dart';

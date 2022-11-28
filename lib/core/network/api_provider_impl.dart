@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/core/network/api_provider.dart';
-import 'package:shop_app/core/utilities/constants.dart';
+import 'package:shop_app/core/utilities/endpoints.dart';
 
 class APIProviderImpl implements APIProvider {
   final Dio dio = Dio(

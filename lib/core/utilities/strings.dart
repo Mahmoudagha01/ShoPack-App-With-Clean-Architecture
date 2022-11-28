@@ -10,14 +10,14 @@ class AppStrings {
   static const String onBoardingSubTitle3 = "on_boarding_desc3";
   static const String onBoardingSubTitle4 = "on_boarding_desc4";
   static const String skip = "skip";
-  static const String nameHint = "Name";
-  static const String passwordHint = "Password";
+  static const String name = "Name";
+  static const String password = "Password";
   static const String nameError = "Name should have more than 3 characters";
   static const String nameEmpty = "Name Is required";
   static const String passwordEmpty = "Password is Required";
   static const String passwordError =
       "Password should atleast have 6 digits or characters";
-  static const String emailHint = "Email";
+  static const String email = "Email";
   static const String enteremail =
       "Please, enter your email address. You will receive a link to create a new password via email.";
   static const String login = "Login";
@@ -25,11 +25,18 @@ class AppStrings {
   static const String registeruccess = "Registration done successfully";
   static const String forgetPassword = "Forgot your pasasword?";
   static const String forgetPasswordtext = "Forgot password";
+    static const String verify = "Verify Email";
   static const String registerText = "Sign Up";
   static const String loading = "loading";
   static const String retryAgain = "retry_again";
   static const String ok = "Ok";
   static const String send = "Send";
+    static const String submit = "Submit";
+  static const String enterLink =
+      "Please enter the link that was sent to your email. The link is valid for 10 minutes.";
+    static const String link = "Link";
+    static const String emptyLink = "Link is required";
+      static const String invalidLink = "Please Enter Valid Link";
   static const String emptyEmail = "Email is required";
   static const String invalidEmail =
       "Not a valid email address. Should be your@email.com";
