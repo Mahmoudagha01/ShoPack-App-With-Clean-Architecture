@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/core/local/shared_preference.dart';
 import 'package:shop_app/core/theme/theme_data.dart';
 import 'package:shop_app/dependancy_injection.dart';
+import 'package:shop_app/features/setpassword/presentation/bloc/reset_password_bloc.dart';
 import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
 import 'features/register/presentation/bloc/register_bloc.dart';
 import 'features/forgotpass&verifyemail/presentation/forgotpass&verifyemail_bloc/forgotpass&verifyemail_bloc.dart';
+
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized;
+ WidgetsFlutterBinding.ensureInitialized();
   await init();
+  await PreferenceHelper.init();
   runApp(const MyApp());
 }
 
@@ -23,11 +27,14 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<LoginBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => sl<RegisterBloc>(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (context) => sl<ForgetpasswordAndeVerifyEmailBloc>(),
+        ),
+         BlocProvider(
+          create: (context) => sl<ResetPasswordBloc>(),
         ),
       ],
       child: MaterialApp(

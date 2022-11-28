@@ -25,22 +25,27 @@ class AppStrings {
   static const String registeruccess = "Registration done successfully";
   static const String forgetPassword = "Forgot your pasasword?";
   static const String forgetPasswordtext = "Forgot password";
-    static const String verify = "Verify Email";
+  static const String verify = "Verify Email";
   static const String registerText = "Sign Up";
   static const String loading = "loading";
   static const String retryAgain = "retry_again";
   static const String ok = "Ok";
   static const String send = "Send";
-    static const String submit = "Submit";
+  static const String submit = "Submit";
   static const String enterLink =
       "Please enter the link that was sent to your email. The link is valid for 10 minutes.";
-    static const String link = "Link";
-    static const String emptyLink = "Link is required";
-      static const String invalidLink = "Please Enter Valid Link";
+  static const String link = "Link";
+  static const String reset = "Reset Password";
+  static const String confirmpass = "Confirm Password";
+  static const String confirmEmpty = "Confirm Password is Required";
+  static const String emptyLink = "Link is required";
+  static const String invalidLink = "Please Enter Valid Link";
   static const String emptyEmail = "Email is required";
   static const String invalidEmail =
       "Not a valid email address. Should be your@email.com";
-  static const String resetPassword = "reset_password";
+  static const String notValidConfirmPassword =
+      'Confirm Password must equal Password';
+  static const String enterPassword = "Please Enter New Password";
   static const String success = "success";
   static const String profilePicture = "upload_profile_picture";
   static const String photoGalley = "photo_gallery";

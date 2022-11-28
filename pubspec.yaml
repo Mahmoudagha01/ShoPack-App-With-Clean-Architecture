@@ -34,13 +34,12 @@ dependencies:
   dartz: ^0.10.1
   dio: ^4.0.6
   equatable: ^2.0.5
-
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
   get_it: ^7.2.0
   internet_connection_checker: ^1.0.0+1
-  
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -60,11 +59,11 @@ flutter:
     - assets/images/
 
   fonts:
-     - family: Roboto
-       fonts:
-         - asset: assets/fonts/Roboto-Black.ttf
-         - asset: assets/fonts/Roboto-BlackItalic.ttf
-         - asset: assets/fonts/Roboto-Bold.ttf
-         - asset: assets/fonts/Roboto-BoldItalic.ttf
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto-BlackItalic.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-BoldItalic.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -20,7 +20,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool hidePass = true;
-  bool checked = false;
+  
 
   @override
   Widget build(BuildContext context) {

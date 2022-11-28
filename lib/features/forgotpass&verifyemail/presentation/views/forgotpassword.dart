@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/core/local/shared_preference.dart';
 import 'package:shop_app/core/utilities/enums.dart';
+import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../login/presentation/widgets/alert_snackbar.dart';
@@ -8,9 +10,8 @@ import '../../../login/presentation/widgets/mainbutton.dart';
 import '../../../login/presentation/widgets/maintextformfield.dart';
 import '../forgotpass&verifyemail_bloc/forgotpass&verifyemail_bloc.dart';
 
-
 class ForgotPassword extends StatefulWidget {
-  ForgotPassword({super.key});
+  const ForgotPassword({super.key});
 
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
@@ -42,10 +43,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: BlocBuilder<ForgetpasswordAndeVerifyEmailBloc, ForgetpasswordAndeVerifyEmailState>(
+          child: BlocBuilder<ForgetpasswordAndeVerifyEmailBloc,
+              ForgetpasswordAndeVerifyEmailState>(
             builder: (context, state) {
-              final status =
-                  BlocProvider.of<ForgetpasswordAndeVerifyEmailBloc>(context).status;
+              status =
+                  BlocProvider.of<ForgetpasswordAndeVerifyEmailBloc>(context)
+                      .status;
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
@@ -112,7 +115,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     const SizedBox(
                       height: 30,
                     ),
-                    BlocConsumer<ForgetpasswordAndeVerifyEmailBloc, ForgetpasswordAndeVerifyEmailState>(
+                    BlocConsumer<ForgetpasswordAndeVerifyEmailBloc,
+                        ForgetpasswordAndeVerifyEmailState>(
                       listener: (context, state) {
                         if (state is ForgetpasswordFinishedState) {
                           showSnackbar(
@@ -122,29 +126,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         }
                       },
                       builder: (context, state) {
-                        // if (state is ForgetpasswordFinishedState) {
-                        //   return MainButton(
-                        //       text: AppStrings.send.toUpperCase(),
-                        //       ontab: () async {
-                        //         if (formKey.currentState!.validate()) {
-                        //           print("object");
-                        //         }
-                        //       });
-                        // } else if (state is ForgetpasswordLoadingState) {
-                        //   return const Center(
-                        //       child: CircularProgressIndicator());
-                        // } else {
-                        //   return MainButton(
-                        //       text: AppStrings.send.toUpperCase(),
-                        //       ontab: () {
-                        //         if (formKey.currentState!.validate()) {
-                        //           BlocProvider.of<ForgetpasswordBloc>(context)
-                        //               .add(SendLink(inputController.text));
-                        //           formKey.currentState!.reset();
-                        //         }
-                        //       });
-                        // }
-
                         return state is ForgetpasswordLoadingState
                             ? const Center(child: CircularProgressIndicator())
                             : status == VerifyStatus.forgotPassword
@@ -152,7 +133,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     text: AppStrings.send.toUpperCase(),
                                     ontab: () {
                                       if (formKey.currentState!.validate()) {
-                                        BlocProvider.of<ForgetpasswordAndeVerifyEmailBloc>(
+                                        BlocProvider.of<
+                                                    ForgetpasswordAndeVerifyEmailBloc>(
                                                 context)
                                             .add(
                                                 SendLink(inputController.text));
@@ -160,10 +142,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                       }
                                     })
                                 : MainButton(
-                                    text: AppStrings.link.toUpperCase(),
+                                    text: AppStrings.send.toUpperCase(),
                                     ontab: () {
                                       if (formKey.currentState!.validate()) {
-                                        print(inputController.text);
+                                        PreferenceHelper
+                                            .saveDataInSharedPreference(
+                                                key: "Link",
+                                                value: inputController.text);
+                                        Navigator.pushReplacementNamed(
+                                            context, AppRoutes.setPassword);
                                       }
                                     });
                       },
