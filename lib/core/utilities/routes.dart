@@ -6,5 +6,6 @@ class AppRoutes {
   static const register = "/register";
   static const forgotPassword = "/forgotPassword";
   static const setPassword = "/setPassword";
+    static const layout = "/layout";
   static const home = "/home";
 }

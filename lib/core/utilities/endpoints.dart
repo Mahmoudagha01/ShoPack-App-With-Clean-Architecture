@@ -1,5 +1,4 @@
-const String baseUrlPath =
-    'https://ecommerce-mernstack-dev.herokuapp.com/api/v1';
+
 const String loginEndPoint = '/users/login';
 const String registerEndPoint = '/users/register';
 const String forgotPasswordEndPoint = '/users/password/forgot';

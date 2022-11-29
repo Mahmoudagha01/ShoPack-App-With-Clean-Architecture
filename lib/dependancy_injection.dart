@@ -8,6 +8,7 @@ import 'package:shop_app/features/forgotpass&verifyemail/data/repositories/forgo
 import 'package:shop_app/features/forgotpass&verifyemail/domain/repositories/forgotpassword_repository.dart';
 import 'package:shop_app/features/forgotpass&verifyemail/domain/usecases/forgotpassword_usecase.dart';
 import 'package:shop_app/features/forgotpass&verifyemail/presentation/forgotpass&verifyemail_bloc/forgotpass&verifyemail_bloc.dart';
+import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
 import 'package:shop_app/features/login/data/datasources/login_datasource.dart';
 import 'package:shop_app/features/login/data/repositories/login_repostory_impl.dart';
 import 'package:shop_app/features/login/domin/repositories/login_repository.dart';
@@ -32,6 +33,7 @@ Future<void> init() async {
   sl.registerFactory(() => RegisterBloc(sl()));
   sl.registerFactory(() => ForgetpasswordAndeVerifyEmailBloc(sl()));
   sl.registerFactory(() => ResetPasswordBloc(sl()));
+  sl.registerFactory(() => BottomNavigationBarBloc());
   //Usecase
   sl.registerLazySingleton(() => LoginUsecase(sl()));
   sl.registerLazySingleton(() => RegisterUsecase(sl()));
