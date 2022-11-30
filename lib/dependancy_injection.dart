@@ -24,6 +24,11 @@ import 'package:shop_app/features/setpassword/data/repositories/resetpassword_re
 import 'package:shop_app/features/setpassword/domain/repositories/resetPassword_repository.dart';
 import 'package:shop_app/features/setpassword/domain/usecases/resetpassword_usecase.dart';
 import 'package:shop_app/features/setpassword/presentation/bloc/reset_password_bloc.dart';
+import 'package:shop_app/features/shop/data/datasources/products_datasource.dart';
+import 'package:shop_app/features/shop/data/repositories/products_repositoryimpl.dart';
+import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
+import 'package:shop_app/features/shop/domain/usecases/getAllProducts_usecase.dart';
+import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 
 GetIt sl = GetIt.instance;
 
@@ -34,11 +39,13 @@ Future<void> init() async {
   sl.registerFactory(() => ForgetpasswordAndeVerifyEmailBloc(sl()));
   sl.registerFactory(() => ResetPasswordBloc(sl()));
   sl.registerFactory(() => BottomNavigationBarBloc());
+  sl.registerFactory(() => ProductsBloc(sl()));
   //Usecase
   sl.registerLazySingleton(() => LoginUsecase(sl()));
   sl.registerLazySingleton(() => RegisterUsecase(sl()));
   sl.registerLazySingleton(() => ForgotPassUsecase(sl()));
   sl.registerLazySingleton(() => ResetPasswordUseCase(sl()));
+  sl.registerLazySingleton(() => GetAllProductsUsecase(sl()));
   //Repository
   sl.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(sl(), sl()));
@@ -48,6 +55,8 @@ Future<void> init() async {
       () => ForgotPasswordRepoImpl(sl(), sl()));
   sl.registerLazySingleton<ResetPasswordRepository>(
       () => ResetPasswordRepositoryImpl(sl(), sl()));
+  sl.registerLazySingleton<ProductRepository>(
+      () => ProductsRepositoryImpl(sl(), sl()));
   //DataSource
   sl.registerLazySingleton<LoginDatasource>(() => LoginDatasourceImpl(sl()));
   sl.registerLazySingleton<RegisterBaseDatasource>(
@@ -56,6 +65,8 @@ Future<void> init() async {
       () => ForgetPasswordDataSourceImpl(sl()));
   sl.registerLazySingleton<ResetPasswordDatasource>(
       () => ResetPasswordDataSourceImpl(sl()));
+  sl.registerLazySingleton<ProductsDatasource>(
+      () => ProductsDatasourceImpl(sl()));
   //---Core---//
   //API Provider
   sl.registerLazySingleton<APIProvider>(() => APIProviderImpl());

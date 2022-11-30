@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/colors/colors.dart';
+import 'package:shop_app/core/local/shared_preference.dart';
 import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
@@ -20,7 +21,6 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool hidePass = true;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +104,8 @@ class _LoginViewState extends State<LoginView> {
                   BlocConsumer<LoginBloc, LoginState>(
                     listener: (context, state) {
                       if (state is LoginFinishedState) {
+                        PreferenceHelper.saveDataInSharedPreference(
+                            key: "token", value: state.data.token);
                         showSnackbar(AppStrings.loginsuccess, context,
                             ColorManager.green);
                         Navigator.pushReplacementNamed(context, AppRoutes.home);

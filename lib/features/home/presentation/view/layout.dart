@@ -18,8 +18,10 @@ class Layout extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: ColorManager.white,
             selectedItemColor: ColorManager.orangeLight,
-            unselectedItemColor: Colors.grey,
+            unselectedItemColor: ColorManager.grey,
             currentIndex: state.index,
             onTap: (index) {
               switch (index) {
@@ -42,7 +44,6 @@ class Layout extends StatelessWidget {
                 case 4:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadProfile());
-
                   break;
                 default:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
@@ -51,24 +52,26 @@ class Layout extends StatelessWidget {
             },
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined), label: 'Home',  activeIcon: Icon(Icons.home)),
+                  icon: Icon(Icons.home_outlined),
+                  label: 'Home',
+                  activeIcon: Icon(Icons.home)),
               BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_outlined),
-                label: 'Shop',
-                activeIcon: Icon(Icons.shopping_cart)
-              ),
+                  icon: Icon(Icons.shopping_cart_outlined),
+                  label: 'Shop',
+                  activeIcon: Icon(Icons.shopping_cart)),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_bag_outlined), label: 'Bag',activeIcon: Icon(Icons.shopping_bag)),
+                  icon: Icon(Icons.shopping_bag_outlined),
+                  label: 'Bag',
+                  activeIcon: Icon(Icons.shopping_bag)),
               BottomNavigationBarItem(
                 icon: Icon(Icons.favorite_border_outlined),
                 label: 'Favorite',
-                activeIcon:  Icon(Icons.favorite),
+                activeIcon: Icon(Icons.favorite),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline),
-                label: 'Profile',
-                activeIcon: Icon(Icons.person)
-              ),
+                  icon: Icon(Icons.person_outline),
+                  label: 'Profile',
+                  activeIcon: Icon(Icons.person)),
             ],
           ),
           body: BlocBuilder<BottomNavigationBarBloc, BottomNavigationBarState>(

@@ -10,6 +10,7 @@ abstract class BottomNavigationBarState extends Equatable {
 class BottomNavigationBarInitial extends BottomNavigationBarState {}
 
 class HomeState extends BottomNavigationBarState {
+
   @override
   final int index = 0;
   final String title = 'Home';
@@ -19,6 +20,7 @@ class HomeState extends BottomNavigationBarState {
 }
 
 class ShopState extends BottomNavigationBarState {
+  @override
   final int index = 1;
   final String title = 'Shop';
 
@@ -27,6 +29,7 @@ class ShopState extends BottomNavigationBarState {
 }
 
 class BagState extends BottomNavigationBarState {
+  @override
   final int index = 2;
   final String title = 'Bag';
 
@@ -35,6 +38,7 @@ class BagState extends BottomNavigationBarState {
 }
 
 class FavoriteState extends BottomNavigationBarState {
+  @override
   final int index = 3;
   final String title = 'Favorite';
 
@@ -43,6 +47,7 @@ class FavoriteState extends BottomNavigationBarState {
 }
 
 class ProfileState extends BottomNavigationBarState {
+  @override
   final int index = 4;
   final String title = 'Profile';
 

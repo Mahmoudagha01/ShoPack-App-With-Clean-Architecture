@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
 part 'BottomNavigationBar_event.dart';
 part 'BottomNavigationBar_state.dart';
 
