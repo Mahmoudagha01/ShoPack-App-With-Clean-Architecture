@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shop_app/core/error/error_handler.dart';
 import 'package:shop_app/core/network/network_info.dart';
 import 'package:shop_app/core/utilities/strings.dart';
@@ -13,16 +14,17 @@ class ProductsRepositoryImpl implements ProductRepository {
 
   ProductsRepositoryImpl(this.networkInfo, this.productsDatasource);
   @override
-  Future<Either<Failure, Productsentity>> getAllProducts() async {
+  Future<Either<Failure, ProductsEntity>> getAllProducts() async {
     if (await networkInfo.isConnected) {
       try {
         final data = await productsDatasource.getAllProducts();
         return right(data);
       } catch (error) {
+        debugPrint(error.toString());
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
-     return left(const OfflineFailure(AppStrings.noInternetError));
+      return const Left(OfflineFailure(AppStrings.noInternetError));
     }
   }
 }

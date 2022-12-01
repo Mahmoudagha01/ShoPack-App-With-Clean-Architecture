@@ -6,7 +6,7 @@ part 'BottomNavigationBar_state.dart';
 class BottomNavigationBarBloc
     extends Bloc<BottomNavigationBarEvent, BottomNavigationBarState> {
  
-  BottomNavigationBarBloc() : super(BottomNavigationBarInitial()) {
+  BottomNavigationBarBloc() : super(HomeState()) {
 
     on<LoadHome>((event, emit) => emit( HomeState()));
     on<LoadShop>((event, emit) => emit( ShopState()));

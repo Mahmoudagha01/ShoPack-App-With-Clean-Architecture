@@ -77,7 +77,7 @@ class AppStrings {
   static const String internalServerError = "internal_server_error";
   static const String unknownError = "unknown_error";
   static const String timeoutError = "timeout_error";
-  static const String defaultError = "default_error";
+  static const String defaultError = "Error In Fetching Data";
   static const String cacheError = "cache_error";
   static const String noInternetError = "Please Check your Internet Connection";
 }

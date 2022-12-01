@@ -7,7 +7,7 @@ abstract class BottomNavigationBarState extends Equatable {
   List<Object> get props => [];
 }
 
-class BottomNavigationBarInitial extends BottomNavigationBarState {}
+
 
 class HomeState extends BottomNavigationBarState {
 

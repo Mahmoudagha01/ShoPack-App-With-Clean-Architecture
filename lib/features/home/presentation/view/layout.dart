@@ -7,6 +7,7 @@ import 'package:shop_app/features/favorite/presentation/views/favorite.dart';
 import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
 import 'package:shop_app/features/home/presentation/view/home.dart';
 import 'package:shop_app/features/profile/presentation/views/profile.dart';
+import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 import 'package:shop_app/features/shop/presentation/views/shop.dart';
 
 class Layout extends StatelessWidget {
@@ -28,6 +29,7 @@ class Layout extends StatelessWidget {
                 case 0:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadHome());
+                  BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
                   break;
                 case 1:
                   BlocProvider.of<BottomNavigationBarBloc>(context)

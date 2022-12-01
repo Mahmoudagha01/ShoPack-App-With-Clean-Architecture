@@ -10,7 +10,7 @@ abstract class ProductsState extends Equatable {
 class AllProductsLoadingState extends ProductsState {}
 
 class AllProductsLoadedState extends ProductsState {
-  final Productsentity data;
+  final ProductsEntity data;
 
   const AllProductsLoadedState(this.data);
 }

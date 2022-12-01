@@ -13,6 +13,7 @@ class ProductsDatasourceImpl implements ProductsDatasource {
   @override
   Future<ProductsModel> getAllProducts() async {
     final response = await apiProvider.get(endPoint: productsEndPoint);
+    print(response.data);
     return ProductsModel.fromJson(response.data);
   }
 }
