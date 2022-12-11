@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   build_runner: ^2.3.2
+  carousel_slider: ^4.2.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
@@ -37,6 +38,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  flutter_rating_bar: ^4.0.1
   get_it: ^7.2.0
   internet_connection_checker: ^1.0.0+1
   shared_preferences: ^2.0.15

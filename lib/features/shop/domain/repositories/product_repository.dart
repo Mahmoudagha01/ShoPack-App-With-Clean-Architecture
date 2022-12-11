@@ -5,3 +5,4 @@ import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 abstract class ProductRepository {
   Future<Either<Failure, ProductsEntity>> getAllProducts();
 }
+

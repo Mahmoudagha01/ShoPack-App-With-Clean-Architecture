@@ -11,6 +11,9 @@ class AppStrings {
   static const String onBoardingSubTitle4 = "on_boarding_desc4";
   static const String skip = "skip";
   static const String name = "Name";
+  static const String check = "Check";
+  static const String recentlyAddedProducts = "Recently Added Products";
+  static const String newText = "New";
   static const String password = "Password";
   static const String nameError = "Name should have more than 3 characters";
   static const String nameEmpty = "Name Is required";
@@ -32,6 +35,9 @@ class AppStrings {
   static const String ok = "Ok";
   static const String send = "Send";
   static const String submit = "Submit";
+  static const String headerTitle = "Give your workout\nA New Style!";
+  static const String headerSuTitle =
+      "Shop the most cool products available on the store\nlet it be T-shirts, Electronics and much more!";
   static const String enterLink =
       "Please enter the link that was sent to your email. The link is valid for 10 minutes.";
   static const String link = "Link";

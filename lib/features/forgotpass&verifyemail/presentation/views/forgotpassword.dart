@@ -131,6 +131,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             : status == VerifyStatus.forgotPassword
                                 ? MainButton(
                                     text: AppStrings.send.toUpperCase(),
+                                     height: 50,
                                     ontab: () {
                                       if (formKey.currentState!.validate()) {
                                         BlocProvider.of<
@@ -143,6 +144,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     })
                                 : MainButton(
                                     text: AppStrings.send.toUpperCase(),
+                                     height: 50,
                                     ontab: () {
                                       if (formKey.currentState!.validate()) {
                                         PreferenceHelper

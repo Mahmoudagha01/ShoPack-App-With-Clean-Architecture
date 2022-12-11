@@ -16,5 +16,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
           (failure) => emit(AllProductsErrorState(failure.message)),
           (success) => emit(AllProductsLoadedState(success)));
     });
+
+    
   }
 }

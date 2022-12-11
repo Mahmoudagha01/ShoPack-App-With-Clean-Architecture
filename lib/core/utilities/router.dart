@@ -19,7 +19,7 @@ Route<dynamic> onGenerate(RouteSettings settings) {
        case AppRoutes.setPassword:
       return MaterialPageRoute(builder: (context) => const SetPassword());
       case AppRoutes.layout:
-      return MaterialPageRoute(builder: (context) => const Layout());  
+      return MaterialPageRoute(builder: (context) => const LayoutPage());  
       case AppRoutes.home:
       return MaterialPageRoute(builder: (context) => const HomeView());  
     default:

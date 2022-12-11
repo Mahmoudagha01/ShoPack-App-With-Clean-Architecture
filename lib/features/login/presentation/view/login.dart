@@ -118,6 +118,7 @@ class _LoginViewState extends State<LoginView> {
                           ? const CircularProgressIndicator()
                           : MainButton(
                               text: AppStrings.login.toUpperCase(),
+                               height: 50,
                               ontab: () {
                                 if (formKey.currentState!.validate()) {
                                   BlocProvider.of<LoginBloc>(context).add(

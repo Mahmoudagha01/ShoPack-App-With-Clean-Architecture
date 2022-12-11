@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/core/utilities/strings.dart';
+import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import '../../../core/colors/colors.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -7,22 +9,9 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      SizedBox(
-        height: MediaQuery.of(context).size.height * 0.9,
-      ),
-      Positioned(
-        top: MediaQuery.of(context).size.height * 0.4,
-        left: 0,
-        child: Image.asset("assets/images/laptop.jpg"),
-      ),
-      Positioned(
-        bottom: 0,
-        right: 0,
-        child: Image.asset("assets/images/hod.png"),
-      ),
       Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.4,
+        height: MediaQuery.of(context).size.height * 0.5,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/header.png"),
@@ -30,52 +19,43 @@ class HomeHeader extends StatelessWidget {
       ),
       Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.4,
+          height: MediaQuery.of(context).size.height * 0.5,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/images/opacity.png"),
                   fit: BoxFit.cover))),
       Positioned(
-        top: MediaQuery.of(context).size.height * 0.3,
+        top: MediaQuery.of(context).size.height * 0.25,
         left: 20,
-        child: Text(
-          "New Fashion Collection",
-          style: Theme.of(context)
-              .textTheme
-              .headline4!
-              .copyWith(color: ColorManager.white),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              AppStrings.headerTitle,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4!
+                  .copyWith(color: ColorManager.white),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              AppStrings.headerSuTitle,
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    color: ColorManager.white.withOpacity(0.9),
+                  ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+                width: 200,
+                child: MainButton(
+                    text: AppStrings.check, height: 40, ontab: () {}))
+          ],
         ),
       ),
-      Positioned(
-        bottom: 20,
-        left: 30,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.5,
-          height: 100,
-          child: Text(
-            "All this in one place",
-            style: Theme.of(context)
-                .textTheme
-                .headline4!
-                .copyWith(color: ColorManager.orangeLight),
-          ),
-        ),
-      ),
-      Positioned(
-        top: MediaQuery.of(context).size.height * 0.57,
-        left: 20,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.5,
-          height: 100,
-          child: Text(
-            "Electronics",
-            style: Theme.of(context)
-                .textTheme
-                .headline4!
-                .copyWith(color: ColorManager.white),
-          ),
-        ),
-      )
     ]);
   }
 }

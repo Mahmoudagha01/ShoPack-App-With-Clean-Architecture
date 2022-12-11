@@ -140,6 +140,7 @@ class _RegisterViewState extends State<RegisterView> {
                           ? const CircularProgressIndicator()
                           : MainButton(
                               text: AppStrings.registerText.toUpperCase(),
+                              height: 50,
                               ontab: () {
                                 if (formKey.currentState!.validate()) {
                                   BlocProvider.of<RegisterBloc>(context).add(

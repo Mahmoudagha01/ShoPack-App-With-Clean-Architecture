@@ -129,6 +129,7 @@ class _SetPasswordState extends State<SetPassword> {
                               ? const CircularProgressIndicator()
                               : MainButton(
                                   text: AppStrings.login.toUpperCase(),
+                                   height: 50,
                                   ontab: () {
                                     if (formKey.currentState!.validate()) {
                                       BlocProvider.of<ResetPasswordBloc>(context).add(

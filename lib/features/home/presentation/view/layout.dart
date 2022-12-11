@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/colors/colors.dart';
@@ -10,9 +9,21 @@ import 'package:shop_app/features/profile/presentation/views/profile.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 import 'package:shop_app/features/shop/presentation/views/shop.dart';
 
-class Layout extends StatelessWidget {
-  const Layout({Key? key}) : super(key: key);
+class LayoutPage extends StatefulWidget {
+  const LayoutPage({super.key});
 
+
+
+  @override
+  State<LayoutPage> createState() => _LayoutPageState();
+}
+
+class _LayoutPageState extends State<LayoutPage> {
+  @override
+  void initState() {
+ BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavigationBarBloc, BottomNavigationBarState>(

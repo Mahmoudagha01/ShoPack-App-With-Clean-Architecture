@@ -1,6 +1,7 @@
 import 'package:shop_app/core/network/api_provider.dart';
 import 'package:shop_app/core/utilities/endpoints.dart';
 import 'package:shop_app/features/shop/data/models/products_model.dart';
+import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
 
 abstract class ProductsDatasource {
   Future<ProductsModel> getAllProducts();

@@ -12,7 +12,7 @@ class AllProductsLoadingState extends ProductsState {}
 class AllProductsLoadedState extends ProductsState {
   final ProductsEntity data;
 
-  const AllProductsLoadedState(this.data);
+  const AllProductsLoadedState(this.data,);
 }
 
 class AllProductsErrorState extends ProductsState {

@@ -27,22 +27,22 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<LoginBloc>(),
+          create: (context) => injector<LoginBloc>(),
         ),
         BlocProvider(
-          create: (context) => sl<RegisterBloc>(),
+          create: (context) => injector<RegisterBloc>(),
         ),
         BlocProvider(
-          create: (context) => sl<ForgetpasswordAndeVerifyEmailBloc>(),
+          create: (context) => injector<ForgetpasswordAndeVerifyEmailBloc>(),
         ),
          BlocProvider(
-          create: (context) => sl<ResetPasswordBloc>(),
+          create: (context) => injector<ResetPasswordBloc>(),
         ),
          BlocProvider(
-          create: (context) => sl<BottomNavigationBarBloc>(),
+          create: (context) => injector<BottomNavigationBarBloc>(),
         ),
           BlocProvider(
-          create: (context) => sl<ProductsBloc>(),
+          create: (context) => injector<ProductsBloc>(),
         ),
       ],
       child: MaterialApp(

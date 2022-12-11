@@ -30,50 +30,50 @@ import 'package:shop_app/features/shop/domain/repositories/product_repository.da
 import 'package:shop_app/features/shop/domain/usecases/getAllProducts_usecase.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 
-GetIt sl = GetIt.instance;
+GetIt injector = GetIt.instance;
 
 Future<void> init() async {
   //BLoC
-  sl.registerFactory(() => LoginBloc(sl()));
-  sl.registerFactory(() => RegisterBloc(sl()));
-  sl.registerFactory(() => ForgetpasswordAndeVerifyEmailBloc(sl()));
-  sl.registerFactory(() => ResetPasswordBloc(sl()));
-  sl.registerFactory(() => BottomNavigationBarBloc());
-  sl.registerFactory(() => ProductsBloc(sl()));
+  injector.registerFactory(() => LoginBloc(injector()));
+  injector.registerFactory(() => RegisterBloc(injector()));
+  injector.registerFactory(() => ForgetpasswordAndeVerifyEmailBloc(injector()));
+  injector.registerFactory(() => ResetPasswordBloc(injector()));
+  injector.registerFactory(() => BottomNavigationBarBloc());
+  injector.registerFactory(() => ProductsBloc(injector()));
   //Usecase
-  sl.registerLazySingleton(() => LoginUsecase(sl()));
-  sl.registerLazySingleton(() => RegisterUsecase(sl()));
-  sl.registerLazySingleton(() => ForgotPassUsecase(sl()));
-  sl.registerLazySingleton(() => ResetPasswordUseCase(sl()));
-  sl.registerLazySingleton(() => GetAllProductsUsecase(sl()));
+  injector.registerLazySingleton(() => LoginUsecase(injector()));
+  injector.registerLazySingleton(() => RegisterUsecase(injector()));
+  injector.registerLazySingleton(() => ForgotPassUsecase(injector()));
+  injector.registerLazySingleton(() => ResetPasswordUseCase(injector()));
+  injector.registerLazySingleton(() => GetAllProductsUsecase(injector()));
   //Repository
-  sl.registerLazySingleton<LoginBaseRepository>(
-      () => LoginRepositoryImpl(sl(), sl()));
-  sl.registerLazySingleton<RegisterBaseRepository>(
-      () => RegisterRepositoryImpl(sl(), sl()));
-  sl.registerLazySingleton<ForgotPasswordRepo>(
-      () => ForgotPasswordRepoImpl(sl(), sl()));
-  sl.registerLazySingleton<ResetPasswordRepository>(
-      () => ResetPasswordRepositoryImpl(sl(), sl()));
-  sl.registerLazySingleton<ProductRepository>(
-      () => ProductsRepositoryImpl(sl(), sl()));
+  injector.registerLazySingleton<LoginBaseRepository>(
+      () => LoginRepositoryImpl(injector(), injector()));
+  injector.registerLazySingleton<RegisterBaseRepository>(
+      () => RegisterRepositoryImpl(injector(), injector()));
+  injector.registerLazySingleton<ForgotPasswordRepo>(
+      () => ForgotPasswordRepoImpl(injector(), injector()));
+  injector.registerLazySingleton<ResetPasswordRepository>(
+      () => ResetPasswordRepositoryImpl(injector(), injector()));
+  injector.registerLazySingleton<ProductRepository>(
+      () => ProductsRepositoryImpl(injector(), injector()));
   //DataSource
-  sl.registerLazySingleton<LoginDatasource>(() => LoginDatasourceImpl(sl()));
-  sl.registerLazySingleton<RegisterBaseDatasource>(
-      () => RegisterDataSourceImpl(sl()));
-  sl.registerLazySingleton<ForgetPasswordDataSource>(
-      () => ForgetPasswordDataSourceImpl(sl()));
-  sl.registerLazySingleton<ResetPasswordDatasource>(
-      () => ResetPasswordDataSourceImpl(sl()));
-  sl.registerLazySingleton<ProductsDatasource>(
-      () => ProductsDatasourceImpl(sl()));
+  injector.registerLazySingleton<LoginDatasource>(() => LoginDatasourceImpl(injector()));
+  injector.registerLazySingleton<RegisterBaseDatasource>(
+      () => RegisterDataSourceImpl(injector()));
+  injector.registerLazySingleton<ForgetPasswordDataSource>(
+      () => ForgetPasswordDataSourceImpl(injector()));
+  injector.registerLazySingleton<ResetPasswordDatasource>(
+      () => ResetPasswordDataSourceImpl(injector()));
+  injector.registerLazySingleton<ProductsDatasource>(
+      () => ProductsDatasourceImpl(injector()));
   //---Core---//
   //API Provider
-  sl.registerLazySingleton<APIProvider>(() => APIProviderImpl());
+  injector.registerLazySingleton<APIProvider>(() => APIProviderImpl());
   //Network Info
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  injector.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(injector()));
   //InternetConnectionChecker
-  sl.registerLazySingleton(() => InternetConnectionChecker());
+  injector.registerLazySingleton(() => InternetConnectionChecker());
   //SharedPreference
-  //sl.registerLazySingleton<PreferenceHelper>(() => PreferenceHelper());
+  //injector.registerLazySingleton<PreferenceHelper>(() => PreferenceHelper());
 }
