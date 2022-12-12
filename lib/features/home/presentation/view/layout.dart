@@ -12,8 +12,6 @@ import 'package:shop_app/features/shop/presentation/views/shop.dart';
 class LayoutPage extends StatefulWidget {
   const LayoutPage({super.key});
 
-
-
   @override
   State<LayoutPage> createState() => _LayoutPageState();
 }
@@ -21,9 +19,10 @@ class LayoutPage extends StatefulWidget {
 class _LayoutPageState extends State<LayoutPage> {
   @override
   void initState() {
- BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
+    BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavigationBarBloc, BottomNavigationBarState>(
@@ -45,6 +44,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 case 1:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadShop());
+                  BlocProvider.of<ProductsBloc>(context).add(const GetSpecificProduct("Clothes",'0','100000','0'));
                   break;
                 case 2:
                   BlocProvider.of<BottomNavigationBarBloc>(context)

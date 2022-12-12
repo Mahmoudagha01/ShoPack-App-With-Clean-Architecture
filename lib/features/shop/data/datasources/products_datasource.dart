@@ -5,6 +5,7 @@ import 'package:shop_app/features/shop/domain/repositories/product_repository.da
 
 abstract class ProductsDatasource {
   Future<ProductsModel> getAllProducts();
+  Future<ProductsModel> getSpecificProduct(GetProductParams params);
 }
 
 class ProductsDatasourceImpl implements ProductsDatasource {
@@ -14,7 +15,15 @@ class ProductsDatasourceImpl implements ProductsDatasource {
   @override
   Future<ProductsModel> getAllProducts() async {
     final response = await apiProvider.get(endPoint: productsEndPoint);
-    print(response.data);
+    return ProductsModel.fromJson(response.data);
+  }
+
+  @override
+  Future<ProductsModel> getSpecificProduct(GetProductParams params) async {
+    final response = await apiProvider.get(endPoint: productsEndPoint, query: {
+      "category": params.category,
+      
+    });
     return ProductsModel.fromJson(response.data);
   }
 }

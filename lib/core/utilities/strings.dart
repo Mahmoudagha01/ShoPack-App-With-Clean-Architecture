@@ -11,6 +11,7 @@ class AppStrings {
   static const String onBoardingSubTitle4 = "on_boarding_desc4";
   static const String skip = "skip";
   static const String name = "Name";
+  static const String price = "Price";
   static const String check = "Check";
   static const String recentlyAddedProducts = "Recently Added Products";
   static const String newText = "New";
@@ -34,7 +35,9 @@ class AppStrings {
   static const String retryAgain = "retry_again";
   static const String ok = "Ok";
   static const String send = "Send";
+  static const String filter = "Filter";
   static const String submit = "Submit";
+  static const String rate = "Rating";
   static const String headerTitle = "Give your workout\nA New Style!";
   static const String headerSuTitle =
       "Shop the most cool products available on the store\nlet it be T-shirts, Electronics and much more!";
@@ -64,7 +67,7 @@ class AppStrings {
   static const String search = "search";
   static const String settings = "settings";
   static const String services = "services";
-  static const String stores = "stores";
+  static const String shop = "Shop";
   static const String details = "details";
   static const String about = "about";
   static const String storeDetails = "store_details";

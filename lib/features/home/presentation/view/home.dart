@@ -24,10 +24,11 @@ class HomeView extends StatelessWidget {
                   AppStrings.recentlyAddedProducts,
                 ),
                 TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'All Products >>',
-                    )),
+                  onPressed: () {},
+                  child: const Text(
+                    'All Products >>',
+                  ),
+                ),
               ],
             ),
           ),

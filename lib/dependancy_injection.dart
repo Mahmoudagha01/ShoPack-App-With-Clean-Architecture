@@ -28,7 +28,9 @@ import 'package:shop_app/features/shop/data/datasources/products_datasource.dart
 import 'package:shop_app/features/shop/data/repositories/products_repositoryimpl.dart';
 import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
 import 'package:shop_app/features/shop/domain/usecases/getAllProducts_usecase.dart';
+import 'package:shop_app/features/shop/domain/usecases/getSpecificProduct.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
+
 
 GetIt injector = GetIt.instance;
 
@@ -39,13 +41,15 @@ Future<void> init() async {
   injector.registerFactory(() => ForgetpasswordAndeVerifyEmailBloc(injector()));
   injector.registerFactory(() => ResetPasswordBloc(injector()));
   injector.registerFactory(() => BottomNavigationBarBloc());
-  injector.registerFactory(() => ProductsBloc(injector()));
+  injector.registerFactory(() => ProductsBloc(injector(), injector()));
+ 
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
   injector.registerLazySingleton(() => RegisterUsecase(injector()));
   injector.registerLazySingleton(() => ForgotPassUsecase(injector()));
   injector.registerLazySingleton(() => ResetPasswordUseCase(injector()));
   injector.registerLazySingleton(() => GetAllProductsUsecase(injector()));
+  injector.registerLazySingleton(() => GetSpecificProductUseCase(injector()));
   //Repository
   injector.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(injector(), injector()));
@@ -58,7 +62,8 @@ Future<void> init() async {
   injector.registerLazySingleton<ProductRepository>(
       () => ProductsRepositoryImpl(injector(), injector()));
   //DataSource
-  injector.registerLazySingleton<LoginDatasource>(() => LoginDatasourceImpl(injector()));
+  injector.registerLazySingleton<LoginDatasource>(
+      () => LoginDatasourceImpl(injector()));
   injector.registerLazySingleton<RegisterBaseDatasource>(
       () => RegisterDataSourceImpl(injector()));
   injector.registerLazySingleton<ForgetPasswordDataSource>(
@@ -71,7 +76,8 @@ Future<void> init() async {
   //API Provider
   injector.registerLazySingleton<APIProvider>(() => APIProviderImpl());
   //Network Info
-  injector.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(injector()));
+  injector
+      .registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(injector()));
   //InternetConnectionChecker
   injector.registerLazySingleton(() => InternetConnectionChecker());
   //SharedPreference

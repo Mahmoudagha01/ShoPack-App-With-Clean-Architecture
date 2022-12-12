@@ -20,11 +20,25 @@ class ProductsRepositoryImpl implements ProductRepository {
         final data = await productsDatasource.getAllProducts();
         return right(data);
       } catch (error) {
-        debugPrint(error.toString());
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
       return const Left(OfflineFailure(AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ProductsEntity>> getSpecificProduct(
+      GetProductParams params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await productsDatasource.getSpecificProduct(params);
+        return right(data);
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
     }
   }
 }

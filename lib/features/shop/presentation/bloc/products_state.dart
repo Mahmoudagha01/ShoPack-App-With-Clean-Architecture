@@ -20,3 +20,22 @@ class AllProductsErrorState extends ProductsState {
 
   const AllProductsErrorState(this.message);
 }
+
+
+class ProductsLoadingState extends ProductsState {}
+
+class ProductsLoadedState extends ProductsState {
+  final ProductsEntity data;
+
+  const ProductsLoadedState(this.data,);
+}
+
+class ProductsErrorState extends ProductsState {
+  final String message;
+
+  const ProductsErrorState(this.message);
+}
+
+
+class ChangeCategoryState extends ProductsState {}
+
