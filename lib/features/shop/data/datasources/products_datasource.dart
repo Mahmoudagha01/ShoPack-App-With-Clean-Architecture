@@ -22,7 +22,9 @@ class ProductsDatasourceImpl implements ProductsDatasource {
   Future<ProductsModel> getSpecificProduct(GetProductParams params) async {
     final response = await apiProvider.get(endPoint: productsEndPoint, query: {
       "category": params.category,
-      
+      "price[gt]": params.minPrice,
+      "price[lt]": params.maxPrice,
+      "ratings": params.rate,
     });
     return ProductsModel.fromJson(response.data);
   }

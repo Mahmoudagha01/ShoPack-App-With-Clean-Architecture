@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/utilities/strings.dart';
+import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 import '../../../../core/colors/colors.dart';
 
 class FilterProduct extends StatelessWidget {
-  const FilterProduct({super.key});
+  const FilterProduct({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +45,16 @@ class FilterProduct extends StatelessWidget {
                             children: [
                               StatefulBuilder(builder: (_, setState) {
                                 return Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(AppStrings.filter,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline6),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
                                     Text(
                                       AppStrings.price,
                                       style: Theme.of(context)
@@ -69,12 +77,8 @@ class FilterProduct extends StatelessWidget {
                                       },
                                       divisions: 100,
                                       labels: RangeLabels(
-                                        "${bloc.priceSelectRange.start
-                                            .round()
-                                            .toString()}\$",
-                                        "${bloc.priceSelectRange.end
-                                            .round()
-                                            .toString()}\$",
+                                        "${bloc.priceSelectRange.start.round().toString()}\$",
+                                        "${bloc.priceSelectRange.end.round().toString()}\$",
                                       ),
                                     ),
                                     Text(
@@ -89,17 +93,45 @@ class FilterProduct extends StatelessWidget {
                                     Slider(
                                       min: 0,
                                       max: 5,
-                                        activeColor: ColorManager.orangeLight,
-                                        value: bloc.rateValue,
-                                        onChanged: (v) {
-                                          setState(() {
-                                           bloc
-                                                .rateValue = v;
-                                          });
-                                        },
-                                        label: "${bloc.rateValue.round()}",
-                                        divisions: 5,
-                                        )
+                                      activeColor: ColorManager.orangeLight,
+                                      value: bloc.rateValue,
+                                      onChanged: (v) {
+                                        setState(() {
+                                          bloc.rateValue = v;
+                                        });
+                                      },
+                                      label: "${bloc.rateValue.round()}",
+                                      divisions: 5,
+                                    ),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
+                                    SizedBox(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      child: BlocProvider.value(
+                                        value: bloc,
+                                        child: MainButton(
+                                            text: AppStrings.apply,
+                                            ontab: () {
+                                              setState(() {
+                                                bloc.add(GetFilterSpecificProduct(
+                                                    bloc.categories[bloc.current],
+                                                    bloc.priceSelectRange.start
+                                                        .round()
+                                                        .toString(),
+                                                    bloc.priceSelectRange.end
+                                                        .round()
+                                                        .toString(),
+                                                    bloc.rateValue
+                                                        .round()
+                                                        .toString()));
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                            height: 40),
+                                      ),
+                                    ),
                                   ],
                                 );
                               }),

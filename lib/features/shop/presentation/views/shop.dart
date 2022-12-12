@@ -134,7 +134,25 @@ class ShopView extends StatelessWidget {
                       ));
                     } else if (state is ProductsErrorState) {
                       return Center(child: Text(state.message));
-                    } else {
+                    } else if (state is FilterProductsLoadedState) {
+                      final products = state.data.products;
+                      return Expanded(
+                          child: GridView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: state.data.filteredProductsCount,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                                height: 330, crossAxisCount: 2),
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                              onTap: () {},
+                              child: ProductItem(product: products[index]));
+                        },
+                      ));
+                    } else if (state is ProductsErrorState) {
+                      return Center(child: Text(state.message));
+                    }
+                    else {
                       return const SizedBox();
                     }
                   },

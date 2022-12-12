@@ -20,7 +20,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   ];
   int current = 0;
   RangeValues priceSelectRange = const RangeValues(200, 400);
-  double rateValue=0;
+  double rateValue = 0;
   final GetAllProductsUsecase getAllProductsUsecase;
   final GetSpecificProductUseCase getSpecificProductUseCase;
   ProductsBloc(this.getAllProductsUsecase, this.getSpecificProductUseCase)
@@ -47,6 +47,15 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       current = event.index;
       emit(ChangeCategoryState());
     });
-  
+    on<GetFilterSpecificProduct>((event, emit) async {
+      final failurOrSuccess = await getSpecificProductUseCase(
+        GetProductUseCaseParams(
+            event.category, event.minPrice, event.maxPrice, event.rate),
+      );
+
+      failurOrSuccess.fold(
+          (failure) => emit(ProductsErrorState(failure.message)),
+          (success) => emit(FilterProductsLoadedState(success)));
+    });
   }
 }

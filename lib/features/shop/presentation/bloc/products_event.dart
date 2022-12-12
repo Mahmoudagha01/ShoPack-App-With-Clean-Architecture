@@ -18,7 +18,15 @@ final String minPrice;
     this.category, this.minPrice, this.maxPrice, this.rate,
   );
 }
-
+class GetFilterSpecificProduct extends ProductsEvent {
+  final String category;
+final String minPrice;
+  final String maxPrice;
+  final String rate;
+  const GetFilterSpecificProduct(
+    this.category, this.minPrice, this.maxPrice, this.rate,
+  );
+}
 class ChangeCatyegory extends ProductsEvent {
   final int index;
 

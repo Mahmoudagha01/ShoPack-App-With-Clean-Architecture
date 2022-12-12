@@ -29,7 +29,11 @@ class ProductsLoadedState extends ProductsState {
 
   const ProductsLoadedState(this.data,);
 }
+class FilterProductsLoadedState extends ProductsState {
+  final ProductsEntity data;
 
+  const FilterProductsLoadedState(this.data,);
+}
 class ProductsErrorState extends ProductsState {
   final String message;
 
