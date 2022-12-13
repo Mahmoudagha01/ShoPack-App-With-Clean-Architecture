@@ -44,7 +44,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 case 1:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadShop());
-                  BlocProvider.of<ProductsBloc>(context).add(const GetSpecificProduct("Clothes",'0','100000','0'));
+                  BlocProvider.of<ProductsBloc>(context).add(const GetSpecificProduct("Clothes",'0','100000','0',''));
                   break;
                 case 2:
                   BlocProvider.of<BottomNavigationBarBloc>(context)

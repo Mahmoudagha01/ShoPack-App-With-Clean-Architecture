@@ -24,21 +24,23 @@ class HomeView extends StatelessWidget {
                   AppStrings.recentlyAddedProducts,
                 ),
                 TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'All Products >>',
-                  ),
-                ),
+                    onPressed: () {},
+                    child: const Text(
+                      'All Products >>',
+                    ),),
               ],
             ),
           ),
-          BlocListener<ProductsBloc, ProductsState>(
-            listener: (context, state) {},
-            child: BlocBuilder<ProductsBloc, ProductsState>(
+          
+           
+             BlocBuilder<ProductsBloc, ProductsState>(
               builder: (context, state) {
                 if (state is AllProductsLoadingState) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return Column(
+                    children: const [
+                       SizedBox(height: 100,),
+                       CircularProgressIndicator(),
+                    ],
                   );
                 } else if (state is AllProductsLoadedState) {
                   final products = state.data.products.reversed.toList();
@@ -62,7 +64,7 @@ class HomeView extends StatelessWidget {
                 }
               },
             ),
-          ),
+        
         ],
       ),
     );

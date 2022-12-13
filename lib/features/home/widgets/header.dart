@@ -25,7 +25,7 @@ class HomeHeader extends StatelessWidget {
                   image: AssetImage("assets/images/opacity.png"),
                   fit: BoxFit.cover))),
       Positioned(
-        top: MediaQuery.of(context).size.height * 0.25,
+        top: MediaQuery.of(context).size.height * 0.2,
         left: 20,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class HomeHeader extends StatelessWidget {
                   ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             SizedBox(
                 width: 200,

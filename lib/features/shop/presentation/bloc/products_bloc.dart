@@ -21,10 +21,11 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   int current = 0;
   RangeValues priceSelectRange = const RangeValues(200, 400);
   double rateValue = 0;
+  bool searchFolded = true;
   final GetAllProductsUsecase getAllProductsUsecase;
   final GetSpecificProductUseCase getSpecificProductUseCase;
   ProductsBloc(this.getAllProductsUsecase, this.getSpecificProductUseCase)
-      : super(AllProductsLoadingState()) {
+      : super(AllProductsLoadingState(),) {
     on<GetAllProducts>((event, emit) async {
       final failurOrSuccess = await getAllProductsUsecase(NoParams());
 
@@ -36,7 +37,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     on<GetSpecificProduct>((event, emit) async {
       final failurOrSuccess = await getSpecificProductUseCase(
         GetProductUseCaseParams(
-            event.category, event.minPrice, event.maxPrice, event.rate),
+            event.category, event.minPrice, event.maxPrice, event.rate,event.keyword),
       );
 
       failurOrSuccess.fold(
@@ -50,12 +51,17 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     on<GetFilterSpecificProduct>((event, emit) async {
       final failurOrSuccess = await getSpecificProductUseCase(
         GetProductUseCaseParams(
-            event.category, event.minPrice, event.maxPrice, event.rate),
+            event.category, event.minPrice, event.maxPrice, event.rate,event.keyword),
       );
 
       failurOrSuccess.fold(
           (failure) => emit(ProductsErrorState(failure.message)),
           (success) => emit(FilterProductsLoadedState(success)));
+    });
+    on<OpenSearch>((event, emit) {
+
+      searchFolded = !searchFolded;
+      emit(OpenSearchState());
     });
   }
 }

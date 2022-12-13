@@ -32,6 +32,7 @@ ThemeData lightTheme() {
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: ColorManager.orangeLight),
       ),
+      prefixIconColor: ColorManager.orangeLight,
       filled: true,
       fillColor: ColorManager.white,
       labelStyle: TextStyle(color: ColorManager.grey, height: 4, fontSize: 20),

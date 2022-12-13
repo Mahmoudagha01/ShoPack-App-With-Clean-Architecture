@@ -25,6 +25,7 @@ class ProductsDatasourceImpl implements ProductsDatasource {
       "price[gt]": params.minPrice,
       "price[lt]": params.maxPrice,
       "ratings": params.rate,
+      "keyword": params.keyword,
     });
     return ProductsModel.fromJson(response.data);
   }

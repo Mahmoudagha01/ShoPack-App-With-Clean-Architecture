@@ -6,7 +6,6 @@ import 'package:shop_app/dependancy_injection.dart';
 import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
 import 'package:shop_app/features/setpassword/presentation/bloc/reset_password_bloc.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
-
 import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
           create: (context) => injector<ProductsBloc>(),
         ),
-         
+      
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

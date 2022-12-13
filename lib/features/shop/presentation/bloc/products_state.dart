@@ -43,3 +43,6 @@ class ProductsErrorState extends ProductsState {
 
 class ChangeCategoryState extends ProductsState {}
 
+class OpenSearchInitialState extends ProductsState {}
+
+class OpenSearchState extends ProductsState {}

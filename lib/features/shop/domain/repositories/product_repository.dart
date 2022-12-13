@@ -4,17 +4,18 @@ import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 
 abstract class ProductRepository {
   Future<Either<Failure, ProductsEntity>> getAllProducts();
-  Future<Either<Failure, ProductsEntity>> getSpecificProduct(GetProductParams params);
+  Future<Either<Failure, ProductsEntity>> getSpecificProduct(
+      GetProductParams params);
 }
 
 class GetProductParams {
   final String category;
- 
-   final String minPrice;
+  final String minPrice;
   final String maxPrice;
-final String rate;
-
-  GetProductParams(this.category, this.minPrice, this.maxPrice, this.rate);
+  final String rate;
+  final String keyword;
+  GetProductParams(
+      this.category, this.minPrice, this.maxPrice, this.rate, this.keyword);
 }
 //  class FilterProductByPrice{
 //  final String minPrice;

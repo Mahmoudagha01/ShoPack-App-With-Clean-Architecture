@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shop_app/core/error/error_handler.dart';
 import 'package:shop_app/core/network/network_info.dart';
 import 'package:shop_app/core/utilities/strings.dart';

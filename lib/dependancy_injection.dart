@@ -31,7 +31,6 @@ import 'package:shop_app/features/shop/domain/usecases/getAllProducts_usecase.da
 import 'package:shop_app/features/shop/domain/usecases/getSpecificProduct.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 
-
 GetIt injector = GetIt.instance;
 
 Future<void> init() async {
@@ -42,7 +41,8 @@ Future<void> init() async {
   injector.registerFactory(() => ResetPasswordBloc(injector()));
   injector.registerFactory(() => BottomNavigationBarBloc());
   injector.registerFactory(() => ProductsBloc(injector(), injector()));
- 
+
+
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
   injector.registerLazySingleton(() => RegisterUsecase(injector()));

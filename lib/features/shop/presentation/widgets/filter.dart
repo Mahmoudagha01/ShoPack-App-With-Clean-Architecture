@@ -66,7 +66,7 @@ class FilterProduct extends StatelessWidget {
                                     ),
                                     RangeSlider(
                                       activeColor: ColorManager.orangeLight,
-                                      min: 1,
+                                      min: 5,
                                       max: 600,
                                       values: bloc.priceSelectRange,
                                       onChanged: (value) {
@@ -125,7 +125,7 @@ class FilterProduct extends StatelessWidget {
                                                         .toString(),
                                                     bloc.rateValue
                                                         .round()
-                                                        .toString()));
+                                                        .toString(),''));
                                               });
                                               Navigator.pop(context);
                                             },
