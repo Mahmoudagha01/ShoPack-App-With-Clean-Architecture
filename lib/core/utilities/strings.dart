@@ -4,7 +4,6 @@ class AppStrings {
   static const String onBoardingTitle2 = "on_boarding_title2";
   static const String onBoardingTitle3 = "on_boarding_title3";
   static const String onBoardingTitle4 = "on_boarding_title4";
-
   static const String onBoardingSubTitle1 = "on_boarding_desc1";
   static const String onBoardingSubTitle2 = "on_boarding_desc2";
   static const String onBoardingSubTitle3 = "on_boarding_desc3";
@@ -13,7 +12,9 @@ class AppStrings {
   static const String name = "Name";
   static const String price = "Price";
   static const String check = "Check";
-    static const String apply = "Apply";
+  static const String description = "Description";
+  static const String addToCart = "Add To Cart";
+  static const String apply = "Apply";
   static const String recentlyAddedProducts = "Recently Added Products";
   static const String newText = "New";
   static const String password = "Password";
@@ -39,6 +40,9 @@ class AppStrings {
   static const String filter = "Filter";
   static const String submit = "Submit";
   static const String rate = "Rating";
+    static const String seeMore = "See more>";
+     static const String mayLike = "You can also like this"; 
+    static const String rateandreview = "Rating & Reviews";
   static const String headerTitle = "Give your workout\nA New Style!";
   static const String headerSuTitle =
       "Shop the most cool products available on the store\nlet it be T-shirts, Electronics and much more!";

@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 import '../../../core/colors/colors.dart';
+import '../../../core/utilities/mediaquery.dart';
 
 class NewProductItem extends StatelessWidget {
   const NewProductItem({super.key, required this.product});
@@ -42,8 +43,8 @@ class NewProductItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: MediaQuery.of(context).size.width * 0.3,
-              bottom: MediaQuery.of(context).size.height * 0.13,
+              left: kWidth(context) * 0.3,
+              bottom: kHeight(context) * 0.13,
               child: Container(
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,

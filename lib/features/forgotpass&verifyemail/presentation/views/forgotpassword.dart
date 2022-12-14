@@ -5,6 +5,7 @@ import 'package:shop_app/core/utilities/enums.dart';
 import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import '../../../../core/colors/colors.dart';
+import '../../../../core/utilities/mediaquery.dart';
 import '../../../login/presentation/widgets/alert_snackbar.dart';
 import '../../../login/presentation/widgets/mainbutton.dart';
 import '../../../login/presentation/widgets/maintextformfield.dart';
@@ -65,7 +66,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
+                      height: kHeight(context) * 0.1,
                     ),
                     Text(
                       status == VerifyStatus.forgotPassword

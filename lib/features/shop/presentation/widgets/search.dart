@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 import '../../../../core/colors/colors.dart';
+import '../../../../core/utilities/mediaquery.dart';
 
 class SearchWidget extends StatefulWidget {
   const SearchWidget({super.key});
@@ -19,8 +20,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: AnimatedContainer(
-          width:
-              bloc.searchFolded ? 50 : MediaQuery.of(context).size.width * 0.6,
+          width: bloc.searchFolded ? 50 : kWidth(context) * 0.6,
           duration: const Duration(milliseconds: 400),
           decoration: BoxDecoration(
             color: ColorManager.white,

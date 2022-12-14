@@ -6,6 +6,7 @@ import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import 'package:shop_app/features/login/presentation/widgets/maintextformfield.dart';
+import '../../../../core/utilities/mediaquery.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/alert_snackbar.dart';
 
@@ -33,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
               key: formKey,
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                  SizedBox(height: kHeight(context) * 0.1),
                   Row(
                     children: [
                       Text(
@@ -44,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ],
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                  SizedBox(height: kHeight(context) * 0.1),
                   MainTFF(
                       labelText: AppStrings.email,
                       hintText: AppStrings.email,

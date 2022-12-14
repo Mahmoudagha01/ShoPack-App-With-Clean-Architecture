@@ -5,6 +5,7 @@ import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import 'package:shop_app/features/login/presentation/widgets/maintextformfield.dart';
+import '../../../../core/utilities/mediaquery.dart';
 import '../../../login/presentation/widgets/alert_snackbar.dart';
 import '../bloc/register_bloc.dart';
 
@@ -42,7 +43,7 @@ class _RegisterViewState extends State<RegisterView> {
               key: formKey,
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  SizedBox(height: kHeight(context) * 0.05),
                   Row(
                     children: [
                       Text(
@@ -53,7 +54,7 @@ class _RegisterViewState extends State<RegisterView> {
                       ),
                     ],
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  SizedBox(height: kHeight(context) * 0.05),
                   MainTFF(
                       labelText: AppStrings.name,
                       hintText: AppStrings.name,

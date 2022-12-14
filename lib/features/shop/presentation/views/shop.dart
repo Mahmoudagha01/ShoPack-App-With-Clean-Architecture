@@ -7,6 +7,7 @@ import 'package:shop_app/features/home/widgets/product_item.dart';
 import 'package:shop_app/features/shop/presentation/widgets/filter.dart';
 import 'package:shop_app/features/shop/presentation/widgets/search.dart';
 
+import '../../../home/presentation/view/product_details.dart';
 import '../bloc/products_bloc.dart';
 
 class ShopView extends StatelessWidget {
@@ -110,7 +111,15 @@ class ShopView extends StatelessWidget {
                                 height: 330, crossAxisCount: 2),
                         itemBuilder: (context, index) {
                           return InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetails(
+                                    product: products[index],
+                                    products: products),
+                              ));
+                              },
                               child: ProductItem(product: products[index]));
                         },
                       ));

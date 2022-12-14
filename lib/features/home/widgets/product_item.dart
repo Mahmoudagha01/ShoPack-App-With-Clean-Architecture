@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 import '../../../core/colors/colors.dart';
+import '../../../core/utilities/mediaquery.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({super.key, required this.product});
- final ProductEntity product;
+  final ProductEntity product;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Container(
+      
         decoration: BoxDecoration(
             color: ColorManager.white, borderRadius: BorderRadius.circular(15)),
         child: Stack(
@@ -21,8 +23,8 @@ class ProductItem extends StatelessWidget {
               height: 200,
             ),
             Positioned(
-              left: MediaQuery.of(context).size.width * 0.3,
-              bottom: MediaQuery.of(context).size.height * 0.13,
+              left: kWidth(context) * 0.3,
+              bottom: kHeight(context) * 0.13,
               child: Container(
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,

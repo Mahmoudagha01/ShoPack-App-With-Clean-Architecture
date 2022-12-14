@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import '../../../../core/colors/colors.dart';
+import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/routes.dart';
 import '../../../login/presentation/widgets/alert_snackbar.dart';
 import '../../../login/presentation/widgets/mainbutton.dart';
@@ -48,13 +49,13 @@ class _SetPasswordState extends State<SetPassword> {
                         color: ColorManager.dark,
                       ),
                 ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                    SizedBox(height: kHeight(context) * 0.05),
                     
                         Text(
                           AppStrings.enterPassword,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                        SizedBox(height: kHeight(context) * 0.05),
                 MainTFF(
                     labelText: AppStrings.password,
                     hintText: AppStrings.password,

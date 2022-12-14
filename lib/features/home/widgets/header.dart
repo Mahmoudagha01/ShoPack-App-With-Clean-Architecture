@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import '../../../core/colors/colors.dart';
+import '../../../core/utilities/mediaquery.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -10,22 +11,22 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.5,
+        width: kWidth(context),
+        height: kHeight(context) * 0.5,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/header.png"),
                 fit: BoxFit.cover)),
       ),
       Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.5,
+          width: kWidth(context),
+          height: kHeight(context) * 0.5,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/images/opacity.png"),
                   fit: BoxFit.cover))),
       Positioned(
-        top: MediaQuery.of(context).size.height * 0.2,
+        top: kHeight(context) * 0.2,
         left: 20,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

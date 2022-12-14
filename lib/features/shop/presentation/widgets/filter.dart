@@ -4,6 +4,7 @@ import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 import '../../../../core/colors/colors.dart';
+import '../../../../core/utilities/mediaquery.dart';
 
 class FilterProduct extends StatelessWidget {
   const FilterProduct({
@@ -38,7 +39,7 @@ class FilterProduct extends StatelessWidget {
                     context: context,
                     builder: (BuildContext _) {
                       return SizedBox(
-                        height: MediaQuery.of(context).size.height / 2.5,
+                        height: kHeight(context) / 2.5,
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -107,25 +108,29 @@ class FilterProduct extends StatelessWidget {
                                       height: 30,
                                     ),
                                     SizedBox(
-                                      width:
-                                          MediaQuery.of(context).size.width / 2,
+                                      width: kWidth(context) / 2,
                                       child: BlocProvider.value(
                                         value: bloc,
                                         child: MainButton(
                                             text: AppStrings.apply,
                                             ontab: () {
                                               setState(() {
-                                                bloc.add(GetFilterSpecificProduct(
-                                                    bloc.categories[bloc.current],
-                                                    bloc.priceSelectRange.start
-                                                        .round()
-                                                        .toString(),
-                                                    bloc.priceSelectRange.end
-                                                        .round()
-                                                        .toString(),
-                                                    bloc.rateValue
-                                                        .round()
-                                                        .toString(),''));
+                                                bloc.add(
+                                                    GetFilterSpecificProduct(
+                                                        bloc.categories[
+                                                            bloc.current],
+                                                        bloc.priceSelectRange
+                                                            .start
+                                                            .round()
+                                                            .toString(),
+                                                        bloc.priceSelectRange
+                                                            .end
+                                                            .round()
+                                                            .toString(),
+                                                        bloc.rateValue
+                                                            .round()
+                                                            .toString(),
+                                                        ''));
                                               });
                                               Navigator.pop(context);
                                             },

@@ -1,50 +1,95 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
+import 'package:shop_app/core/colors/colors.dart';
 
+import '../../../core/utilities/mediaquery.dart';
 
 class Carousel extends StatefulWidget {
-  const Carousel({super.key});
+  final List images;
+  const Carousel({super.key, required this.images});
 
   @override
   State<Carousel> createState() => _CarouselState();
 }
 
 class _CarouselState extends State<Carousel> {
-  List<Map<String, String>> images = [
-    {
-      "image": "assets/images/carosel.png",
-    },
-    {
-      "image": "assets/images/Acer_header.png",
-    }
-  ];
+  int current = 0;
+  PageController? pageController;
+  @override
+  void initState() {
+    pageController = PageController(initialPage: current);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider.builder(
-      itemCount: images.length,
-      options: CarouselOptions(
-          initialPage: 0,
-          autoPlay: true,
-          height: MediaQuery.of(context).size.height * 0.25),
-      itemBuilder: (context, index, i) => Container(
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-                offset: Offset(1, 0),
-                spreadRadius: 0,
-                blurRadius: 4,
-                color: Colors.grey)
-          ],
-          image: DecorationImage(
-            image: AssetImage(
-              images[index]["image"]!,
-            ),
-            fit: BoxFit.cover,
+    return Column(
+      children: [
+        SizedBox(
+          height: kHeight(context) * 0.3,
+          child: PhotoViewGallery.builder(
+            backgroundDecoration:
+                const BoxDecoration(color: ColorManager.white),
+            itemCount: widget.images.length,
+            builder: (BuildContext context, int index) {
+              return PhotoViewGalleryPageOptions(
+                imageProvider: NetworkImage(widget.images[index].url),
+                minScale: PhotoViewComputedScale.contained * 0.8,
+                maxScale: PhotoViewComputedScale.covered * 1.8,
+              );
+            },
+            enableRotation: true,
+            scrollPhysics: const BouncingScrollPhysics(),
+            pageController: pageController,
+            loadingBuilder: (context, event) {
+              return const Center(child: CircularProgressIndicator());
+            },
+            onPageChanged: (int index) {
+              setState(() {
+                current = index;
+              });
+            },
           ),
-          borderRadius: BorderRadius.circular(15),
         ),
-      ),
+        const SizedBox(height: 10,),
+        Container(
+          color: ColorManager.white,
+          child: CarouselSlider.builder(
+            itemCount: widget.images.length,
+            options: CarouselOptions(
+              initialPage: current,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  current = index;
+                });
+              },
+              enlargeCenterPage: true,
+              autoPlay: false,
+    
+              viewportFraction: 0.27,
+              height: 100,
+            ),
+            itemBuilder: (context, index, i) => InkWell(
+              onTap: () {
+                setState(() {
+                  current = index;
+                });
+                pageController!.jumpToPage(current);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(),
+           
+                ),
+                  child: Image.network(
+                widget.images[index].url!,
+              )),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

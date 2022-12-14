@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
+import 'package:shop_app/features/home/presentation/view/product_details.dart';
 import 'package:shop_app/features/home/widgets/header.dart';
 import '../../../shop/presentation/bloc/products_bloc.dart';
 import '../../widgets/customGridView.dart';
@@ -24,47 +26,55 @@ class HomeView extends StatelessWidget {
                   AppStrings.recentlyAddedProducts,
                 ),
                 TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'All Products >>',
-                    ),),
+                  onPressed: () {},
+                  child: const Text(
+                    'All Products >>',
+                  ),
+                ),
               ],
             ),
           ),
-          
-           
-             BlocBuilder<ProductsBloc, ProductsState>(
-              builder: (context, state) {
-                if (state is AllProductsLoadingState) {
-                  return Column(
-                    children: const [
-                       SizedBox(height: 100,),
-                       CircularProgressIndicator(),
-                    ],
-                  );
-                } else if (state is AllProductsLoadedState) {
-                  final products = state.data.products.reversed.toList();
-                  return Expanded(
-                      child: GridView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: 10,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                            height: 330, crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                          onTap: () {},
-                          child: NewProductItem(product: products[index]));
-                    },
-                  ));
-                } else if (state is AllProductsErrorState) {
-                  return Center(child: Text(state.message));
-                } else {
-                  return const SizedBox();
-                }
-              },
-            ),
-        
+          BlocBuilder<ProductsBloc, ProductsState>(
+            builder: (context, state) {
+              if (state is AllProductsLoadingState) {
+                return Column(
+                  children: const [
+                    SizedBox(
+                      height: 100,
+                    ),
+                    CircularProgressIndicator(),
+                  ],
+                );
+              } else if (state is AllProductsLoadedState) {
+                final products = state.data.products.reversed.toList();
+                return Expanded(
+                    child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: 10,
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                          height: 330, crossAxisCount: 2),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetails(
+                                    product: products[index],
+                                    products: products),
+                              ));
+                        },
+                        child: NewProductItem(product: products[index]));
+                  },
+                ));
+              } else if (state is AllProductsErrorState) {
+                return Center(child: Text(state.message));
+              } else {
+                return const SizedBox();
+              }
+            },
+          ),
         ],
       ),
     );
