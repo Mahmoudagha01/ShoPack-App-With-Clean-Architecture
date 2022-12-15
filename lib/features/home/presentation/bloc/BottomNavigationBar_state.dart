@@ -49,7 +49,7 @@ class FavoriteState extends BottomNavigationBarState {
   List<Object> get props => [index, title];
 }
 
-class ProfileState extends BottomNavigationBarState {
+class ProfilePageState extends BottomNavigationBarState {
   @override
   final int index = 4;
   final String title = 'Profile';

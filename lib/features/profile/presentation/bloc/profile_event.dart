@@ -9,9 +9,9 @@ abstract class ProfileEvent extends Equatable {
 
 class GetProfile extends ProfileEvent {}
 
-class UpdataProfile extends ProfileEvent {
+class UpdataProfileEvent extends ProfileEvent {
   final String name;
   final String email;
   final String avatar;
 
-  const UpdataProfile(this.name, this.email, this.avatar);}
+  const UpdataProfileEvent(this.name, this.email, this.avatar);}

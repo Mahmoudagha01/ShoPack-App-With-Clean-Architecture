@@ -5,6 +5,7 @@ import 'package:shop_app/features/cart/presentation/views/cart.dart';
 import 'package:shop_app/features/favorite/presentation/views/favorite.dart';
 import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
 import 'package:shop_app/features/home/presentation/view/home.dart';
+import 'package:shop_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:shop_app/features/profile/presentation/views/profile.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 import 'package:shop_app/features/shop/presentation/views/shop.dart';
@@ -44,7 +45,9 @@ class _LayoutPageState extends State<LayoutPage> {
                 case 1:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadShop());
-                  BlocProvider.of<ProductsBloc>(context).add(const GetSpecificProduct("Clothes",'0','100000','0',''));
+                  BlocProvider.of<ProductsBloc>(context).add(
+                      const GetSpecificProduct(
+                          "Clothes", '0', '100000', '0', ''));
                   break;
                 case 2:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
@@ -57,6 +60,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 case 4:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadProfile());
+                  BlocProvider.of<ProfileBloc>(context).add(GetProfile());
                   break;
                 default:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
@@ -97,7 +101,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 return const CartView();
               } else if (state is FavoriteState) {
                 return const FavoriteView();
-              } else if (state is ProfileState) {
+              } else if (state is ProfilePageState) {
                 return const ProfileView();
               } else {
                 return const SizedBox();

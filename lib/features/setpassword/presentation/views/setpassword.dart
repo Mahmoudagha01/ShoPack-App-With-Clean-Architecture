@@ -116,12 +116,14 @@ class _SetPasswordState extends State<SetPassword> {
                     const SizedBox(height: 20,),
                      BlocConsumer<ResetPasswordBloc, ResetPasswordState>(
                       listener: (context, state) {
-                        if (state is ResetPasswordFinished) {
+                        if (state is ResetPasswordFinished && state.data.success) {
                           showSnackbar(state.data.message, context,
                               ColorManager.green);
                           Navigator.pushReplacementNamed(context, AppRoutes.login);
                         } else if (state is ResetPasswordError) {
                           showSnackbar(state.message, context, Colors.red);
+                        }else if (state is ResetPasswordFinished) {
+                          showSnackbar(state.data.message, context, Colors.red);
                         }
                       },
                       builder: (context, state) {

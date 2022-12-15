@@ -48,6 +48,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  
 
 # The following section is specific to Flutter packages.
 flutter:

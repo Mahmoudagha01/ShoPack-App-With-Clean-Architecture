@@ -1,4 +1,3 @@
-
 import 'package:shop_app/core/error/error_handler.dart';
 import 'package:shop_app/core/network/network_info.dart';
 import 'package:shop_app/core/utilities/strings.dart';
@@ -19,9 +18,9 @@ class LoginRepositoryImpl implements LoginBaseRepository {
     if (await networkInfo.isConnected) {
       try {
         final response = await loginDatasource.login(params);
-        
+
         return right(response);
-      }  catch (error) {
+      } catch (error) {
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

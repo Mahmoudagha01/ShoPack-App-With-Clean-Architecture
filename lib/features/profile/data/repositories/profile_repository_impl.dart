@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:shop_app/core/error/error_handler.dart';
 import 'package:shop_app/core/network/network_info.dart';
 import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/profile/data/datasources/Profile_datasource.dart';
+import 'package:shop_app/features/profile/data/datasources/profile_datasource.dart';
 import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:shop_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
@@ -20,6 +19,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
         final data = await profileDatasource.getUserDetails();
         return right(data);
       } catch (error) {
+        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
@@ -29,8 +29,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<Either<Failure, ProfileEntity>> updateProfile(
-      UpdateProfileParams updateProfileParams) async{
- if (await networkInfo.isConnected) {
+      UpdateProfileParams updateProfileParams) async {
+    if (await networkInfo.isConnected) {
       try {
         final data = await profileDatasource.updateProfile(updateProfileParams);
         return right(data);

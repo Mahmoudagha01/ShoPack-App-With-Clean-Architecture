@@ -1,11 +1,13 @@
 import 'package:shop_app/core/error/error_handler.dart';
 import 'package:shop_app/core/network/network_info.dart';
 import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/shop/data/datasources/products_datasource.dart';
+
 import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 import 'package:shop_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
+
+import '../datasources/products_datasource.dart';
 
 class ProductsRepositoryImpl implements ProductRepository {
   final NetworkInfo networkInfo;

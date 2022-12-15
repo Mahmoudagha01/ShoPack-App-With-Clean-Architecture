@@ -12,6 +12,6 @@ class BottomNavigationBarBloc
     on<LoadShop>((event, emit) => emit( ShopState()));
     on<LoadBag>((event, emit) => emit( BagState()));
     on<LoadFavorite>((event, emit) => emit( FavoriteState()));
-    on<LoadProfile>((event, emit) => emit( ProfileState()));
+    on<LoadProfile>((event, emit) => emit( ProfilePageState()));
   }
 }

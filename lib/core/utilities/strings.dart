@@ -40,9 +40,11 @@ class AppStrings {
   static const String filter = "Filter";
   static const String submit = "Submit";
   static const String rate = "Rating";
-    static const String seeMore = "See more>";
-     static const String mayLike = "You can also like this"; 
-    static const String rateandreview = "Rating & Reviews";
+  static const String myProfile = "My Profile";
+  static const String myOrders = "My Orders";
+  static const String seeMore = "See more>";
+  static const String mayLike = "You can also like this";
+  static const String rateandreview = "Rating & Reviews";
   static const String headerTitle = "Give your workout\nA New Style!";
   static const String headerSuTitle =
       "Shop the most cool products available on the store\nlet it be T-shirts, Electronics and much more!";

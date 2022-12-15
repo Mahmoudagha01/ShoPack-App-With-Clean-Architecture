@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/colors/colors.dart';
 import 'package:shop_app/core/local/shared_preference.dart';
+import 'package:shop_app/core/utilities/endpoints.dart';
 import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
@@ -104,14 +105,22 @@ class _LoginViewState extends State<LoginView> {
                           child: const Text(AppStrings.forgetPassword))),
                   BlocConsumer<LoginBloc, LoginState>(
                     listener: (context, state) {
-                      if (state is LoginFinishedState) {
+                      if (state is LoginFinishedState && state.data.success!) {
                         PreferenceHelper.saveDataInSharedPreference(
                             key: "token", value: state.data.token);
                         showSnackbar(AppStrings.loginsuccess, context,
                             ColorManager.green);
-                        Navigator.pushReplacementNamed(context, AppRoutes.home);
+
+                        PreferenceHelper.saveDataInSharedPreference(
+                            key: "token", value: state.data.token);
+                        token = PreferenceHelper.getDataFromSharedPreference(
+                            key: 'token');
+                        Navigator.pushReplacementNamed(
+                            context, AppRoutes.layout);
                       } else if (state is LoginErrorState) {
                         showSnackbar(state.message, context, Colors.red);
+                      } else if (state is LoginFinishedState) {
+                        showSnackbar(state.data.message!, context, Colors.red);
                       }
                     },
                     builder: (context, state) {
@@ -119,7 +128,7 @@ class _LoginViewState extends State<LoginView> {
                           ? const CircularProgressIndicator()
                           : MainButton(
                               text: AppStrings.login.toUpperCase(),
-                               height: 50,
+                              height: 50,
                               ontab: () {
                                 if (formKey.currentState!.validate()) {
                                   BlocProvider.of<LoginBloc>(context).add(

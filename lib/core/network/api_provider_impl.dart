@@ -29,7 +29,7 @@ class APIProviderImpl implements APIProvider {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (token != null) 'Authorization': token,
+      if (token != null) 'Authorization':'Bearer $token',
       'lang': 'en',
     };
 
@@ -64,7 +64,7 @@ class APIProviderImpl implements APIProvider {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (token != null) 'Authorization': token,
+      if (token != null) 'Authorization': 'Bearer $token',
       'lang': 'en',
     };
 
@@ -101,7 +101,7 @@ class APIProviderImpl implements APIProvider {
       if (isMultipart) 'Content-Type': 'multipart/form-data',
       if (!isMultipart) 'Content-Type': 'application/json',
       if (!isMultipart) 'Accept': 'application/json',
-      if (token != null) 'Authorization': token,
+      if (token != null) 'Authorization': 'Bearer $token',
       'lang': 'en',
     };
 
