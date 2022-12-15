@@ -14,6 +14,11 @@ import 'package:shop_app/features/login/data/repositories/login_repostory_impl.d
 import 'package:shop_app/features/login/domin/repositories/login_repository.dart';
 import 'package:shop_app/features/login/domin/usecases/login_usecase.dart';
 import 'package:shop_app/features/login/presentation/bloc/login_bloc.dart';
+import 'package:shop_app/features/profile/data/datasources/profile_datasource.dart';
+import 'package:shop_app/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:shop_app/features/profile/domain/repositories/profile_repository.dart';
+import 'package:shop_app/features/profile/domain/usecases/getUserDetail.dart';
+import 'package:shop_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:shop_app/features/register/data/datasources/register_datasource.dart';
 import 'package:shop_app/features/register/data/repositories/register_repository_impl.dart';
 import 'package:shop_app/features/register/domain/repositories/register_repository.dart';
@@ -41,7 +46,7 @@ Future<void> init() async {
   injector.registerFactory(() => ResetPasswordBloc(injector()));
   injector.registerFactory(() => BottomNavigationBarBloc());
   injector.registerFactory(() => ProductsBloc(injector(), injector()));
-
+  injector.registerFactory(() => ProfileBloc(injector()));
 
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
@@ -50,6 +55,7 @@ Future<void> init() async {
   injector.registerLazySingleton(() => ResetPasswordUseCase(injector()));
   injector.registerLazySingleton(() => GetAllProductsUsecase(injector()));
   injector.registerLazySingleton(() => GetSpecificProductUseCase(injector()));
+  injector.registerLazySingleton(() => GetUserDetails(injector()));
   //Repository
   injector.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(injector(), injector()));
@@ -61,6 +67,8 @@ Future<void> init() async {
       () => ResetPasswordRepositoryImpl(injector(), injector()));
   injector.registerLazySingleton<ProductRepository>(
       () => ProductsRepositoryImpl(injector(), injector()));
+  injector.registerLazySingleton<ProfileRepository>(
+      () => ProfileRepositoryImpl(injector(), injector()));
   //DataSource
   injector.registerLazySingleton<LoginDatasource>(
       () => LoginDatasourceImpl(injector()));
@@ -72,6 +80,8 @@ Future<void> init() async {
       () => ResetPasswordDataSourceImpl(injector()));
   injector.registerLazySingleton<ProductsDatasource>(
       () => ProductsDatasourceImpl(injector()));
+  injector.registerLazySingleton<ProfileDatasource>(
+      () => PeofileDataSourceImpl(injector()));
   //---Core---//
   //API Provider
   injector.registerLazySingleton<APIProvider>(() => APIProviderImpl());

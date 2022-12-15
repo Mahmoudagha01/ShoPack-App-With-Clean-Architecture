@@ -9,6 +9,7 @@ import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
+import 'features/profile/presentation/bloc/profile_bloc.dart';
 import 'features/register/presentation/bloc/register_bloc.dart';
 import 'features/forgotpass&verifyemail/presentation/forgotpass&verifyemail_bloc/forgotpass&verifyemail_bloc.dart';
 
@@ -44,13 +45,16 @@ class MyApp extends StatelessWidget {
           BlocProvider(
           create: (context) => injector<ProductsBloc>(),
         ),
+         BlocProvider(
+          create: (context) => injector<ProfileBloc>(),
+        ),
       
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: lightTheme(),
         onGenerateRoute: onGenerate,
-        initialRoute: AppRoutes.layout,
+        initialRoute: AppRoutes.login,
       ),
     );
   }

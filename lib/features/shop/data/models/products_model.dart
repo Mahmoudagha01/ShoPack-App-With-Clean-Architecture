@@ -1,7 +1,7 @@
 import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 
 class ProductsModel extends ProductsEntity {
-  ProductsModel(super.success, super.products, super.filteredProductsCount);
+  const ProductsModel(super.success, super.products, super.filteredProductsCount);
   factory ProductsModel.fromJson(Map<String, dynamic> json) => ProductsModel(
       json['success'],
       List<ProductModel>.from(
@@ -10,7 +10,7 @@ class ProductsModel extends ProductsEntity {
 }
 
 class ProductModel extends ProductEntity {
-  ProductModel(
+  const ProductModel(
       {required super.id,
       required super.name,
       required super.description,
@@ -46,7 +46,7 @@ class ImageModel extends ImageEntity {
 }
 
 class ReviewModel extends ReviewEntity {
-  ReviewModel(super.user, super.name,super.rating, super.comment);
+  const ReviewModel(super.user, super.name,super.rating, super.comment);
   factory ReviewModel.fromJson(Map<String, dynamic> json) => ReviewModel(
         json["user"] ?? "",
         json['name'] ?? "",

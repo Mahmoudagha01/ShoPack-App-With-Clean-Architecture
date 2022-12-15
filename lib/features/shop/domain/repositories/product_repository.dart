@@ -17,15 +17,3 @@ class GetProductParams {
   GetProductParams(
       this.category, this.minPrice, this.maxPrice, this.rate, this.keyword);
 }
-//  class FilterProductByPrice{
-//  final String minPrice;
-//   final String maxPrice;
-
-//   FilterProductByPrice(this.minPrice, this.maxPrice);
-//  }
-
-//  class FilterProductByRate{
-// final String rate;
-
-//   FilterProductByRate(this.rate);
-//  }
