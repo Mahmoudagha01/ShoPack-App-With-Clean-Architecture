@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/core/utilities/strings.dart';
@@ -39,7 +41,7 @@ class FilterProduct extends StatelessWidget {
                     context: context,
                     builder: (BuildContext _) {
                       return SizedBox(
-                        height: kHeight(context) / 2.5,
+                        height: kHeight(context) / 2.3,
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -91,6 +93,28 @@ class FilterProduct extends StatelessWidget {
                                             color: ColorManager.grey,
                                           ),
                                     ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Expanded(
+                                          flex: bloc.rateValue.round() * 50,
+                                          child: const SizedBox(),
+                                        ),
+                                        SizedBox(
+                                          width: 170,
+                                          child: Text(
+                                            'Above ${(bloc.rateValue.round())} Stars',style:  TextStyle(color: ColorManager.grey),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 100 - bloc.rateValue.round(),
+                                          child: const SizedBox(),
+                                        ),
+                                      ],
+                                    ),
                                     Slider(
                                       min: 0,
                                       max: 5,
@@ -101,7 +125,6 @@ class FilterProduct extends StatelessWidget {
                                           bloc.rateValue = v;
                                         });
                                       },
-                                      label: "${bloc.rateValue.round()}",
                                       divisions: 5,
                                     ),
                                     const SizedBox(

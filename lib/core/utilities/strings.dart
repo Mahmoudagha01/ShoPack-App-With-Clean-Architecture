@@ -63,6 +63,8 @@ class AppStrings {
       'Confirm Password must equal Password';
   static const String enterPassword = "Please Enter New Password";
   static const String success = "success";
+  static const String updateproflesuccess = 'Profile Updated Successfuly';
+  static const String editPersonalInfo = "Personal Information";
   static const String profilePicture = "upload_profile_picture";
   static const String photoGalley = "photo_gallery";
   static const String photoCamera = "camera";
@@ -77,8 +79,13 @@ class AppStrings {
   static const String shop = "Shop";
   static const String details = "details";
   static const String about = "about";
+  static const String personalinfo = "Personal Information";
+  static const String myorders = "My Orders";
+  static const String orders = "Orders Details";
   static const String storeDetails = "store_details";
-  static const String changeLanguage = "change_language";
+  static const String changePassword = "Change Password";
+  static const String changePasswordsub = "Update & Change Password";
+  static const String edit = "Edit Avatar, name, email";
   static const String contactUs = "contact_us";
   static const String inviteYourFriends = "invite_your_friends";
   static const String logout = "logout";

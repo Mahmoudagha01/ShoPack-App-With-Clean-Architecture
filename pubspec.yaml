@@ -31,24 +31,27 @@ environment:
 dependencies:
   build_runner: ^2.3.2
   carousel_slider: ^4.2.0
+  cloudinary_sdk: ^4.0.2+10
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
+  envied: ^0.3.0
   equatable: ^2.0.5
-  photo_view: ^0.14.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_rating_bar: ^4.0.1
   get_it: ^7.2.0
+  image_picker: ^0.8.6
   internet_connection_checker: ^1.0.0+1
+  photo_view: ^0.14.0
   shared_preferences: ^2.0.15
 
 dev_dependencies:
+  envied_generator: ^0.3.0
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  
 
 # The following section is specific to Flutter packages.
 flutter:

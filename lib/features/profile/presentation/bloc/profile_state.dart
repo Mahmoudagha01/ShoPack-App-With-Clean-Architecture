@@ -16,9 +16,23 @@ class ProfileLoadedState extends ProfileState {
 
   const ProfileLoadedState(this.data);
 }
+class ProfileUpdateState extends ProfileState {
+  final ProfileEntity data;
 
+  const ProfileUpdateState(this.data);
+}
 class ProfileErrorState extends ProfileState {
   final String message;
 
   const ProfileErrorState(this.message);
+}
+class UploadImagesLoadingState extends ProfileState {
+  
+}
+class UploadImageState extends ProfileState {
+  final XFile image;
+
+  const UploadImageState(this.image);
+
+
 }

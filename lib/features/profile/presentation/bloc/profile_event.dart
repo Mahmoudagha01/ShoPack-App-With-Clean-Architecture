@@ -15,3 +15,7 @@ class UpdataProfileEvent extends ProfileEvent {
   final String avatar;
 
   const UpdataProfileEvent(this.name, this.email, this.avatar);}
+
+class UploadImage extends ProfileEvent {
+
+}
