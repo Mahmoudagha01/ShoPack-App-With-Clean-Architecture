@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/features/forgotpass&verifyemail/presentation/views/forgotpassword.dart';
 import 'package:shop_app/features/home/presentation/view/layout.dart';
 import 'package:shop_app/features/home/presentation/view/product_details.dart';
+import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
+import 'package:shop_app/features/profile/presentation/views/updateprofile.dart';
 import 'package:shop_app/features/setpassword/presentation/views/setpassword.dart';
 import 'package:shop_app/features/register/presentation/views/register.dart';
 import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
@@ -27,6 +29,9 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       final product = settings.arguments as ProductEntity;
       final products = settings.arguments as List<ProductEntity>;
       return MaterialPageRoute(builder: (context) =>  ProductDetails(product: product,products: products,));
+      case AppRoutes.updateProfile:
+        final user = settings.arguments as UserEntity;
+      return MaterialPageRoute(builder: (context) =>  UpdateProfileView(user: user,));
     default:
       return MaterialPageRoute(builder: (context) => const LoginView());
   }

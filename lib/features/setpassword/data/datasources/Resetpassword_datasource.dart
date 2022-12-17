@@ -1,6 +1,4 @@
-import 'package:dartz/dartz.dart';
 import 'package:shop_app/core/network/api_provider.dart';
-import 'package:shop_app/core/network/network_info.dart';
 import 'package:shop_app/core/utilities/endpoints.dart';
 import 'package:shop_app/features/setpassword/data/models/resetpassword_model.dart';
 import 'package:shop_app/features/setpassword/domain/repositories/resetPassword_repository.dart';
@@ -20,7 +18,7 @@ class ResetPasswordDataSourceImpl implements ResetPasswordDatasource {
   Future<ResetPasswordModel> resetPassword(ResetPasswordParams params) async {
     final response = await apiProvider.put(
         endPoint:
-            "$resetPasswordEndPoint${PreferenceHelper.getDataFromSharedPreference(key: "Link").toString().split("/").last}",
+            "$resetPasswordEndPoint${PreferenceHelper.getDataFromSharedPreference(key: "Link")}",
         data: {
           "password": params.password,
           "confirmPassword": params.confirmPassword

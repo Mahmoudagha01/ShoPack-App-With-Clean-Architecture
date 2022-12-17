@@ -2,12 +2,12 @@ import 'package:equatable/equatable.dart';
 
 class ProfileEntity extends Equatable {
   final bool success;
-  final UserEntity user;
+  final UserEntity? user;
 
   const ProfileEntity(this.success, this.user);
 
   @override
-  List<Object> get props => [success, user];
+  List<Object?> get props => [success, user];
 }
 
 class UserEntity extends Equatable {

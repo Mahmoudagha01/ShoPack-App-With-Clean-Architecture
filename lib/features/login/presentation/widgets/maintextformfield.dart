@@ -35,7 +35,7 @@ required this.validate,
   Widget build(BuildContext context) {
     return Material(
   elevation: 1.5,
-      child: TextFormField(
+      child: TextFormField(  
         obscureText: isPassword,
         keyboardType: inputType,
         controller: controller,

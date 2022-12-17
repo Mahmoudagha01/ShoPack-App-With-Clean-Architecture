@@ -63,6 +63,7 @@ class AppStrings {
       'Confirm Password must equal Password';
   static const String enterPassword = "Please Enter New Password";
   static const String success = "success";
+    static const String updateprofile = "Update Profile";
   static const String updateproflesuccess = 'Profile Updated Successfuly';
   static const String editPersonalInfo = "Personal Information";
   static const String profilePicture = "upload_profile_picture";

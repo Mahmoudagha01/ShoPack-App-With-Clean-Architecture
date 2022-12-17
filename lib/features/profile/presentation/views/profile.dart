@@ -10,9 +10,26 @@ import '../bloc/profile_bloc.dart';
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+              onPressed: () {
+                BlocProvider.of<ProfileBloc>(context)
+                    .add(GetProfile());
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios)),
+          title: Text(
+            AppStrings.myProfile,
+            style: Theme.of(context).textTheme.headline6!.copyWith(
+                fontWeight: FontWeight.bold, color: ColorManager.dark),
+          ),
+        ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
@@ -22,20 +39,13 @@ class ProfileView extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      AppStrings.myProfile,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4!
-                          .copyWith(color: ColorManager.dark),
-                    ),
+                  
                     const SizedBox(
                       height: 25,
                     ),
                     CircleAvatar(
-                      radius: 40,
-                      backgroundImage:
-                          NetworkImage(state.data.user.avtar.url),
+                      radius: 50,
+                      backgroundImage: NetworkImage(state.data.user!.avtar.url),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -43,15 +53,14 @@ class ProfileView extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              
-                              state.data.user.name,
+                              state.data.user!.name,
                               style: Theme.of(context).textTheme.subtitle1,
                             ),
                             const SizedBox(
                               height: 4,
                             ),
                             Text(
-                              state.data.user.email,
+                              state.data.user!.email,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelLarge!
@@ -67,7 +76,10 @@ class ProfileView extends StatelessWidget {
                     MYListTile(
                       title: AppStrings.editPersonalInfo,
                       subtitle: AppStrings.edit,
-                      ontab: () {},
+                      ontab: () {
+                        Navigator.pushNamed(context, AppRoutes.updateProfile,
+                            arguments: state.data.user);
+                      },
                     ),
                     MYListTile(
                       title: AppStrings.myOrders,
