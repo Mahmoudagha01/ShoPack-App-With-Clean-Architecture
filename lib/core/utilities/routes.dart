@@ -1,4 +1,3 @@
-
 class AppRoutes {
   static const onBoarding = "/";
   static const splash = "/splash";
@@ -10,4 +9,5 @@ class AppRoutes {
   static const home = "/home";
   static const productDetails = "/Product-details";
   static const updateProfile = "/update-profile";
+  static const updatePassword = "/update-password";
 }

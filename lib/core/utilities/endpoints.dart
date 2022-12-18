@@ -5,6 +5,7 @@ const String forgotPasswordEndPoint = '/users/password/forgot';
 const String resetPasswordEndPoint = "/users/password/reset/";
 const String profileEndPoint = '/users/me';
 const String updateProfileEndPoint = '/users/profile/update';
+const String updatePasswordEndPoint = '/users/password/update';
 const String productsEndPoint = '/products';
 const String searchEndPoint = 'products/search';
 const String cartsEndPoint = '/carts';

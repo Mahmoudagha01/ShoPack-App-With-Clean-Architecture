@@ -3,6 +3,7 @@ import 'package:shop_app/features/forgotpass&verifyemail/presentation/views/forg
 import 'package:shop_app/features/home/presentation/view/layout.dart';
 import 'package:shop_app/features/home/presentation/view/product_details.dart';
 import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
+import 'package:shop_app/features/profile/presentation/views/updatePass.dart';
 import 'package:shop_app/features/profile/presentation/views/updateprofile.dart';
 import 'package:shop_app/features/setpassword/presentation/views/setpassword.dart';
 import 'package:shop_app/features/register/presentation/views/register.dart';
@@ -32,6 +33,8 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       case AppRoutes.updateProfile:
         final user = settings.arguments as UserEntity;
       return MaterialPageRoute(builder: (context) =>  UpdateProfileView(user: user,));
+      case AppRoutes.updatePassword:
+      return MaterialPageRoute(builder: (context) => const UpdatePasswordView());
     default:
       return MaterialPageRoute(builder: (context) => const LoginView());
   }

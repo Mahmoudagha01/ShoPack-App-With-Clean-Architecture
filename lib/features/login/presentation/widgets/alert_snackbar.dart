@@ -5,6 +5,7 @@ showSnackbar(String message, context, Color color) {
     content: Text(message,style: const TextStyle(fontWeight: FontWeight.bold),),
     duration: const Duration(seconds: 2),
     backgroundColor: color,
+    behavior: SnackBarBehavior.floating,
   );
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
   ScaffoldMessenger.of(context).showSnackBar(snackbar);

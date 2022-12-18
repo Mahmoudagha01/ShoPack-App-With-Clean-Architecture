@@ -42,4 +42,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
       return left(const OfflineFailure(AppStrings.noInternetError));
     }
   }
+
+  @override
+  Future<Either<Failure, ProfileEntity>> updatePassword(
+      UpdatePassParnms params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await profileDatasource.updatePassword(params);
+        return right(data);
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
 }

@@ -1,9 +1,9 @@
 import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
 
 class ProfileModel extends ProfileEntity {
-  const ProfileModel(super.success, super.user);
+  const ProfileModel(super.success, super.user,super.message);
   factory ProfileModel.fromJson(Map<String, dynamic> json) =>
-      ProfileModel(json['success'],json['user']!=null? UserModel.fromJson(json['user']):null);
+      ProfileModel(json['success'],json['user']!=null? UserModel.fromJson(json['user']):null,json['message']);
 }
 
 class UserModel extends UserEntity {

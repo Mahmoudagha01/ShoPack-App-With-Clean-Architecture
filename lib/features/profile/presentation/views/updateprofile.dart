@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
 import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:shop_app/features/profile/presentation/bloc/profile_bloc.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/strings.dart';
-import '../../../login/presentation/bloc/login_bloc.dart';
 import '../../../login/presentation/widgets/alert_snackbar.dart';
 import '../../../login/presentation/widgets/mainbutton.dart';
 import '../../../login/presentation/widgets/maintextformfield.dart';

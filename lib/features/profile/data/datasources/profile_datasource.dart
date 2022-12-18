@@ -6,6 +6,7 @@ import '../models/profile_model.dart';
 abstract class ProfileDatasource {
   Future<ProfileModel> getUserDetails();
   Future<ProfileModel> updateProfile(UpdateProfileParams params);
+  Future<ProfileModel> updatePassword(UpdatePassParnms parnms);
 }
 
 class ProfileDataSourceImpl implements ProfileDatasource {
@@ -14,7 +15,10 @@ class ProfileDataSourceImpl implements ProfileDatasource {
   ProfileDataSourceImpl(this.apiProvider);
   @override
   Future<ProfileModel> getUserDetails() async {
-    final response = await apiProvider.get(endPoint: profileEndPoint, token: token ?? '',);
+    final response = await apiProvider.get(
+      endPoint: profileEndPoint,
+      token: token ?? '',
+    );
     return ProfileModel.fromJson(response.data);
   }
 
@@ -26,6 +30,20 @@ class ProfileDataSourceImpl implements ProfileDatasource {
         "avatar": params.avatar,
         "name": params.name,
         "email": params.email,
+      },
+      token: token ?? '',
+    );
+    return ProfileModel.fromJson(response.data);
+  }
+
+  @override
+  Future<ProfileModel> updatePassword(UpdatePassParnms params) async {
+    final response = await apiProvider.put(
+      endPoint: updatePasswordEndPoint,
+      data: {
+        'oldPassword': params.oldPassword,
+        'newPassword': params.newPassword,
+        'confirmPassword': params.confirmPassword,
       },
       token: token ?? '',
     );

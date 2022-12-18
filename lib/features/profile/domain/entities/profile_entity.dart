@@ -4,7 +4,8 @@ class ProfileEntity extends Equatable {
   final bool success;
   final UserEntity? user;
 
-  const ProfileEntity(this.success, this.user);
+  final String? message;
+  const ProfileEntity(this.success, this.user, this.message);
 
   @override
   List<Object?> get props => [success, user];
@@ -26,8 +27,6 @@ class AvatarEntity extends Equatable {
   final String url;
 
   const AvatarEntity(this.publicId, this.url);
-  
-
 
   @override
   List<Object> get props => [publicId, url];
