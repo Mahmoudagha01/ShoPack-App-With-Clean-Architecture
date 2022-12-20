@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/core/error/failure.dart';
-import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
-import 'package:shop_app/features/shop/domain/entities/response_entity.dart';
+
+import '../../../../core/error/failure.dart';
+import '../entities/products_entity.dart';
+import '../entities/response_entity.dart';
 
 abstract class ProductRepository {
   Future<Either<Failure, ProductsEntity>> getAllProducts();

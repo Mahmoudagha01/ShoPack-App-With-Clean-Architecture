@@ -1,4 +1,5 @@
-import 'package:shop_app/features/forgotpass&verifyemail/domain/entities/forgotpassword_entity.dart';
+
+import '../../domain/entities/forgotpassword_entity.dart';
 
 class ForgotPasswordModel extends ForgotPasswordEntity {
   const ForgotPasswordModel(super.success, super.message);

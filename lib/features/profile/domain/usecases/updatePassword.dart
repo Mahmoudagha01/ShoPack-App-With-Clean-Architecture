@@ -1,8 +1,10 @@
-import 'package:shop_app/core/error/failure.dart';
+
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/core/usecase/usecase.dart';
-import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
-import 'package:shop_app/features/profile/domain/repositories/profile_repository.dart';
+
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../entities/profile_entity.dart';
+import '../repositories/profile_repository.dart';
 
 class UpdatePasswordUsecase
     extends BaseUsecase<ProfileEntity, UpdatePasswordUsecaseParams> {

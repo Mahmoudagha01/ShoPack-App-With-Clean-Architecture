@@ -1,12 +1,11 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
-import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
+import '../../../../core/utilities/strings.dart';
+import '../../../login/presentation/widgets/mainbutton.dart';
+import '../bloc/products_bloc.dart';
 
 class FilterProduct extends StatelessWidget {
   const FilterProduct({

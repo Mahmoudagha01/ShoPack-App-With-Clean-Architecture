@@ -1,11 +1,14 @@
-import 'package:shop_app/core/error/error_handler.dart';
-import 'package:shop_app/core/network/network_info.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/login/data/datasources/login_datasource.dart';
-import 'package:shop_app/features/login/domin/entities/login_entity.dart';
-import 'package:shop_app/core/error/failure.dart';
+
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/features/login/domin/repositories/login_repository.dart';
+
+import '../../../../core/error/error_handler.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../../core/utilities/strings.dart';
+
+import '../../domin/entities/login_entity.dart';
+import '../../domin/repositories/login_repository.dart';
+import '../datasources/login_datasource.dart';
 
 class LoginRepositoryImpl implements LoginBaseRepository {
   final LoginDatasource loginDatasource;

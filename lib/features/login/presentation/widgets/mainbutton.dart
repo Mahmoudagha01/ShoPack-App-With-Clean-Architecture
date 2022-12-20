@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/core/colors/colors.dart';
+import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
 
 class MainButton extends StatelessWidget {

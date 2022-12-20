@@ -1,11 +1,12 @@
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/register/data/datasources/register_datasource.dart';
-import 'package:shop_app/features/register/domain/entities/register_entity.dart';
-import 'package:shop_app/core/error/failure.dart';
+
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/features/register/domain/repositories/register_repository.dart';
 import '../../../../core/error/error_handler.dart';
+import '../../../../core/error/failure.dart';
 import '../../../../core/network/network_info.dart';
+import '../../../../core/utilities/strings.dart';
+import '../../domain/entities/register_entity.dart';
+import '../../domain/repositories/register_repository.dart';
+import '../datasources/register_datasource.dart';
 
 class RegisterRepositoryImpl implements RegisterBaseRepository {
   final RegisterBaseDatasource registerBaseDatasource;

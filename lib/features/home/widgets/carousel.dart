@@ -2,8 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:shop_app/core/colors/colors.dart';
 
+
+import '../../../core/colors/colors.dart';
 import '../../../core/utilities/mediaquery.dart';
 
 class Carousel extends StatefulWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/core/local/shared_preference.dart';
-import 'package:shop_app/core/utilities/enums.dart';
-import 'package:shop_app/core/utilities/routes.dart';
-import 'package:shop_app/core/utilities/strings.dart';
 import '../../../../core/colors/colors.dart';
+import '../../../../core/local/shared_preference.dart';
+import '../../../../core/utilities/enums.dart';
 import '../../../../core/utilities/mediaquery.dart';
+import '../../../../core/utilities/routes.dart';
+import '../../../../core/utilities/strings.dart';
 import '../../../login/presentation/widgets/alert_snackbar.dart';
 import '../../../login/presentation/widgets/mainbutton.dart';
 import '../../../login/presentation/widgets/maintextformfield.dart';

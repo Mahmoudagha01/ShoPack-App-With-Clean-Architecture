@@ -1,4 +1,5 @@
-import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
+
+import '../../domain/entities/products_entity.dart';
 
 class ProductsModel extends ProductsEntity {
   const ProductsModel(super.success, super.products, super.filteredProductsCount);

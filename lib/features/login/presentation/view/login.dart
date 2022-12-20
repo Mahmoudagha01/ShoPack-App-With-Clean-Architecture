@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/core/colors/colors.dart';
-import 'package:shop_app/core/local/shared_preference.dart';
-import 'package:shop_app/core/utilities/endpoints.dart';
-import 'package:shop_app/core/utilities/routes.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
-import 'package:shop_app/features/login/presentation/widgets/maintextformfield.dart';
+import '../../../../core/colors/colors.dart';
+import '../../../../core/local/shared_preference.dart';
+import '../../../../core/utilities/endpoints.dart';
 import '../../../../core/utilities/mediaquery.dart';
+import '../../../../core/utilities/routes.dart';
+import '../../../../core/utilities/strings.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/alert_snackbar.dart';
+import '../widgets/mainbutton.dart';
+import '../widgets/maintextformfield.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});

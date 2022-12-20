@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/core/error/failure.dart';
-import 'package:shop_app/features/register/domain/entities/register_entity.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/register_entity.dart';
 
 abstract class RegisterBaseRepository {
   Future<Either<Failure, RegisterEntity>> register(RegisterParams params);

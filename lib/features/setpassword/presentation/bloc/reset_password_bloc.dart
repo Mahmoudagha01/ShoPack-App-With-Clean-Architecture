@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shop_app/features/setpassword/domain/usecases/resetpassword_usecase.dart';
-
 import '../../domain/entities/resetpassword_entity.dart';
+import '../../domain/usecases/resetpassword_usecase.dart';
 
 part 'reset_password_event.dart';
 part 'reset_password_state.dart';

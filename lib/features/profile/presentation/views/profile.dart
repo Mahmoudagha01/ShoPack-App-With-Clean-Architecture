@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/core/colors/colors.dart';
-import 'package:shop_app/core/local/shared_preference.dart';
-import 'package:shop_app/core/utilities/routes.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/profile/presentation/widgets/listtile.dart';
+import '../../../../core/colors/colors.dart';
+import '../../../../core/local/shared_preference.dart';
+import '../../../../core/utilities/routes.dart';
+import '../../../../core/utilities/strings.dart';
 import '../bloc/profile_bloc.dart';
+import '../widgets/listtile.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});

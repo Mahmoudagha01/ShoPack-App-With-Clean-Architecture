@@ -1,8 +1,8 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shop_app/features/register/domain/usecases/register_usecase.dart';
 import '../../domain/entities/register_entity.dart';
+import '../../domain/usecases/register_usecase.dart';
 part 'register_event.dart';
 part 'register_state.dart';
 

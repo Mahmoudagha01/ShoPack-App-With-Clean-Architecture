@@ -9,9 +9,10 @@ abstract class FavouriteEvent extends Equatable {
 }
 
 class AddToFavorite extends FavouriteEvent {
- final bool isFavourite;
- final ProductsEntity product;
-  const AddToFavorite({
+  final bool isFavourite;
+  final ProductEntity product;
+
+  const AddToFavorite( {
     required this.isFavourite,
     required this.product,
   });

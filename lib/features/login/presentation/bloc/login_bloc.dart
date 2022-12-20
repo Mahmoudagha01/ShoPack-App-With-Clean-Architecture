@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shop_app/features/login/domin/entities/login_entity.dart';
-import 'package:shop_app/features/login/domin/usecases/login_usecase.dart';
+
+import '../../domin/entities/login_entity.dart';
+import '../../domin/usecases/login_usecase.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';

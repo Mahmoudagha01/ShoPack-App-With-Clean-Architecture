@@ -1,8 +1,10 @@
-import 'package:shop_app/core/error/failure.dart';
+
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/core/usecase/usecase.dart';
-import 'package:shop_app/features/login/domin/entities/login_entity.dart';
-import 'package:shop_app/features/login/domin/repositories/login_repository.dart';
+
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../entities/login_entity.dart';
+import '../repositories/login_repository.dart';
 
 class LoginUsecase extends BaseUsecase<LoginEntity, LoginUsecaseParams> {
   final LoginBaseRepository loginBaseRepository;

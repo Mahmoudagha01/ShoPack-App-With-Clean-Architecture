@@ -1,4 +1,4 @@
-name: shop_app
+name: shopack_user
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -29,16 +29,20 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
   build_runner: ^2.3.2
   carousel_slider: ^4.2.0
   cloudinary_sdk: ^4.0.2+10
-  cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
   envied: ^0.3.0
   equatable: ^2.0.5
-  flutter:
-    sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_rating_bar: ^4.0.1
   get_it: ^7.2.0
@@ -50,10 +54,18 @@ dependencies:
   shared_preferences: ^2.0.15
 
 dev_dependencies:
-  envied_generator: ^0.3.0
-  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -63,7 +75,6 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
 
@@ -74,5 +85,3 @@ flutter:
         - asset: assets/fonts/Roboto-BlackItalic.ttf
         - asset: assets/fonts/Roboto-Bold.ttf
         - asset: assets/fonts/Roboto-BoldItalic.ttf
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

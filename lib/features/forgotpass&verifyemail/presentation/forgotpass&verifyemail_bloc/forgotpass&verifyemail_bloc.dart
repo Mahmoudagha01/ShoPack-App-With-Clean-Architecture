@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shop_app/features/forgotpass&verifyemail/domain/usecases/forgotpassword_usecase.dart';
 import '../../../../core/utilities/enums.dart';
 import '../../domain/entities/forgotpassword_entity.dart';
+import '../../domain/usecases/forgotpassword_usecase.dart';
 part 'forgetpassword_event.dart';
 part 'forgotpass&verifyemail_state.dart';
 

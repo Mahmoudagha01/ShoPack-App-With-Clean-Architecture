@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/core/utilities/routes.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/home/presentation/view/product_details.dart';
-import 'package:shop_app/features/home/widgets/header.dart';
+import 'package:shopack_user/features/home/presentation/view/product_details.dart';
+import '../../../../core/utilities/strings.dart';
 import '../../../shop/presentation/bloc/products_bloc.dart';
 import '../../widgets/customGridView.dart';
+import '../../widgets/header.dart';
 import '../../widgets/product_item_new.dart';
 
 class HomeView extends StatelessWidget {

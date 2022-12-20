@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/core/local/shared_preference.dart';
-import 'package:shop_app/core/theme/theme_data.dart';
-import 'package:shop_app/dependancy_injection.dart';
-import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
-import 'package:shop_app/features/profile/presentation/bloc/update_password_bloc.dart';
-import 'package:shop_app/features/setpassword/presentation/bloc/reset_password_bloc.dart';
-import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
-import 'package:shop_app/features/shop/presentation/bloc/send_review_bloc.dart';
+import 'core/local/shared_preference.dart';
+import 'core/theme/theme_data.dart';
+import 'dependancy_injection.dart';
+import 'features/favorite/presentation/bloc/favourite_bloc.dart';
+import 'features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
+import 'features/profile/presentation/bloc/update_password_bloc.dart';
+import 'features/setpassword/presentation/bloc/reset_password_bloc.dart';
+import 'features/shop/presentation/bloc/products_bloc.dart';
+import 'features/shop/presentation/bloc/send_review_bloc.dart';
 import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
         ),
          BlocProvider(
           create: (context) => injector<SendReviewBloc>(),
+        ),
+          BlocProvider(
+          create: (context) => injector<FavouriteBloc>(),
         ),
       ],
       child: MaterialApp(

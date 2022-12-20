@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
-import 'package:shop_app/core/colors/colors.dart';
-import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
-
-import 'package:shop_app/features/shop/presentation/widgets/reviewsheet.dart';
+import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/strings.dart';
+import '../../domain/entities/products_entity.dart';
+import '../bloc/products_bloc.dart';
+import '../widgets/reviewsheet.dart';
 
 class ReviewsView extends StatefulWidget {
   final ProductEntity product;

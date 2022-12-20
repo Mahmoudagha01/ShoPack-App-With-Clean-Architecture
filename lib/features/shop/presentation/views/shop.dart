@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/core/colors/colors.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/home/widgets/customGridView.dart';
-import 'package:shop_app/features/home/widgets/product_item.dart';
-import 'package:shop_app/features/shop/presentation/widgets/filter.dart';
-import 'package:shop_app/features/shop/presentation/widgets/search.dart';
-
+import 'package:shopack_user/core/utilities/strings.dart';
+import '../../../../core/colors/colors.dart';
 import '../../../home/presentation/view/product_details.dart';
+import '../../../home/widgets/customGridView.dart';
+import '../../../home/widgets/product_item.dart';
 import '../bloc/products_bloc.dart';
+import '../widgets/filter.dart';
+import '../widgets/search.dart';
 
 class ShopView extends StatelessWidget {
   const ShopView({super.key});

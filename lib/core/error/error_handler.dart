@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 import 'package:dio/dio.dart';
-import 'package:shop_app/core/error/failure.dart';
+import 'package:shopack_user/core/error/failure.dart';
+
 import '../utilities/strings.dart';
 
 

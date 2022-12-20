@@ -1,9 +1,9 @@
-import 'package:shop_app/core/network/api_provider.dart';
-import 'package:shop_app/core/utilities/endpoints.dart';
-import 'package:shop_app/features/setpassword/data/models/resetpassword_model.dart';
-import 'package:shop_app/features/setpassword/domain/repositories/resetPassword_repository.dart';
 
 import '../../../../core/local/shared_preference.dart';
+import '../../../../core/network/api_provider.dart';
+import '../../../../core/utilities/endpoints.dart';
+import '../../domain/repositories/resetPassword_repository.dart';
+import '../models/resetpassword_model.dart';
 
 abstract class ResetPasswordDatasource {
   Future<ResetPasswordModel> resetPassword(ResetPasswordParams params);

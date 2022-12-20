@@ -1,10 +1,11 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
+import 'package:shopack_user/features/favorite/presentation/bloc/favourite_bloc.dart';
 import '../../../core/colors/colors.dart';
 import '../../../core/utilities/mediaquery.dart';
+import '../../../core/utilities/strings.dart';
+import '../../shop/domain/entities/products_entity.dart';
 
 class NewProductItem extends StatelessWidget {
   const NewProductItem({super.key, required this.product});
@@ -41,6 +42,37 @@ class NewProductItem extends StatelessWidget {
                 ),
               ),
             ),
+               Positioned(
+              left: kWidth(context) * 0.33,
+              top: 5,
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 5,
+                      color: ColorManager.grey,
+                      spreadRadius: 2,
+                    )
+                  ],
+                ),
+                child: product.inCart? CircleAvatar(
+                  backgroundColor: ColorManager.orangeLight,
+                  radius: 20.0,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {},
+                      child: const Icon(
+                        Icons.shopping_bag,
+                        size: 20.0,
+                        color: ColorManager.white,
+                      ),
+                    ),
+                  ),
+                ): const SizedBox()
+              ),
+            ),
             Positioned(
               left: kWidth(context) * 0.3,
               bottom: kHeight(context) * 0.13,
@@ -59,8 +91,16 @@ class NewProductItem extends StatelessWidget {
                   backgroundColor: ColorManager.white,
                   radius: 20.0,
                   child: Material(
+                    color: Colors.transparent,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        BlocProvider.of<FavouriteBloc>(context)
+                            .add(AddToFavorite(
+                          product: product,
+                          isFavourite: product.isFavourite,
+                          
+                        ));
+                      },
                       child: const Icon(
                         Icons.favorite_outline,
                         size: 20.0,

@@ -1,8 +1,9 @@
-import 'package:shop_app/core/network/api_provider.dart';
-import 'package:shop_app/core/utilities/endpoints.dart';
-import 'package:shop_app/features/shop/data/models/products_model.dart';
-import 'package:shop_app/features/shop/data/models/response_model.dart';
-import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
+
+import '../../../../core/network/api_provider.dart';
+import '../../../../core/utilities/endpoints.dart';
+import '../../domain/repositories/product_repository.dart';
+import '../models/products_model.dart';
+import '../models/response_model.dart';
 
 abstract class ProductsDatasource {
   Future<ProductsModel> getAllProducts();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/core/colors/colors.dart';
+import 'package:shopack_user/core/colors/colors.dart';
+
 
 ThemeData lightTheme() {
   return ThemeData(

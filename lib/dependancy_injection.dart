@@ -1,45 +1,46 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:shop_app/core/network/api_provider.dart';
-import 'package:shop_app/core/network/api_provider_impl.dart';
-import 'package:shop_app/core/network/network_info.dart';
-import 'package:shop_app/features/forgotpass&verifyemail/data/datasources/forgotpassword_datasource.dart';
-import 'package:shop_app/features/forgotpass&verifyemail/data/repositories/forgotpassword_repositoryimpl.dart';
-import 'package:shop_app/features/forgotpass&verifyemail/domain/repositories/forgotpassword_repository.dart';
-import 'package:shop_app/features/forgotpass&verifyemail/domain/usecases/forgotpassword_usecase.dart';
-import 'package:shop_app/features/forgotpass&verifyemail/presentation/forgotpass&verifyemail_bloc/forgotpass&verifyemail_bloc.dart';
-import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
-import 'package:shop_app/features/login/data/datasources/login_datasource.dart';
-import 'package:shop_app/features/login/data/repositories/login_repostory_impl.dart';
-import 'package:shop_app/features/login/domin/repositories/login_repository.dart';
-import 'package:shop_app/features/login/domin/usecases/login_usecase.dart';
-import 'package:shop_app/features/login/presentation/bloc/login_bloc.dart';
-import 'package:shop_app/features/profile/data/datasources/profile_datasource.dart';
-import 'package:shop_app/features/profile/data/repositories/profile_repository_impl.dart';
-import 'package:shop_app/features/profile/domain/repositories/profile_repository.dart';
-import 'package:shop_app/features/profile/domain/usecases/getUserDetail.dart';
-import 'package:shop_app/features/profile/domain/usecases/updatePassword.dart';
-import 'package:shop_app/features/profile/domain/usecases/updateProfile.dart';
-import 'package:shop_app/features/profile/presentation/bloc/profile_bloc.dart';
-import 'package:shop_app/features/profile/presentation/bloc/update_password_bloc.dart';
-import 'package:shop_app/features/register/data/datasources/register_datasource.dart';
-import 'package:shop_app/features/register/data/repositories/register_repository_impl.dart';
-import 'package:shop_app/features/register/domain/repositories/register_repository.dart';
-import 'package:shop_app/features/register/domain/usecases/register_usecase.dart';
-import 'package:shop_app/features/register/presentation/bloc/register_bloc.dart';
-import 'package:shop_app/features/setpassword/data/datasources/Resetpassword_datasource.dart';
-import 'package:shop_app/features/setpassword/data/repositories/resetpassword_repositoryimpl.dart';
-import 'package:shop_app/features/setpassword/domain/repositories/resetPassword_repository.dart';
-import 'package:shop_app/features/setpassword/domain/usecases/resetpassword_usecase.dart';
-import 'package:shop_app/features/setpassword/presentation/bloc/reset_password_bloc.dart';
-import 'package:shop_app/features/shop/data/datasources/products_datasource.dart';
-import 'package:shop_app/features/shop/data/repositories/products_repositoryimpl.dart';
-import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
-import 'package:shop_app/features/shop/domain/usecases/getAllProducts_usecase.dart';
-import 'package:shop_app/features/shop/domain/usecases/getSpecificProduct.dart';
-import 'package:shop_app/features/shop/domain/usecases/sendReview_usecase.dart';
-import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
-import 'package:shop_app/features/shop/presentation/bloc/send_review_bloc.dart';
+import 'package:shopack_user/features/favorite/presentation/bloc/favourite_bloc.dart';
+import 'core/network/api_provider.dart';
+import 'core/network/api_provider_impl.dart';
+import 'core/network/network_info.dart';
+import 'features/forgotpass&verifyemail/data/datasources/forgotpassword_datasource.dart';
+import 'features/forgotpass&verifyemail/data/repositories/forgotpassword_repositoryimpl.dart';
+import 'features/forgotpass&verifyemail/domain/repositories/forgotpassword_repository.dart';
+import 'features/forgotpass&verifyemail/domain/usecases/forgotpassword_usecase.dart';
+import 'features/forgotpass&verifyemail/presentation/forgotpass&verifyemail_bloc/forgotpass&verifyemail_bloc.dart';
+import 'features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
+import 'features/login/data/datasources/login_datasource.dart';
+import 'features/login/data/repositories/login_repostory_impl.dart';
+import 'features/login/domin/repositories/login_repository.dart';
+import 'features/login/domin/usecases/login_usecase.dart';
+import 'features/login/presentation/bloc/login_bloc.dart';
+import 'features/profile/data/datasources/profile_datasource.dart';
+import 'features/profile/data/repositories/profile_repository_impl.dart';
+import 'features/profile/domain/repositories/profile_repository.dart';
+import 'features/profile/domain/usecases/getUserDetail.dart';
+import 'features/profile/domain/usecases/updatePassword.dart';
+import 'features/profile/domain/usecases/updateProfile.dart';
+import 'features/profile/presentation/bloc/profile_bloc.dart';
+import 'features/profile/presentation/bloc/update_password_bloc.dart';
+import 'features/register/data/datasources/register_datasource.dart';
+import 'features/register/data/repositories/register_repository_impl.dart';
+import 'features/register/domain/repositories/register_repository.dart';
+import 'features/register/domain/usecases/register_usecase.dart';
+import 'features/register/presentation/bloc/register_bloc.dart';
+import 'features/setpassword/data/datasources/Resetpassword_datasource.dart';
+import 'features/setpassword/data/repositories/resetpassword_repositoryimpl.dart';
+import 'features/setpassword/domain/repositories/resetPassword_repository.dart';
+import 'features/setpassword/domain/usecases/resetpassword_usecase.dart';
+import 'features/setpassword/presentation/bloc/reset_password_bloc.dart';
+import 'features/shop/data/datasources/products_datasource.dart';
+import 'features/shop/data/repositories/products_repositoryimpl.dart';
+import 'features/shop/domain/repositories/product_repository.dart';
+import 'features/shop/domain/usecases/getAllProducts_usecase.dart';
+import 'features/shop/domain/usecases/getSpecificProduct.dart';
+import 'features/shop/domain/usecases/sendReview_usecase.dart';
+import 'features/shop/presentation/bloc/products_bloc.dart';
+import 'features/shop/presentation/bloc/send_review_bloc.dart';
 
 GetIt injector = GetIt.instance;
 
@@ -54,6 +55,7 @@ Future<void> init() async {
   injector.registerFactory(() => ProfileBloc(injector(), injector()));
   injector.registerFactory(() => UpdatePasswordBloc(injector()));
   injector.registerFactory(() => SendReviewBloc(injector()));
+    injector.registerFactory(() => FavouriteBloc());
 
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
@@ -67,6 +69,8 @@ Future<void> init() async {
   injector.registerLazySingleton(() => UpdatePasswordUsecase(injector()));
   injector.registerLazySingleton(() => SendReviewUsecase(injector()));
   //Repository
+  // injector.registerLazySingleton<LoginBaseRepository>(
+  //     () => LoginRepositoryImpl(injector(), injector()));
   injector.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(injector(), injector()));
   injector.registerLazySingleton<RegisterBaseRepository>(
@@ -93,7 +97,7 @@ Future<void> init() async {
       () => ProductsDatasourceImpl(injector()));
   injector.registerLazySingleton<ProfileDatasource>(
       () => ProfileDataSourceImpl(injector()));
-  
+
   //---Core---//
   //API Provider
   injector.registerLazySingleton<APIProvider>(() => APIProviderImpl());

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/features/forgotpass&verifyemail/presentation/views/forgotpassword.dart';
-import 'package:shop_app/features/home/presentation/view/layout.dart';
-import 'package:shop_app/features/home/presentation/view/product_details.dart';
-import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
-import 'package:shop_app/features/profile/presentation/views/updatePass.dart';
-import 'package:shop_app/features/profile/presentation/views/updateprofile.dart';
-import 'package:shop_app/features/setpassword/presentation/views/setpassword.dart';
-import 'package:shop_app/features/register/presentation/views/register.dart';
-import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
-import 'package:shop_app/features/shop/presentation/views/reviews.dart';
+import '../../features/forgotpass&verifyemail/presentation/views/forgotpassword.dart';
 import '../../features/home/presentation/view/home.dart';
+import '../../features/home/presentation/view/layout.dart';
+import '../../features/home/presentation/view/product_details.dart';
 import '../../features/login/presentation/view/login.dart';
+import '../../features/profile/domain/entities/profile_entity.dart';
+import '../../features/profile/presentation/views/updatePass.dart';
+import '../../features/profile/presentation/views/updateprofile.dart';
+import '../../features/register/presentation/views/register.dart';
+import '../../features/setpassword/presentation/views/setpassword.dart';
+import '../../features/shop/domain/entities/products_entity.dart';
+import '../../features/shop/presentation/views/reviews.dart';
 import 'routes.dart';
 
 Route<dynamic> onGenerate(RouteSettings settings) {

@@ -1,11 +1,13 @@
-import 'package:shop_app/core/error/error_handler.dart';
-import 'package:shop_app/core/network/network_info.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/profile/data/datasources/profile_datasource.dart';
-import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
-import 'package:shop_app/core/error/failure.dart';
+
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/features/profile/domain/repositories/profile_repository.dart';
+
+import '../../../../core/error/error_handler.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../../core/utilities/strings.dart';
+import '../../domain/entities/profile_entity.dart';
+import '../../domain/repositories/profile_repository.dart';
+import '../datasources/profile_datasource.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDatasource profileDatasource;

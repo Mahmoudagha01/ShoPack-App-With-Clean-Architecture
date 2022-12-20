@@ -1,12 +1,12 @@
-import 'package:shop_app/core/error/error_handler.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/setpassword/data/datasources/Resetpassword_datasource.dart';
-import 'package:shop_app/features/setpassword/domain/entities/resetpassword_entity.dart';
-import 'package:shop_app/core/error/failure.dart';
-import 'package:dartz/dartz.dart';
-import 'package:shop_app/features/setpassword/domain/repositories/resetPassword_repository.dart';
 
+import 'package:dartz/dartz.dart';
+import '../../../../core/error/error_handler.dart';
+import '../../../../core/error/failure.dart';
 import '../../../../core/network/network_info.dart';
+import '../../../../core/utilities/strings.dart';
+import '../../domain/entities/resetpassword_entity.dart';
+import '../../domain/repositories/resetPassword_repository.dart';
+import '../datasources/Resetpassword_datasource.dart';
 
 class ResetPasswordRepositoryImpl implements ResetPasswordRepository {
   @override

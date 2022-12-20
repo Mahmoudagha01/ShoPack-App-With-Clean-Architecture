@@ -1,8 +1,8 @@
-import 'package:shop_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/core/usecase/usecase.dart';
-import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecase/usecase.dart';
 import '../entities/products_entity.dart';
+import '../repositories/product_repository.dart';
 
 class GetSpecificProductUseCase
     extends BaseUsecase<ProductsEntity, GetProductUseCaseParams> {

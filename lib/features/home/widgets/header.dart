@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
 import '../../../core/colors/colors.dart';
 import '../../../core/utilities/mediaquery.dart';
+import '../../../core/utilities/strings.dart';
+import '../../login/presentation/widgets/mainbutton.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});

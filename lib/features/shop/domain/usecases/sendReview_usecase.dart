@@ -1,8 +1,7 @@
-import 'package:shop_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/core/usecase/usecase.dart';
-import 'package:shop_app/features/shop/domain/entities/response_entity.dart';
-
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../entities/response_entity.dart';
 import '../repositories/product_repository.dart';
 
 class SendReviewUsecase extends BaseUsecase<ResponseEntity, SendReviewUsecaseParams> {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:shop_app/core/utilities/routes.dart';
-import 'package:shop_app/core/utilities/strings.dart';
-import 'package:shop_app/features/home/widgets/carousel.dart';
-import 'package:shop_app/features/home/widgets/product_item.dart';
-import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
+import '../../../../core/utilities/routes.dart';
+import '../../../../core/utilities/strings.dart';
+import '../../../shop/domain/entities/products_entity.dart';
+import '../../widgets/carousel.dart';
+import '../../widgets/product_item.dart';
 
 class ProductDetails extends StatelessWidget {
   final ProductEntity product;

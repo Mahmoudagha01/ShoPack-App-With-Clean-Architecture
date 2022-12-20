@@ -2,12 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:cloudinary_sdk/cloudinary_sdk.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shop_app/core/usecase/usecase.dart';
-import 'package:shop_app/features/profile/domain/usecases/getUserDetail.dart';
-import 'package:shop_app/features/profile/domain/usecases/updateProfile.dart';
-
 import '../../../../core/env/env.dart';
+import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/profile_entity.dart';
+import '../../domain/usecases/getUserDetail.dart';
+import '../../domain/usecases/updateProfile.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';

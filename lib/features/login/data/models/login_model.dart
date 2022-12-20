@@ -1,4 +1,5 @@
-import 'package:shop_app/features/login/domin/entities/login_entity.dart';
+
+import '../../domin/entities/login_entity.dart';
 
 class LoginModel extends LoginEntity {
   const LoginModel(

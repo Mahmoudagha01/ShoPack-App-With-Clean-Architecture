@@ -1,4 +1,5 @@
-import 'package:shop_app/features/profile/domain/entities/profile_entity.dart';
+
+import '../../domain/entities/profile_entity.dart';
 
 class ProfileModel extends ProfileEntity {
   const ProfileModel(super.success, super.user,super.message);

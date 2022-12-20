@@ -1,8 +1,9 @@
-import 'package:shop_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shop_app/core/usecase/usecase.dart';
-import 'package:shop_app/features/setpassword/domain/entities/resetpassword_entity.dart';
-import 'package:shop_app/features/setpassword/domain/repositories/resetPassword_repository.dart';
+
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../entities/resetpassword_entity.dart';
+import '../repositories/resetPassword_repository.dart';
 
 class ResetPasswordUseCase
     extends BaseUsecase<ResetPasswordEntity, ResetPassUsecaseParams> {

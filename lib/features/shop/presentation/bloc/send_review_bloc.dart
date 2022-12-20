@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shop_app/features/shop/domain/usecases/sendReview_usecase.dart';
-
 import '../../domain/entities/response_entity.dart';
+import '../../domain/usecases/sendReview_usecase.dart';
 
 part 'send_review_event.dart';
 part 'send_review_state.dart';

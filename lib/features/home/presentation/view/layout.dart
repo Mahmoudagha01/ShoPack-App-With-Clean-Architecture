@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/core/colors/colors.dart';
-import 'package:shop_app/features/cart/presentation/views/cart.dart';
-import 'package:shop_app/features/favorite/presentation/views/favorite.dart';
-import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
-import 'package:shop_app/features/home/presentation/view/home.dart';
-import 'package:shop_app/features/profile/presentation/bloc/profile_bloc.dart';
-import 'package:shop_app/features/profile/presentation/views/profile.dart';
-import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
-import 'package:shop_app/features/shop/presentation/views/shop.dart';
+
+import '../../../../core/colors/colors.dart';
+import '../../../cart/presentation/views/cart.dart';
+import '../../../favorite/presentation/views/favorite.dart';
+import '../../../profile/presentation/bloc/profile_bloc.dart';
+import '../../../profile/presentation/views/profile.dart';
+import '../../../shop/presentation/bloc/products_bloc.dart';
+import '../../../shop/presentation/views/shop.dart';
+import '../bloc/BottomNavigationBar_bloc.dart';
+import 'home.dart';
+
 
 class LayoutPage extends StatefulWidget {
   const LayoutPage({super.key});

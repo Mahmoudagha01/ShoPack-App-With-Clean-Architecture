@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 import '../../../core/colors/colors.dart';
 import '../../../core/utilities/mediaquery.dart';
+import '../../shop/domain/entities/products_entity.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({super.key, required this.product});
@@ -22,6 +22,37 @@ class ProductItem extends StatelessWidget {
               height: 200,
             ),
             Positioned(
+              left: kWidth(context) * 0.33,
+              top: 5,
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 5,
+                      color: ColorManager.grey,
+                      spreadRadius: 2,
+                    )
+                  ],
+                ),
+                child: product.inCart? CircleAvatar(
+                  backgroundColor: ColorManager.orangeLight,
+                  radius: 20.0,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {},
+                      child: const Icon(
+                        Icons.shopping_bag,
+                        size: 20.0,
+                        color: ColorManager.white,
+                      ),
+                    ),
+                  ),
+                ): const SizedBox()
+              ),
+            ),
+            Positioned(
               left: kWidth(context) * 0.3,
               bottom: kHeight(context) * 0.13,
               child: Container(
@@ -39,6 +70,7 @@ class ProductItem extends StatelessWidget {
                   backgroundColor: ColorManager.white,
                   radius: 20.0,
                   child: Material(
+                    color: Colors.transparent,
                     child: InkWell(
                       onTap: () {},
                       child: const Icon(

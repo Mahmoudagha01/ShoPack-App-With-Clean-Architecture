@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:shop_app/features/login/presentation/widgets/mainbutton.dart';
-import 'package:shop_app/features/shop/presentation/bloc/send_review_bloc.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/strings.dart';
 import '../../../login/presentation/widgets/alert_snackbar.dart';
+import '../../../login/presentation/widgets/mainbutton.dart';
 import '../../../login/presentation/widgets/maintextformfield.dart';
+import '../bloc/send_review_bloc.dart';
 
 class ReviewSheet extends StatefulWidget {
   final String id;

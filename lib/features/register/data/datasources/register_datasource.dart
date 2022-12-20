@@ -1,7 +1,8 @@
-import 'package:shop_app/core/utilities/endpoints.dart';
-import 'package:shop_app/features/register/data/models/register_model.dart';
+
 import '../../../../core/network/api_provider.dart';
+import '../../../../core/utilities/endpoints.dart';
 import '../../domain/repositories/register_repository.dart';
+import '../models/register_model.dart';
 
 abstract class RegisterBaseDatasource {
   Future<RegisterModel> register(RegisterParams params);

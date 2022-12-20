@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/core/usecase/usecase.dart';
-import 'package:shop_app/features/shop/domain/usecases/getAllProducts_usecase.dart';
-import 'package:shop_app/features/shop/domain/usecases/getSpecificProduct.dart';
+import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/products_entity.dart';
+import '../../domain/usecases/getAllProducts_usecase.dart';
+import '../../domain/usecases/getSpecificProduct.dart';
 part 'products_event.dart';
 part 'products_state.dart';
 

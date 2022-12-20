@@ -1,7 +1,8 @@
-import 'package:shop_app/core/network/api_provider.dart';
-import 'package:shop_app/core/utilities/endpoints.dart';
-import 'package:shop_app/features/login/data/models/login_model.dart';
-import 'package:shop_app/features/login/domin/repositories/login_repository.dart';
+
+import '../../../../core/network/api_provider.dart';
+import '../../../../core/utilities/endpoints.dart';
+import '../../domin/repositories/login_repository.dart';
+import '../models/login_model.dart';
 
 abstract class LoginDatasource {
   Future<LoginModel> login(LoginParams params);
