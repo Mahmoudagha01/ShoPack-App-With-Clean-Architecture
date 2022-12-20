@@ -95,7 +95,7 @@ class AppStrings {
   static const String shop = "Shop";
   static const String details = "details";
   static const String changepass = "Change Password";
-  static const String about = "about";
+  static const String favorite = "Favorite";
   static const String yourReview = ' Your review';
   static const String personalinfo = "Personal Information";
   static const String myorders = "My Orders";
