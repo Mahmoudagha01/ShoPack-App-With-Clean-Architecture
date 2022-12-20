@@ -62,10 +62,13 @@ class HomeView extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) => ProductDetails(
                                     product: products[index],
-                                    products: products),
+                                    products: products,
+                                    index: index,),
                               ));
                         },
-                        child: NewProductItem(product: products[index]));
+                        child: Hero(
+                          tag: '$index',
+                          child: NewProductItem(product: products[index])));
                   },
                 ));
               } else if (state is AllProductsErrorState) {

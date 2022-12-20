@@ -30,7 +30,7 @@ class ShopView extends StatelessWidget {
                     AppStrings.shop,
                     style: Theme.of(context).textTheme.headline5,
                   ),
-                 const SearchWidget()
+                  const SearchWidget()
                 ],
               ),
               Padding(
@@ -55,7 +55,8 @@ class ShopView extends StatelessWidget {
                                     bloc.categories[index],
                                     '0',
                                     '100000',
-                                    '0',''));
+                                    '-1',
+                                    ''));
                               },
                               child: AnimatedContainer(
                                 duration: const Duration(milliseconds: 300),
@@ -95,59 +96,101 @@ class ShopView extends StatelessWidget {
                 ),
               ),
               BlocBuilder<ProductsBloc, ProductsState>(
-                  builder: (context, state) {
-                    if (state is ProductsLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is ProductsLoadedState) {
-                      final products = state.data.products;
-                      return Expanded(
-                          child: GridView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: state.data.filteredProductsCount,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                                height: 330, crossAxisCount: 2),
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                              onTap: () {
-                                Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProductDetails(
-                                    product: products[index],
-                                    products: products),
-                              ));
-                              },
-                              child: ProductItem(product: products[index]));
-                        },
-                      ));
-                    } else if (state is ProductsErrorState) {
-                      return Center(child: Text(state.message));
-                    } else if (state is FilterProductsLoadedState) {
-                      final products = state.data.products;
-                      return Expanded(
-                          child: GridView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: state.data.filteredProductsCount,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                                height: 330, crossAxisCount: 2),
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                              onTap: () {},
-                              child: ProductItem(product: products[index]));
-                        },
-                      ));
-                    } else if (state is ProductsErrorState) {
-                      return Center(child: Text(state.message));
-                    } else {
-                      return const SizedBox();
-                    }
-                  },
-                ),
-             
+                builder: (context, state) {
+                  if (state is FilterProductsLoadingState || state is SpecificProductsLoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is ProductsLoadedState) {
+                    final products = state.data.products;
+                    return Expanded(
+                        child: GridView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: state.data.filteredProductsCount,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                              height: 330, crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                            onTap: () {
+                          
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductDetails(
+                                        product: products[index],
+                                        products: products,
+                                        index: index,),
+                                  ));
+                            },
+                            child: Hero(
+                              tag: '$index',
+                              child: ProductItem(product: products[index])));
+                      },
+                    ));
+                  } else if (state is ProductsErrorState) {
+                    return Center(child: Text(state.message));
+                  } else if (state is FilterProductsLoadedState) {
+                    final products = state.data.products;
+                    return Expanded(
+                        child: GridView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: state.data.filteredProductsCount,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                              height: 330, crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                            onTap: () {
+                                   Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductDetails(
+                                        product: products[index],
+                                        products: products,
+                                        index: index,),
+                                  ));
+                            },
+                            child: Hero(
+                              tag: '$index',
+                              child: ProductItem(product: products[index])));
+                      },
+                    ));
+                  } else if (state is ProductsErrorState) {
+                    return Center(child: Text(state.message));
+                  } else if (state is SpecificProductsLoadedState){
+ final products = state.data.products;
+                    return Expanded(
+                        child: GridView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: state.data.filteredProductsCount,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                              height: 330, crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                            onTap: () {
+                                   Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductDetails(
+                                        product: products[index],
+                                        products: products,
+                                        index: index,),
+                                  ));
+                            },
+                            child: Hero(
+                              tag: '$index',
+                              child: ProductItem(product: products[index])));
+                      },
+                    ));
+                  }
+                  
+                  else {
+                    return const SizedBox();
+                  }
+                },
+              ),
             ],
           );
         }),

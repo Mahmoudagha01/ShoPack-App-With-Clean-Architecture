@@ -103,9 +103,10 @@ class FilterProduct extends StatelessWidget {
                                           child: const SizedBox(),
                                         ),
                                         SizedBox(
-                                          width: 170,
                                           child: Text(
-                                            'Above ${(bloc.rateValue.round())} Stars',style:  TextStyle(color: ColorManager.grey),
+                                            'Products Above ${(bloc.rateValue.round())} Stars',
+                                            style: TextStyle(
+                                                color: ColorManager.grey),
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
@@ -150,9 +151,11 @@ class FilterProduct extends StatelessWidget {
                                                             .end
                                                             .round()
                                                             .toString(),
-                                                        bloc.rateValue
-                                                            .round()
-                                                            .toString(),
+                                                        bloc.rateValue == 0
+                                                            ? '-1'
+                                                            : bloc.rateValue
+                                                                .round()
+                                                                .toString(),
                                                         ''));
                                               });
                                               Navigator.pop(context);

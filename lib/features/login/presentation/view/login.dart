@@ -68,6 +68,7 @@ class _LoginViewState extends State<LoginView> {
                     height: 10,
                   ),
                   MainTFF(
+                    max: 1,
                       labelText: AppStrings.password,
                       hintText: AppStrings.password,
                       controller: passController,

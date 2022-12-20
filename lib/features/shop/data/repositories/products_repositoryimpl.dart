@@ -5,6 +5,7 @@ import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
 import 'package:shop_app/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:shop_app/features/shop/domain/entities/response_entity.dart';
 import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
 
 import '../datasources/products_datasource.dart';
@@ -21,6 +22,7 @@ class ProductsRepositoryImpl implements ProductRepository {
         final data = await productsDatasource.getAllProducts();
         return right(data);
       } catch (error) {
+   
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
@@ -34,6 +36,20 @@ class ProductsRepositoryImpl implements ProductRepository {
     if (await networkInfo.isConnected) {
       try {
         final data = await productsDatasource.getSpecificProduct(params);
+        return right(data);
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ResponseEntity>> sendReview(SendReviewParams params) async{
+   if (await networkInfo.isConnected) {
+      try {
+        final data = await productsDatasource.sendReview(params);
         return right(data);
       } catch (error) {
         return left(ErrorHandler.handle(error).failure);

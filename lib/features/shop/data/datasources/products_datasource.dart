@@ -1,11 +1,13 @@
 import 'package:shop_app/core/network/api_provider.dart';
 import 'package:shop_app/core/utilities/endpoints.dart';
 import 'package:shop_app/features/shop/data/models/products_model.dart';
+import 'package:shop_app/features/shop/data/models/response_model.dart';
 import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
 
 abstract class ProductsDatasource {
   Future<ProductsModel> getAllProducts();
   Future<ProductsModel> getSpecificProduct(GetProductParams params);
+  Future<ResponseModel> sendReview(SendReviewParams params);
 }
 
 class ProductsDatasourceImpl implements ProductsDatasource {
@@ -24,9 +26,22 @@ class ProductsDatasourceImpl implements ProductsDatasource {
       "category": params.category,
       "price[gt]": params.minPrice,
       "price[lt]": params.maxPrice,
-      "ratings": params.rate,
+      "ratings[gt]": params.rate,
       "keyword": params.keyword,
     });
     return ProductsModel.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseModel> sendReview(SendReviewParams params) async {
+    final response = await apiProvider.put(
+        endPoint: reviewEndPoint,
+        data: {
+          'productId': params.productId,
+          'comment': params.comment,
+          'rating': params.rating,
+        },
+        token: token ?? '');
+    return ResponseModel.fromJson(response.data);
   }
 }

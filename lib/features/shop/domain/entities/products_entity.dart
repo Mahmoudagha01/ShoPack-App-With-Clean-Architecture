@@ -73,10 +73,10 @@ class ImageEntity extends Equatable {
 class ReviewEntity extends Equatable {
   final String? user;
   final String? name;
-  final int? rating;
+  final num? rating;
   final String? comment;
-
-  const ReviewEntity(this.user, this.name,this.rating, this.comment);
+final DateTime? createdAt;
+  const ReviewEntity(this.user, this.name,this.rating, this.comment, this.createdAt);
 
   @override
   List<Object?> get props => [user, name,rating, comment];

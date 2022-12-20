@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shop_app/core/utilities/routes.dart';
 import 'package:shop_app/core/utilities/strings.dart';
 import 'package:shop_app/features/home/widgets/carousel.dart';
 import 'package:shop_app/features/home/widgets/product_item.dart';
@@ -10,12 +11,14 @@ import '../../../../core/utilities/mediaquery.dart';
 class ProductDetails extends StatelessWidget {
   final ProductEntity product;
   final List<ProductEntity> products;
+  final int index;
   const ProductDetails(
-      {super.key, required this.product, required this.products});
+      {super.key, required this.product, required this.products, required this.index});
 
   @override
   Widget build(BuildContext context) {
-    products.shuffle();
+    List<ProductEntity> newProductsList = products.reversed.toList();
+    newProductsList.shuffle();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -77,7 +80,7 @@ class ProductDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Carousel(images: product.images),
+              Hero(tag: '$index', child: Carousel(images: product.images)),
               const SizedBox(
                 height: 10,
               ),
@@ -172,7 +175,11 @@ class ProductDetails extends StatelessWidget {
                     Text(AppStrings.rateandreview,
                         style: Theme.of(context).textTheme.headline6),
                     TextButton(
-                        onPressed: () {}, child: const Text(AppStrings.seeMore))
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.productreviews,
+                              arguments: product);
+                        },
+                        child: const Text(AppStrings.seeMore))
                   ],
                 ),
               ),
@@ -192,7 +199,7 @@ class ProductDetails extends StatelessWidget {
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      '${product.ratings}.0',
+                      '${product.ratings}',
                       style: Theme.of(context).textTheme.caption!.copyWith(
                             color: Colors.grey,
                           ),
@@ -220,19 +227,18 @@ class ProductDetails extends StatelessWidget {
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: (){
+                      onTap: () {
                         Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProductDetails(
-                                    product: products[index],
-                                    products: products),
-                              ));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductDetails(
+                                  product: products[index], products: products, index: index,),
+                            ));
                       },
                       child: SizedBox(
                           width: kWidth(context) / 2,
                           height: 330,
-                          child: ProductItem(product: products[index])),
+                          child: ProductItem(product: newProductsList[index])),
                     );
                   },
                 ),

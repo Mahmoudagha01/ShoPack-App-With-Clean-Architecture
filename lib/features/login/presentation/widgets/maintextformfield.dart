@@ -6,6 +6,7 @@ class MainTFF extends StatelessWidget {
     Key? key,
     this.prefix,
     this.suffix,
+    this.max,
     required this.controller,
 required this.validate,
     required this.isPassword,
@@ -24,6 +25,7 @@ required this.validate,
   final bool isPassword;
   final double? borderRadius;
   final bool? readOnly;
+  final int? max;
   final TextInputType inputType;
   final String? hintText;
   final String? labelText;
@@ -36,11 +38,13 @@ required this.validate,
     return Material(
   elevation: 1.5,
       child: TextFormField(  
+        maxLines:max ,
         obscureText: isPassword,
         keyboardType: inputType,
         controller: controller,
         validator: validate,
         decoration: InputDecoration(
+          alignLabelWithHint: true,
             suffixIcon: suffix,
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 30, horizontal: 20),

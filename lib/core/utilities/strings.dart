@@ -15,18 +15,19 @@ class AppStrings {
   static const String description = "Description";
   static const String addToCart = "Add To Cart";
   static const String apply = "Apply";
+  static const String writereview = "Write a review";
   static const String recentlyAddedProducts = "Recently Added Products";
   static const String newText = "New";
-    static const String oldpassword = "Old Password";
-      static const String newpassword = "New Password";
-        static const String repeatpassword = "Confirm New Password";
+  static const String oldpassword = "Old Password";
+  static const String newpassword = "New Password";
+  static const String repeatpassword = "Confirm New Password";
   static const String password = "Password";
   static const String nameError = "Name should have more than 3 characters";
   static const String nameEmpty = "Name Is required";
   static const String passwordEmpty = "Password is Required";
-    static const String repeatpasswordEmpty = "Confirm New Password is Required";
-      static const String oldpasswordEmpty = "Old Password is Required";
-        static const String newpasswordEmpty = "New Password is Required";
+  static const String repeatpasswordEmpty = "Confirm New Password is Required";
+  static const String oldpasswordEmpty = "Old Password is Required";
+  static const String newpasswordEmpty = "New Password is Required";
   static const String passwordError =
       "Password should atleast have 6 digits or characters";
   static const String email = "Email";
@@ -34,8 +35,8 @@ class AppStrings {
       "Please, enter your email address. You will receive a link to create a new password via email.";
   static const String login = "Login";
   static const String loginsuccess = "Login done successfully";
-    static const String updatepasssuccess = "Update Password done successfully";
-        static const String updatepassfail = "Update Password Failed";
+  static const String updatepasssuccess = "Update Password done successfully";
+  static const String updatepassfail = "Update Password Failed";
   static const String registeruccess = "Registration done successfully";
   static const String forgetPassword = "Forgot your pasasword?";
   static const String forgetPasswordtext = "Forgot password";
@@ -45,6 +46,7 @@ class AppStrings {
   static const String retryAgain = "retry_again";
   static const String ok = "Ok";
   static const String send = "Send";
+  static const String sendReview = "Send Review";
   static const String filter = "Filter";
   static const String submit = "Submit";
   static const String savepass = "Save Password";
@@ -72,11 +74,12 @@ class AppStrings {
       'Confirm Password must equal Password';
   static const String enterPassword = "Please Enter New Password";
   static const String success = "success";
-    static const String updateprofile = "Update Profile";
-  static const String updateproflesuccess = 'Profile Updated Successfuly';
+  static const String updateprofile = "Update Profile";
+  static const String updateproflesuccess = 'Profile Updated Successfully';
   static const String editPersonalInfo = "Personal Information";
   static const String profilePicture = "upload_profile_picture";
   static const String photoGalley = "photo_gallery";
+  static const String sendreviewsuccess = 'Review sent Successfully';
   static const String photoCamera = "camera";
   static const String register = "Register";
   static const String donthaveAccount = "Don't have an account?";
@@ -85,11 +88,15 @@ class AppStrings {
   static const String notifications = "notification";
   static const String search = "search";
   static const String settings = "settings";
-  static const String services = "services";
+  static const String services = "servicecs";
+  static const String whatrate = "What is you rate?";
+  static const String plsshareopinion =
+      "Please share your opinion\nabout the product";
   static const String shop = "Shop";
   static const String details = "details";
-    static const String changepass = "Change Password";
+  static const String changepass = "Change Password";
   static const String about = "about";
+  static const String yourReview = ' Your review';
   static const String personalinfo = "Personal Information";
   static const String myorders = "My Orders";
   static const String orders = "Orders Details";

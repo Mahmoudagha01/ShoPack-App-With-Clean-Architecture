@@ -37,7 +37,9 @@ import 'package:shop_app/features/shop/data/repositories/products_repositoryimpl
 import 'package:shop_app/features/shop/domain/repositories/product_repository.dart';
 import 'package:shop_app/features/shop/domain/usecases/getAllProducts_usecase.dart';
 import 'package:shop_app/features/shop/domain/usecases/getSpecificProduct.dart';
+import 'package:shop_app/features/shop/domain/usecases/sendReview_usecase.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
+import 'package:shop_app/features/shop/presentation/bloc/send_review_bloc.dart';
 
 GetIt injector = GetIt.instance;
 
@@ -51,6 +53,7 @@ Future<void> init() async {
   injector.registerFactory(() => ProductsBloc(injector(), injector()));
   injector.registerFactory(() => ProfileBloc(injector(), injector()));
   injector.registerFactory(() => UpdatePasswordBloc(injector()));
+  injector.registerFactory(() => SendReviewBloc(injector()));
 
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
@@ -62,6 +65,7 @@ Future<void> init() async {
   injector.registerLazySingleton(() => GetUserDetails(injector()));
   injector.registerLazySingleton(() => UpdateUserDetailUsecase(injector()));
   injector.registerLazySingleton(() => UpdatePasswordUsecase(injector()));
+  injector.registerLazySingleton(() => SendReviewUsecase(injector()));
   //Repository
   injector.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(injector(), injector()));

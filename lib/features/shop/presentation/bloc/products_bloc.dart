@@ -25,7 +25,9 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   final GetAllProductsUsecase getAllProductsUsecase;
   final GetSpecificProductUseCase getSpecificProductUseCase;
   ProductsBloc(this.getAllProductsUsecase, this.getSpecificProductUseCase)
-      : super(AllProductsLoadingState(),) {
+      : super(
+          AllProductsLoadingState(),
+        ) {
     on<GetAllProducts>((event, emit) async {
       final failurOrSuccess = await getAllProductsUsecase(NoParams());
 
@@ -35,23 +37,25 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     });
 
     on<GetSpecificProduct>((event, emit) async {
+      emit(SpecificProductsLoadingState());
       final failurOrSuccess = await getSpecificProductUseCase(
-        GetProductUseCaseParams(
-            event.category, event.minPrice, event.maxPrice, event.rate,event.keyword),
+        GetProductUseCaseParams(event.category, event.minPrice, event.maxPrice,
+            event.rate, event.keyword),
       );
 
       failurOrSuccess.fold(
-          (failure) => emit(ProductsErrorState(failure.message)),
-          (success) => emit(ProductsLoadedState(success)));
+          (failure) => emit(SpecificProductsErrorState(failure.message)),
+          (success) => emit(SpecificProductsLoadedState(success)));
     });
     on<ChangeCatyegory>((event, emit) {
       current = event.index;
       emit(ChangeCategoryState());
     });
     on<GetFilterSpecificProduct>((event, emit) async {
+      emit(FilterProductsLoadingState());
       final failurOrSuccess = await getSpecificProductUseCase(
-        GetProductUseCaseParams(
-            event.category, event.minPrice, event.maxPrice, event.rate,event.keyword),
+        GetProductUseCaseParams(event.category, event.minPrice, event.maxPrice,
+            event.rate, event.keyword),
       );
 
       failurOrSuccess.fold(
@@ -59,7 +63,6 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
           (success) => emit(FilterProductsLoadedState(success)));
     });
     on<OpenSearch>((event, emit) {
-
       searchFolded = !searchFolded;
       emit(OpenSearchState());
     });

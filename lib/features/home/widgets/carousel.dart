@@ -25,71 +25,75 @@ class _CarouselState extends State<Carousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: kHeight(context) * 0.3,
-          child: PhotoViewGallery.builder(
-            backgroundDecoration:
-                const BoxDecoration(color: ColorManager.white),
-            itemCount: widget.images.length,
-            builder: (BuildContext context, int index) {
-              return PhotoViewGalleryPageOptions(
-                imageProvider: NetworkImage(widget.images[index].url),
-                minScale: PhotoViewComputedScale.contained * 0.8,
-                maxScale: PhotoViewComputedScale.covered * 1.8,
-              );
-            },
-            enableRotation: true,
-            scrollPhysics: const BouncingScrollPhysics(),
-            pageController: pageController,
-            loadingBuilder: (context, event) {
-              return const Center(child: CircularProgressIndicator());
-            },
-            onPageChanged: (int index) {
-              setState(() {
-                current = index;
-              });
-            },
-          ),
-        ),
-        const SizedBox(height: 10,),
-        Container(
-          color: ColorManager.white,
-          child: CarouselSlider.builder(
-            itemCount: widget.images.length,
-            options: CarouselOptions(
-              initialPage: current,
-              onPageChanged: (index, reason) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: kHeight(context) * 0.3,
+            child: PhotoViewGallery.builder(
+              backgroundDecoration:
+                  const BoxDecoration(color: ColorManager.white),
+              itemCount: widget.images.length,
+              builder: (BuildContext context, int index) {
+                return PhotoViewGalleryPageOptions(
+                  imageProvider: NetworkImage(widget.images[index].url),
+                  minScale: PhotoViewComputedScale.contained * 0.8,
+                  maxScale: PhotoViewComputedScale.covered * 1.8,
+                );
+              },
+              enableRotation: true,
+              scrollPhysics: const BouncingScrollPhysics(),
+              pageController: pageController,
+              loadingBuilder: (context, event) {
+                return const Center(child: CircularProgressIndicator());
+              },
+              onPageChanged: (int index) {
                 setState(() {
                   current = index;
                 });
               },
-              enlargeCenterPage: true,
-              autoPlay: false,
-    
-              viewportFraction: 0.27,
-              height: 100,
             ),
-            itemBuilder: (context, index, i) => InkWell(
-              onTap: () {
-                setState(() {
-                  current = index;
-                });
-                pageController!.jumpToPage(current);
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(),
-           
+          ),
+          const SizedBox(height: 10,),
+          Container(
+            color: ColorManager.white,
+            child: CarouselSlider.builder(
+              itemCount: widget.images.length,
+              options: CarouselOptions(
+                initialPage: current,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    current = index;
+                  });
+                },
+                enlargeCenterPage: true,
+                autoPlay: false,
+      
+                viewportFraction: 0.27,
+                height: 100,
+              ),
+              itemBuilder: (context, index, i) => Material(
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      current = index;
+                    });
+                    pageController!.jumpToPage(current);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                           
+                    ),
+                      child: Image.network(
+                    widget.images[index].url!,
+                  )),
                 ),
-                  child: Image.network(
-                widget.images[index].url!,
-              )),
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

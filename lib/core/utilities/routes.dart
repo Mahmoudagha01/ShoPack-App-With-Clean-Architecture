@@ -7,7 +7,8 @@ class AppRoutes {
   static const setPassword = "/set-password";
   static const layout = "/layout";
   static const home = "/home";
-  static const productDetails = "/Product-details";
+  static const productDetails = "/product-details";
+    static const productreviews = "/Product-reviews";
   static const updateProfile = "/update-profile";
   static const updatePassword = "/update-password";
 }

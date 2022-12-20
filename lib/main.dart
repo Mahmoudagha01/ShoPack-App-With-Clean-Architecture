@@ -7,6 +7,7 @@ import 'package:shop_app/features/home/presentation/bloc/BottomNavigationBar_blo
 import 'package:shop_app/features/profile/presentation/bloc/update_password_bloc.dart';
 import 'package:shop_app/features/setpassword/presentation/bloc/reset_password_bloc.dart';
 import 'package:shop_app/features/shop/presentation/bloc/products_bloc.dart';
+import 'package:shop_app/features/shop/presentation/bloc/send_review_bloc.dart';
 import 'core/utilities/router.dart';
 import 'core/utilities/routes.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
@@ -52,7 +53,9 @@ class MyApp extends StatelessWidget {
          BlocProvider(
           create: (context) => injector<UpdatePasswordBloc>(),
         ),
-      
+         BlocProvider(
+          create: (context) => injector<SendReviewBloc>(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

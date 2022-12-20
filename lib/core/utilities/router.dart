@@ -8,6 +8,7 @@ import 'package:shop_app/features/profile/presentation/views/updateprofile.dart'
 import 'package:shop_app/features/setpassword/presentation/views/setpassword.dart';
 import 'package:shop_app/features/register/presentation/views/register.dart';
 import 'package:shop_app/features/shop/domain/entities/products_entity.dart';
+import 'package:shop_app/features/shop/presentation/views/reviews.dart';
 import '../../features/home/presentation/view/home.dart';
 import '../../features/login/presentation/view/login.dart';
 import 'routes.dart';
@@ -29,12 +30,26 @@ Route<dynamic> onGenerate(RouteSettings settings) {
     case AppRoutes.productDetails:
       final product = settings.arguments as ProductEntity;
       final products = settings.arguments as List<ProductEntity>;
-      return MaterialPageRoute(builder: (context) =>  ProductDetails(product: product,products: products,));
-      case AppRoutes.updateProfile:
-        final user = settings.arguments as UserEntity;
-      return MaterialPageRoute(builder: (context) =>  UpdateProfileView(user: user,));
-      case AppRoutes.updatePassword:
-      return MaterialPageRoute(builder: (context) => const UpdatePasswordView());
+      final index = settings.arguments as int;
+      return MaterialPageRoute(
+          builder: (context) => ProductDetails(
+                product: product,
+                products: products,
+                index: index,
+              ));
+    case AppRoutes.productreviews:
+final product = settings.arguments as ProductEntity;
+      return MaterialPageRoute(
+          builder: (context) => ReviewsView(product: product));
+    case AppRoutes.updateProfile:
+      final user = settings.arguments as UserEntity;
+      return MaterialPageRoute(
+          builder: (context) => UpdateProfileView(
+                user: user,
+              ));
+    case AppRoutes.updatePassword:
+      return MaterialPageRoute(
+          builder: (context) => const UpdatePasswordView());
     default:
       return MaterialPageRoute(builder: (context) => const LoginView());
   }

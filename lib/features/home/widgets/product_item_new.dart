@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -59,12 +58,14 @@ class NewProductItem extends StatelessWidget {
                 child: CircleAvatar(
                   backgroundColor: ColorManager.white,
                   radius: 20.0,
-                  child: InkWell(
-                    onTap: () {},
-                    child: const Icon(
-                      Icons.favorite_outline,
-                      size: 20.0,
-                      color: ColorManager.grey,
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {},
+                      child: const Icon(
+                        Icons.favorite_outline,
+                        size: 20.0,
+                        color: ColorManager.grey,
+                      ),
                     ),
                   ),
                 ),

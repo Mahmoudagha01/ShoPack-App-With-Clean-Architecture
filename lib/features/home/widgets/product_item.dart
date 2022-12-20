@@ -12,7 +12,6 @@ class ProductItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Container(
-      
         decoration: BoxDecoration(
             color: ColorManager.white, borderRadius: BorderRadius.circular(15)),
         child: Stack(
@@ -39,12 +38,14 @@ class ProductItem extends StatelessWidget {
                 child: CircleAvatar(
                   backgroundColor: ColorManager.white,
                   radius: 20.0,
-                  child: InkWell(
-                    onTap: () {},
-                    child: const Icon(
-                      Icons.favorite_outline,
-                      size: 20.0,
-                      color: ColorManager.grey,
+                  child: Material(
+                    child: InkWell(
+                      onTap: () {},
+                      child: const Icon(
+                        Icons.favorite_outline,
+                        size: 20.0,
+                        color: ColorManager.grey,
+                      ),
                     ),
                   ),
                 ),

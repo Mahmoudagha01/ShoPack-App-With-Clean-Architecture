@@ -46,11 +46,12 @@ class ImageModel extends ImageEntity {
 }
 
 class ReviewModel extends ReviewEntity {
-  const ReviewModel(super.user, super.name,super.rating, super.comment);
+  const ReviewModel(super.user, super.name,super.rating, super.comment,super.createdAt);
   factory ReviewModel.fromJson(Map<String, dynamic> json) => ReviewModel(
         json["user"] ?? "",
         json['name'] ?? "",
   json['rating']??0,
         json['comment'] ?? "",
+       DateTime.parse(json['createdAt']) 
       );
 }
