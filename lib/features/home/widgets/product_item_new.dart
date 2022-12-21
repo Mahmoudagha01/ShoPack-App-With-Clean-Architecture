@@ -5,6 +5,7 @@ import 'package:shopack_user/features/favorite/presentation/bloc/favourite_bloc.
 import '../../../core/colors/colors.dart';
 import '../../../core/utilities/mediaquery.dart';
 import '../../../core/utilities/strings.dart';
+import '../../login/presentation/widgets/alert_snackbar.dart';
 import '../../shop/domain/entities/products_entity.dart';
 
 class NewProductItem extends StatelessWidget {
@@ -42,36 +43,37 @@ class NewProductItem extends StatelessWidget {
                 ),
               ),
             ),
-               Positioned(
+            Positioned(
               left: kWidth(context) * 0.33,
               top: 5,
               child: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 5,
-                      color: ColorManager.grey,
-                      spreadRadius: 2,
-                    )
-                  ],
-                ),
-                child: product.inCart? CircleAvatar(
-                  backgroundColor: ColorManager.orangeLight,
-                  radius: 20.0,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.shopping_bag,
-                        size: 20.0,
-                        color: ColorManager.white,
-                      ),
-                    ),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 5,
+                        color: ColorManager.grey,
+                        spreadRadius: 2,
+                      )
+                    ],
                   ),
-                ): const SizedBox()
-              ),
+                  child: product.inCart
+                      ? CircleAvatar(
+                          backgroundColor: ColorManager.orangeLight,
+                          radius: 20.0,
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {},
+                              child: const Icon(
+                                Icons.shopping_bag,
+                                size: 20.0,
+                                color: ColorManager.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox()),
             ),
             Positioned(
               left: kWidth(context) * 0.3,
@@ -87,27 +89,43 @@ class NewProductItem extends StatelessWidget {
                     )
                   ],
                 ),
-                child: CircleAvatar(
-                  backgroundColor: ColorManager.white,
-                  radius: 20.0,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {
-                        BlocProvider.of<FavouriteBloc>(context)
-                            .add(AddToFavorite(
-                          product: product,
-                          isFavourite: product.isFavourite,
-                          
-                        ));
-                      },
-                      child: const Icon(
-                        Icons.favorite_outline,
-                        size: 20.0,
-                        color: ColorManager.grey,
+                child: BlocConsumer<FavouriteBloc, FavouriteState>(
+                  listener: (context, state) {
+                if(state is AddToFavouriteState){
+                       showSnackbar(AppStrings.addfav,context, Colors.green);
+                }else if(state is RemoveFromFavouriteState){
+                    showSnackbar(AppStrings.deletefav, context, Colors.green);
+                }
+                  },
+                  builder: (context, state) {
+                    return CircleAvatar(
+                      backgroundColor: ColorManager.white,
+                      radius: 20.0,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            BlocProvider.of<FavouriteBloc>(context).add(
+                                AddToFavorite(
+                                    product: product,
+                                    isFavourite: product.isFavourite,
+                                    ));
+                          },
+                          child: product.isFavourite
+                              ? const Icon(
+                                  Icons.favorite,
+                                  size: 20.0,
+                                  color: ColorManager.orangeLight,
+                                )
+                              : const Icon(
+                                  Icons.favorite_outline,
+                                  size: 20.0,
+                                  color: ColorManager.grey,
+                                ),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ),
             ),

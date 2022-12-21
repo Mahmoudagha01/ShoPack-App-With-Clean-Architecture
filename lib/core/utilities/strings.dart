@@ -23,7 +23,8 @@ class AppStrings {
   static const String repeatpassword = "Confirm New Password";
   static const String password = "Password";
   static const String nameError = "Name should have more than 3 characters";
-  static const String nameEmpty = "Name Is required";
+  static const String nameEmpty = "Name is required";
+    static const String codeEmpty = "Code is required";
   static const String passwordEmpty = "Password is Required";
   static const String repeatpasswordEmpty = "Confirm New Password is Required";
   static const String oldpasswordEmpty = "Old Password is Required";
@@ -32,7 +33,7 @@ class AppStrings {
       "Password should atleast have 6 digits or characters";
   static const String email = "Email";
   static const String enteremail =
-      "Please, enter your email address. You will receive a link to create a new password via email.";
+      "Please, enter your email address. You will receive a Code to create a new password via email.";
   static const String login = "Login";
   static const String loginsuccess = "Login done successfully";
   static const String updatepasssuccess = "Update Password done successfully";
@@ -40,6 +41,8 @@ class AppStrings {
   static const String registeruccess = "Registration done successfully";
   static const String forgetPassword = "Forgot your pasasword?";
   static const String forgetPasswordtext = "Forgot password";
+   static const String deletefav = 'Product Removed from Favorite';
+  static const String addfav = 'Product Added to Favorite';
   static const String verify = "Verify Email";
   static const String registerText = "Sign Up";
   static const String loading = "loading";
@@ -60,13 +63,13 @@ class AppStrings {
   static const String headerSuTitle =
       "Shop the most cool products available on the store\nlet it be T-shirts, Electronics and much more!";
   static const String enterLink =
-      "Please enter the link that was sent to your email. The link is valid for 10 minutes.";
-  static const String link = "Link";
+      "Please enter the code that was sent to your email. The Code is valid for 10 minutes.";
+  static const String code = "Code";
   static const String reset = "Reset Password";
   static const String confirmpass = "Confirm Password";
   static const String confirmEmpty = "Confirm Password is Required";
-  static const String emptyLink = "Link is required";
-  static const String invalidLink = "Please Enter Valid Link";
+  static const String codeLink = "Code is required";
+  static const String invalidCode = "Please Enter Valid Code";
   static const String emptyEmail = "Email is required";
   static const String invalidEmail =
       "Not a valid email address. Should be your@email.com";

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shopack_user/features/shop/presentation/widgets/review_card.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/routes.dart';
 import '../../../../core/utilities/strings.dart';
+import '../../../favorite/presentation/bloc/favourite_bloc.dart';
+import '../../../login/presentation/widgets/alert_snackbar.dart';
 import '../../../shop/domain/entities/products_entity.dart';
 import '../../widgets/carousel.dart';
 import '../../widgets/product_item.dart';
@@ -13,7 +17,10 @@ class ProductDetails extends StatelessWidget {
   final List<ProductEntity> products;
   final int index;
   const ProductDetails(
-      {super.key, required this.product, required this.products, required this.index});
+      {super.key,
+      required this.product,
+      required this.products,
+      required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +53,40 @@ class ProductDetails extends StatelessWidget {
                   )
                 ],
               ),
-              child: CircleAvatar(
-                backgroundColor: ColorManager.white,
-                radius: 20.0,
-                child: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.favorite_outline,
-                    size: 20.0,
-                    color: ColorManager.grey,
-                  ),
-                ),
+              child: BlocConsumer<FavouriteBloc, FavouriteState>(
+                listener: (context, state) {
+                    if(state is AddToFavouriteState){
+                       showSnackbar(AppStrings.addfav,context, Colors.green);
+                }else if(state is RemoveFromFavouriteState){
+                    showSnackbar(AppStrings.deletefav, context, Colors.green);
+                }
+                },
+                builder: (context, state) {
+                  return CircleAvatar(
+                    backgroundColor: ColorManager.white,
+                    radius: 20.0,
+                    child: InkWell(
+                      onTap: () {
+                         BlocProvider.of<FavouriteBloc>(context).add(
+                                AddToFavorite(
+                                    product: product,
+                                    isFavourite: product.isFavourite,
+                                    ));
+                      },
+                      child: product.isFavourite
+                              ? const Icon(
+                                  Icons.favorite,
+                                  size: 20.0,
+                                  color: ColorManager.orangeLight,
+                                )
+                              : const Icon(
+                                  Icons.favorite_outline,
+                                  size: 20.0,
+                                  color: ColorManager.grey,
+                                ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -217,6 +247,11 @@ class ProductDetails extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                child: ReviewCard(product: product, index: index),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                 child: Text(AppStrings.mayLike,
                     style: Theme.of(context).textTheme.headline6),
               ),
@@ -232,7 +267,10 @@ class ProductDetails extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ProductDetails(
-                                  product: products[index], products: products, index: index,),
+                                product: products[index],
+                                products: products,
+                                index: index,
+                              ),
                             ));
                       },
                       child: SizedBox(

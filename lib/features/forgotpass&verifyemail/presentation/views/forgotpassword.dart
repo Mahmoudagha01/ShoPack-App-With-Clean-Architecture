@@ -96,15 +96,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               borderRadius: 16,
                               inputType: TextInputType.emailAddress)
                           : MainTFF(
-                              labelText: AppStrings.link,
-                              hintText: AppStrings.link,
+                              labelText: AppStrings.code,
+                              hintText: AppStrings.code,
                               controller: inputController,
                               validate: (value) {
                                 if (value!.isEmpty) {
-                                  return AppStrings.emptyLink;
+                                  return AppStrings.codeEmpty;
                                 } else {
                                   if (value.length < 9) {
-                                    return AppStrings.invalidLink;
+                                    return AppStrings.invalidCode;
                                   }
                                 }
                                 return null;
@@ -150,7 +150,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                       if (formKey.currentState!.validate()) {
                                         PreferenceHelper
                                             .saveDataInSharedPreference(
-                                                key: "Link",
+                                                key: "code",
                                                 value: inputController.text);
                                         Navigator.pushReplacementNamed(
                                             context, AppRoutes.setPassword);

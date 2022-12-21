@@ -23,8 +23,8 @@ class ProductModel extends ProductEntity {
       required super.numOfReviews,
       required super.user,
       required super.reviews,
-      required super.inCart,
-      required super.isFavourite});
+       super.inCart,
+       super.isFavourite});
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json['_id'],
         name: json['name'],
@@ -38,7 +38,7 @@ class ProductModel extends ProductEntity {
         numOfReviews: json['numOfReviews'],
         user: json['user'],
         reviews: List<ReviewModel>.from(
-            json['reviews'].map((x) => ReviewModel.fromJson(x))), inCart: false, isFavourite: false,
+            json['reviews'].map((x) => ReviewModel.fromJson(x)))
       );
 }
 

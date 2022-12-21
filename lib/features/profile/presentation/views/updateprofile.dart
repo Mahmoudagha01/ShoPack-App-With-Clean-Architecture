@@ -108,7 +108,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                           CircleAvatar(
                             radius: 50,
                             backgroundImage:
-                                NetworkImage(state.data.user!.avtar.url),
+                                NetworkImage(state.data.user!.avtar!.url),
                           ),
                           Positioned(
                             left: 2,
@@ -145,7 +145,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                           CircleAvatar(
                             radius: 50,
                             backgroundImage:
-                                NetworkImage(widget.user.avtar.url),
+                                NetworkImage(widget.user.avtar!.url),
                           ),
                           Positioned(
                             left: 2,

@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
           create: (context) => injector<SendReviewBloc>(),
         ),
           BlocProvider(
-          create: (context) => injector<FavouriteBloc>(),
+          create: (context) => injector<FavouriteBloc >(),
         ),
       ],
       child: MaterialApp(

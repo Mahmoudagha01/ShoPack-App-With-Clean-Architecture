@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/error/failure.dart';
@@ -15,13 +14,15 @@ class ForgotPasswordRepoImpl implements ForgotPasswordRepo {
   ForgotPasswordRepoImpl(this.forgetPasswordDataSource, this.networkInfo);
 
   @override
-  Future<Either<Failure, ForgotPasswordEntity>> getLink(ForgotParams params) async {
+  Future<Either<Failure, ForgotPasswordEntity>> getLink(
+      ForgotParams params) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await forgetPasswordDataSource
             .getLink(ForgotParams(email: params.email));
         return right(response);
       } catch (error) {
+        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

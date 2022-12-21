@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/error_handler.dart';
@@ -22,6 +21,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
         return right(data);
       } catch (error) {
+        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

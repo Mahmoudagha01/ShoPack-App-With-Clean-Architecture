@@ -12,7 +12,8 @@ class AddToFavorite extends FavouriteEvent {
   final bool isFavourite;
   final ProductEntity product;
 
-  const AddToFavorite( {
+  const AddToFavorite({
+
     required this.isFavourite,
     required this.product,
   });
