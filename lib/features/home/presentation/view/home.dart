@@ -55,19 +55,24 @@ class HomeView extends StatelessWidget {
                           height: 330, crossAxisCount: 2),
                   itemBuilder: (context, index) {
                     return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProductDetails(
-                                    product: products[index],
-                                    products: products,
-                                    index: index,),
-                              ));
-                        },
-                        child: Hero(
-                          tag: '$index',
-                          child: NewProductItem(product: products[index])));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductDetails(
+                                product: products[index],
+                                products: products,
+                                index: index,
+                              ),
+                            ));
+                      },
+                      child: Hero(
+                        tag: '$index',
+                        child: NewProductItem(
+                          product: products[index],
+                        ),
+                      ),
+                    );
                   },
                 ));
               } else if (state is AllProductsErrorState) {

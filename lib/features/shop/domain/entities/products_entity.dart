@@ -29,7 +29,8 @@ class ProductEntity extends Equatable {
   final String user;
   final List<ReviewEntity>? reviews;
   bool isFavourite =false;
-  bool inCart;
+  bool inCart=false;
+    int quantity;
    ProductEntity({
     required this.id,
     required this.name,
@@ -44,6 +45,7 @@ class ProductEntity extends Equatable {
     required this.reviews,
      this.inCart =false,
      this.isFavourite= false,
+     this.quantity=1,
   });
 
   @override
@@ -62,6 +64,7 @@ class ProductEntity extends Equatable {
       reviews,
       isFavourite,
       inCart,
+      quantity
     ];
   }
 }

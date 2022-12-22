@@ -1,4 +1,4 @@
-const String baseUrlPath = 'http://192.168.1.8:4000/api/v1';
+const String baseUrlPath = 'http://192.168.1.9:4000/api/v1';
 const String loginEndPoint = '/users/login';
 const String registerEndPoint = '/users/register';
 const String forgotPasswordEndPoint = '/users/password/forgot';

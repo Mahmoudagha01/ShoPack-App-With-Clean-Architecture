@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'core/local/shared_preference.dart';
 import 'core/theme/theme_data.dart';
 import 'dependancy_injection.dart';
@@ -58,7 +59,10 @@ class MyApp extends StatelessWidget {
           create: (context) => injector<SendReviewBloc>(),
         ),
           BlocProvider(
-          create: (context) => injector<FavouriteBloc >(),
+          create: (context) => injector<FavouriteBloc>(),
+        ),
+           BlocProvider(
+          create: (context) => injector<CartBloc>()..add(CartStarted()),
         ),
       ],
       child: MaterialApp(

@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/error_handler.dart';
@@ -21,7 +20,6 @@ class LoginRepositoryImpl implements LoginBaseRepository {
     if (await networkInfo.isConnected) {
       try {
         final response = await loginDatasource.login(params);
-
         return right(response);
       } catch (error) {
         return left(ErrorHandler.handle(error).failure);

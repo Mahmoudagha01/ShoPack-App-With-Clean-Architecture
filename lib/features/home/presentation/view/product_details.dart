@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/shop/presentation/widgets/review_card.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
@@ -12,7 +13,7 @@ import '../../../shop/domain/entities/products_entity.dart';
 import '../../widgets/carousel.dart';
 import '../../widgets/product_item.dart';
 
-class ProductDetails extends StatelessWidget {
+class ProductDetails extends StatefulWidget {
   final ProductEntity product;
   final List<ProductEntity> products;
   final int index;
@@ -23,8 +24,72 @@ class ProductDetails extends StatelessWidget {
       required this.index});
 
   @override
+  State<ProductDetails> createState() => _ProductDetailsState();
+}
+
+class _ProductDetailsState extends State<ProductDetails>
+    with TickerProviderStateMixin {
+  @override
+  void initState() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+      upperBound: 1,
+      lowerBound: 0,
+    );
+    super.initState();
+  }
+
+  static late AnimationController animationController;
+  void animateCartAdd(BuildContext contextRenderBox, ImageProvider image) {
+    var overlayEntry = OverlayEntry(
+      builder: (context) {
+        RenderBox? box = contextRenderBox.findRenderObject() as RenderBox?;
+        if (box != null) {
+          var startOffset = box
+              .localToGlobal(Offset(kWidth(context) / 4, kWidth(context) / 4));
+          var endOffset = Offset(kWidth(context), kHeight(context));
+
+          CurvedAnimation curvedAnimation = CurvedAnimation(
+              parent: animationController, curve: Curves.easeInCubic);
+
+          var animatedOffset = Tween<Offset>(begin: startOffset, end: endOffset)
+              .animate(curvedAnimation);
+          animationController.reset();
+          animationController.animateTo(1);
+          return AnimatedBuilder(
+            animation: animationController,
+            builder: (_, child) {
+              return Positioned(
+                  top: animatedOffset.value.dy,
+                  left: animatedOffset.value.dx,
+                  child: child!);
+            },
+            child: SizedBox(
+              width: -120 + kWidth(context) / 2,
+              height: -120 + kWidth(context) / 2,
+              child: Card(
+                elevation: 2,
+                color: Colors.grey.shade200,
+                child: Image(
+                  image: image,
+                ),
+              ),
+            ),
+          );
+        }
+        return const SizedBox();
+      },
+    );
+    Overlay.of(contextRenderBox)?.insert(overlayEntry);
+    Future.delayed(const Duration(milliseconds: 500), () {
+      overlayEntry.remove();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<ProductEntity> newProductsList = products.reversed.toList();
+    List<ProductEntity> newProductsList = widget.products.reversed.toList();
     newProductsList.shuffle();
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +101,7 @@ class ProductDetails extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
         title: Text(
-          product.name,
+          widget.product.name,
           style: const TextStyle(color: ColorManager.dark),
         ),
         actions: [
@@ -55,11 +120,11 @@ class ProductDetails extends StatelessWidget {
               ),
               child: BlocConsumer<FavouriteBloc, FavouriteState>(
                 listener: (context, state) {
-                    if(state is AddToFavouriteState){
-                       showSnackbar(AppStrings.addfav,context, Colors.green);
-                }else if(state is RemoveFromFavouriteState){
+                  if (state is AddToFavouriteState) {
+                    showSnackbar(AppStrings.addfav, context, Colors.green);
+                  } else if (state is RemoveFromFavouriteState) {
                     showSnackbar(AppStrings.deletefav, context, Colors.green);
-                }
+                  }
                 },
                 builder: (context, state) {
                   return CircleAvatar(
@@ -67,23 +132,23 @@ class ProductDetails extends StatelessWidget {
                     radius: 20.0,
                     child: InkWell(
                       onTap: () {
-                         BlocProvider.of<FavouriteBloc>(context).add(
-                                AddToFavorite(
-                                    product: product,
-                                    isFavourite: product.isFavourite,
-                                    ));
+                        BlocProvider.of<FavouriteBloc>(context)
+                            .add(AddToFavorite(
+                          product: widget.product,
+                          isFavourite: widget.product.isFavourite,
+                        ));
                       },
-                      child: product.isFavourite
-                              ? const Icon(
-                                  Icons.favorite,
-                                  size: 20.0,
-                                  color: ColorManager.orangeLight,
-                                )
-                              : const Icon(
-                                  Icons.favorite_outline,
-                                  size: 20.0,
-                                  color: ColorManager.grey,
-                                ),
+                      child: widget.product.isFavourite
+                          ? const Icon(
+                              Icons.favorite,
+                              size: 20.0,
+                              color: ColorManager.orangeLight,
+                            )
+                          : const Icon(
+                              Icons.favorite_outline,
+                              size: 20.0,
+                              color: ColorManager.grey,
+                            ),
                     ),
                   );
                 },
@@ -100,9 +165,26 @@ class ProductDetails extends StatelessWidget {
             elevation: 8,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            onPressed: () {},
-            label: Text(
-              AppStrings.addToCart.toUpperCase(),
+            onPressed: () {
+              context.read<CartBloc>().add(ItemAdded(widget.product));
+              animateCartAdd(
+                context,
+                NetworkImage(
+                  widget.product.images[0].url,
+                ),
+              );
+            },
+            label: BlocConsumer<CartBloc, CartState>(
+              listener: (context, state) {
+                if (state is CartLoaded && state.isAdded) {
+                  showSnackbar(AppStrings.addedToCart, context, Colors.green);
+                }
+              },
+              builder: (context, state) {
+                return Text(
+                  AppStrings.addToCart.toUpperCase(),
+                );
+              },
             )),
       ),
       body: SingleChildScrollView(
@@ -110,7 +192,9 @@ class ProductDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Hero(tag: '$index', child: Carousel(images: product.images)),
+              Hero(
+                  tag: '${widget.index}',
+                  child: Carousel(images: widget.product.images)),
               const SizedBox(
                 height: 10,
               ),
@@ -127,7 +211,7 @@ class ProductDetails extends StatelessWidget {
                         SizedBox(
                           width: kWidth(context) - 90,
                           child: Text(
-                            product.name,
+                            widget.product.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -136,7 +220,7 @@ class ProductDetails extends StatelessWidget {
                           height: 4,
                         ),
                         Text(
-                          product.category,
+                          widget.product.category,
                           style: const TextStyle(
                             color: ColorManager.grey,
                           ),
@@ -148,7 +232,7 @@ class ProductDetails extends StatelessWidget {
                           children: [
                             RatingBarIndicator(
                               itemSize: 25.0,
-                              rating: product.ratings.toDouble(),
+                              rating: widget.product.ratings.toDouble(),
                               itemBuilder: (context, _) => const Icon(
                                 Icons.star,
                                 color: Colors.amber,
@@ -157,7 +241,7 @@ class ProductDetails extends StatelessWidget {
                             ),
                             const SizedBox(width: 4.0),
                             Text(
-                              '(${product.numOfReviews})',
+                              '(${widget.product.numOfReviews})',
                               style:
                                   Theme.of(context).textTheme.caption!.copyWith(
                                         color: Colors.grey,
@@ -168,7 +252,7 @@ class ProductDetails extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "${product.price}\$",
+                      "${widget.product.price}\$",
                       style: Theme.of(context)
                           .textTheme
                           .headline6!
@@ -192,7 +276,7 @@ class ProductDetails extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                 child: Text(
-                  product.description,
+                  widget.product.description,
                   textAlign: TextAlign.justify,
                 ),
               ),
@@ -207,7 +291,7 @@ class ProductDetails extends StatelessWidget {
                     TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, AppRoutes.productreviews,
-                              arguments: product);
+                              arguments: widget.product);
                         },
                         child: const Text(AppStrings.seeMore))
                   ],
@@ -220,7 +304,7 @@ class ProductDetails extends StatelessWidget {
                   children: [
                     RatingBarIndicator(
                       itemSize: 25.0,
-                      rating: product.ratings.toDouble(),
+                      rating: widget.product.ratings.toDouble(),
                       itemBuilder: (context, _) => const Icon(
                         Icons.star,
                         color: Colors.amber,
@@ -229,14 +313,14 @@ class ProductDetails extends StatelessWidget {
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      '${product.ratings}',
+                      '${widget.product.ratings}',
                       style: Theme.of(context).textTheme.caption!.copyWith(
                             color: Colors.grey,
                           ),
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      '(${product.numOfReviews} reviews)',
+                      '(${widget.product.numOfReviews} reviews)',
                       style: Theme.of(context).textTheme.caption!.copyWith(
                             color: Colors.grey,
                           ),
@@ -247,7 +331,7 @@ class ProductDetails extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                child: ReviewCard(product: product, index: index),
+                child: ReviewCard(product: widget.product, index: 0),
               ),
               Padding(
                 padding:
@@ -267,8 +351,8 @@ class ProductDetails extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ProductDetails(
-                                product: products[index],
-                                products: products,
+                                product: widget.products[index],
+                                products: widget.products,
                                 index: index,
                               ),
                             ));

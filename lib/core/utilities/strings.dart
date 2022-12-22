@@ -13,7 +13,9 @@ class AppStrings {
   static const String price = "Price";
   static const String check = "Check";
   static const String description = "Description";
+    static const String addedToCart = "Product Added To Cart";
   static const String addToCart = "Add To Cart";
+    static const String removeFromCart = "Product Removed From Cart";
   static const String apply = "Apply";
   static const String writereview = "Write a review";
   static const String recentlyAddedProducts = "Recently Added Products";
@@ -107,7 +109,11 @@ class AppStrings {
   static const String changePassword = "Change Password";
   static const String changePasswordsub = "Update & Change Password";
   static const String edit = "Edit Avatar, name, email";
-  static const String contactUs = "contact_us";
+    static const String mybag = "My Bag";
+  static const String checkout = "Check Out";
+    static const String notfavorite = "There is No Favorite yet!";
+      static const String notCart = "There is No Products in Bag yet!";
+    static const String totalAmount = "Total amount";
   static const String inviteYourFriends = "invite_your_friends";
   static const String logout = "logout";
 

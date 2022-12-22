@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/favorite/presentation/bloc/favourite_bloc.dart';
 import 'core/network/api_provider.dart';
 import 'core/network/api_provider_impl.dart';
@@ -55,7 +56,8 @@ Future<void> init() async {
   injector.registerFactory(() => ProfileBloc(injector(), injector()));
   injector.registerFactory(() => UpdatePasswordBloc(injector()));
   injector.registerFactory(() => SendReviewBloc(injector()));
-    injector.registerFactory(() => FavouriteBloc());
+  injector.registerFactory(() => FavouriteBloc());
+  injector.registerFactory(() => CartBloc());
 
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
@@ -69,8 +71,6 @@ Future<void> init() async {
   injector.registerLazySingleton(() => UpdatePasswordUsecase(injector()));
   injector.registerLazySingleton(() => SendReviewUsecase(injector()));
   //Repository
-  // injector.registerLazySingleton<LoginBaseRepository>(
-  //     () => LoginRepositoryImpl(injector(), injector()));
   injector.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(injector(), injector()));
   injector.registerLazySingleton<RegisterBaseRepository>(
