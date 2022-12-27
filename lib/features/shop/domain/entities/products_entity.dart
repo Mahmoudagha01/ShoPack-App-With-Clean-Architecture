@@ -20,6 +20,8 @@ class ProductEntity extends Equatable {
   final String id;
   final String name;
   final String description;
+
+    
   final int price;
   final num ratings;
   final List<ImageEntity> images;
@@ -29,8 +31,6 @@ class ProductEntity extends Equatable {
   final String user;
   final List<ReviewEntity>? reviews;
   bool isFavourite =false;
-  bool inCart=false;
-    int quantity;
    ProductEntity({
     required this.id,
     required this.name,
@@ -43,9 +43,9 @@ class ProductEntity extends Equatable {
     required this.numOfReviews,
     required this.user,
     required this.reviews,
-     this.inCart =false,
+    
      this.isFavourite= false,
-     this.quantity=1,
+
   });
 
   @override
@@ -63,8 +63,6 @@ class ProductEntity extends Equatable {
       user,
       reviews,
       isFavourite,
-      inCart,
-      quantity
     ];
   }
 }

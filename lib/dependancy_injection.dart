@@ -1,6 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shopack_user/features/cart/data/datasource/placesAPI.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
+import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import 'package:shopack_user/features/favorite/presentation/bloc/favourite_bloc.dart';
 import 'core/network/api_provider.dart';
 import 'core/network/api_provider_impl.dart';
@@ -58,6 +61,8 @@ Future<void> init() async {
   injector.registerFactory(() => SendReviewBloc(injector()));
   injector.registerFactory(() => FavouriteBloc());
   injector.registerFactory(() => CartBloc());
+  injector.registerFactory(() => AddressCubit(injector(),injector()));
+  injector.registerFactory(() => LocationBloc(injector(),injector()));
 
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
@@ -97,6 +102,8 @@ Future<void> init() async {
       () => ProductsDatasourceImpl(injector()));
   injector.registerLazySingleton<ProfileDatasource>(
       () => ProfileDataSourceImpl(injector()));
+  injector
+      .registerLazySingleton<PlacesDataSource>(() => PlacesDatasourceImpl());
 
   //---Core---//
   //API Provider
@@ -106,6 +113,7 @@ Future<void> init() async {
       .registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(injector()));
   //InternetConnectionChecker
   injector.registerLazySingleton(() => InternetConnectionChecker());
+
   //SharedPreference
   //injector.registerLazySingleton<PreferenceHelper>(() => PreferenceHelper());
 }

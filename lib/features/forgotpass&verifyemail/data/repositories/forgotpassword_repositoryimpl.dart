@@ -22,7 +22,6 @@ class ForgotPasswordRepoImpl implements ForgotPasswordRepo {
             .getLink(ForgotParams(email: params.email));
         return right(response);
       } catch (error) {
-        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

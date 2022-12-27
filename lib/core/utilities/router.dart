@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopack_user/features/cart/presentation/views/add_new_address.dart';
+import '../../features/cart/presentation/views/map_screen.dart';
 import '../../features/forgotpass&verifyemail/presentation/views/forgotpassword.dart';
 import '../../features/home/presentation/view/home.dart';
 import '../../features/home/presentation/view/layout.dart';
@@ -47,9 +49,15 @@ final product = settings.arguments as ProductEntity;
           builder: (context) => UpdateProfileView(
                 user: user,
               ));
+              case AppRoutes.checkout:
+      return MaterialPageRoute(
+          builder: (context) => const AddNewAddressView());
     case AppRoutes.updatePassword:
       return MaterialPageRoute(
           builder: (context) => const UpdatePasswordView());
+          case AppRoutes.mapview:
+      return MaterialPageRoute(
+          builder: (context) => const MapView());
     default:
       return MaterialPageRoute(builder: (context) => const LoginView());
   }

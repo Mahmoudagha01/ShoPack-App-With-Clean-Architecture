@@ -158,6 +158,8 @@
 //   }
 // }
 
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopack_user/features/shop/domain/entities/products_entity.dart';
@@ -206,7 +208,6 @@ class CatItem extends StatelessWidget {
                           SizedBox(
                             width: kWidth(context) * 0.5,
                             child: Text(
-                              
                               item.name,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
@@ -220,18 +221,15 @@ class CatItem extends StatelessWidget {
                       ),
                       BlocListener<CartBloc, CartState>(
                         listener: (context, state) {
-                          if (state is CartLoaded && state.isRemoved) {
+                          if (state is RemoveFromCart) {
                             showSnackbar(AppStrings.removeFromCart, context,
                                 Colors.green);
                           }
                         },
                         child: IconButton(
                           onPressed: () async {
-                            item.quantity--;
-
-                            context
-                                .read<CartBloc>()
-                                .add(ItemRemoved(item));
+                            BlocProvider.of<CartBloc>(context)
+                                .add(RemoveFromCart(item.id));
                           },
                           icon: const Icon(
                             Icons.clear,
@@ -261,13 +259,8 @@ class CatItem extends StatelessWidget {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     onTap: () {
-                            
-                                        if (item.quantity > 1) {
-                                          item.quantity--;
-                                          context.read<CartBloc>().add(
-                                              ItemRemoved(item));
-                                        }
-                                   
+                                    BlocProvider.of<CartBloc>(context)
+                                .add(RemoveSingleItemFromCart(item.id));
                                     },
                                     child: const Icon(
                                       Icons.remove,
@@ -278,7 +271,7 @@ class CatItem extends StatelessWidget {
                                 ),
                               )),
                           Text(
-                            '${item.quantity}',
+                            '${BlocProvider.of<CartBloc>(context).cart.quantity}',
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           Container(
@@ -292,12 +285,8 @@ class CatItem extends StatelessWidget {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     onTap: () {
-                                   
-                                        item.quantity++;
-                                        context
-                                            .read<CartBloc>()
-                                            .add(ItemAdded(item));
-                                  
+                              BlocProvider.of<CartBloc>(context)
+                                .add(AddToCart(item.id,item.name,item.price));
                                     },
                                     child: const Icon(
                                       Icons.add,

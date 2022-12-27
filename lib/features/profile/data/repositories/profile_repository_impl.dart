@@ -21,7 +21,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
         return right(data);
       } catch (error) {
-        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
@@ -37,7 +36,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
         final data = await profileDatasource.updateProfile(updateProfileParams);
         return right(data);
       } catch (error) {
-        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

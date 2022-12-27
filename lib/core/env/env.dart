@@ -10,4 +10,6 @@ abstract class Env {
   static const apiKey = _Env.apiKey;
     @EnviedField(varName: 'CLOUDINARY_SECRET_KEY')
   static const secretKey = _Env.secretKey;
+    @EnviedField(varName: 'MAP_API_KEY')
+  static const mapKey = _Env.mapKey;
 }

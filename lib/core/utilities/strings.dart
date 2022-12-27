@@ -78,6 +78,7 @@ class AppStrings {
   static const String notValidConfirmPassword =
       'Confirm Password must equal Password';
   static const String enterPassword = "Please Enter New Password";
+    static const String emptybag = "Look like you haven't added any product yet";
   static const String success = "success";
   static const String updateprofile = "Update Profile";
   static const String updateproflesuccess = 'Profile Updated Successfully';
@@ -92,8 +93,12 @@ class AppStrings {
   static const String home = "home";
   static const String notifications = "notification";
   static const String search = "search";
+    static const String searchlocation = 'Search Location';
   static const String settings = "settings";
   static const String services = "servicecs";
+   static const String addnewaddress = "Add New address";
+    static const String selectnewaddress = "Select New Address";
+    static const String yourCurrentLocation = "Your Current Location";
   static const String whatrate = "What is you rate?";
   static const String plsshareopinion =
       "Please share your opinion\nabout the product";
@@ -110,7 +115,7 @@ class AppStrings {
   static const String changePasswordsub = "Update & Change Password";
   static const String edit = "Edit Avatar, name, email";
     static const String mybag = "My Bag";
-  static const String checkout = "Check Out";
+  static const String checkout = "Checkout";
     static const String notfavorite = "There is No Favorite yet!";
       static const String notCart = "There is No Products in Bag yet!";
     static const String totalAmount = "Total amount";
@@ -129,5 +134,5 @@ class AppStrings {
   static const String timeoutError = "timeout_error";
   static const String defaultError = "Error In Fetching Data";
   static const String cacheError = "cache_error";
-  static const String noInternetError = "Please Check your Internet Connection";
+  static const String noInternetError = "Please Check Your Internet Connection";
 }

@@ -9,7 +9,6 @@ import '../../domain/repositories/resetPassword_repository.dart';
 import '../datasources/Resetpassword_datasource.dart';
 
 class ResetPasswordRepositoryImpl implements ResetPasswordRepository {
-  @override
   final NetworkInfo networkInfo;
   final ResetPasswordDatasource resetPasswordDatasource;
 

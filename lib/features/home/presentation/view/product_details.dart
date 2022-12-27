@@ -166,7 +166,8 @@ class _ProductDetailsState extends State<ProductDetails>
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             onPressed: () {
-              context.read<CartBloc>().add(ItemAdded(widget.product));
+             BlocProvider.of<CartBloc>(context)
+                                .add(AddToCart(widget.product.id,widget.product.name,widget.product.price));
               animateCartAdd(
                 context,
                 NetworkImage(
@@ -176,7 +177,7 @@ class _ProductDetailsState extends State<ProductDetails>
             },
             label: BlocConsumer<CartBloc, CartState>(
               listener: (context, state) {
-                if (state is CartLoaded && state.isAdded) {
+                if (state is AddToCartState) {
                   showSnackbar(AppStrings.addedToCart, context, Colors.green);
                 }
               },

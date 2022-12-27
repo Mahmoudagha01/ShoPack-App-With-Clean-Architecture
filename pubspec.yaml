@@ -29,44 +29,42 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter:
-    sdk: flutter
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  build_runner: ^2.3.2
   carousel_slider: ^4.2.0
   cloudinary_sdk: ^4.0.2+10
+  cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
   envied: ^0.3.0
   equatable: ^2.0.5
+  flutter:
+    sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_rating_bar: ^4.0.1
+  flutter_typeahead: ^4.1.1
+  geocoding: ^2.0.5
+  geolocator: ^9.0.2
   get_it: ^7.2.0
+  google_maps_flutter: ^2.2.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   image_picker: ^0.8.6
   internet_connection_checker: ^1.0.0+1
-  intl: ^0.18.0
+  intl: ^0.17.0
   lottie: ^2.1.0
+  permission_handler: ^10.2.0
   photo_view: ^0.14.0
   shared_preferences: ^2.0.15
+  uuid: ^3.0.7
 
 dev_dependencies:
+  flutter_lints: ^2.0.0
+  build_runner: ^2.3.2
+  hive_generator: ^2.0.0
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^2.0.0
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
 

@@ -57,7 +57,7 @@ class NewProductItem extends StatelessWidget {
                       )
                     ],
                   ),
-                  child: product.inCart
+                  child: product.isFavourite
                       ? CircleAvatar(
                           backgroundColor: ColorManager.orangeLight,
                           radius: 20.0,

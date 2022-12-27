@@ -23,7 +23,7 @@ class ProductModel extends ProductEntity {
       required super.numOfReviews,
       required super.user,
       required super.reviews,
-       super.inCart,
+
        super.isFavourite});
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json['_id'],

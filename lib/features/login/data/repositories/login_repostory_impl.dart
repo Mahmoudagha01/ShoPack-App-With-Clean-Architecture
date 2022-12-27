@@ -22,6 +22,7 @@ class LoginRepositoryImpl implements LoginBaseRepository {
         final response = await loginDatasource.login(params);
         return right(response);
       } catch (error) {
+        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

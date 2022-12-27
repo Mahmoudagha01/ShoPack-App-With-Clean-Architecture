@@ -46,3 +46,4 @@ app.*.map.json
 # exclude all .env files from source control
 *.env
 *env.g.dart
+*AndroidManifest.xml

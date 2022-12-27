@@ -47,9 +47,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           filePath: selectedImage!.path,
           resourceType: CloudinaryResourceType.image,
           fileName: 'profile-avatar',
-          progressCallback: (count, total) {
-            print('Uploading image from file with progress: $count/$total');
-          }));
+         ));
 
       emit(UploadImageState(response!));
     });

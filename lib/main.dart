@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
+import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import 'core/local/shared_preference.dart';
 import 'core/theme/theme_data.dart';
 import 'dependancy_injection.dart';
@@ -62,7 +64,13 @@ class MyApp extends StatelessWidget {
           create: (context) => injector<FavouriteBloc>(),
         ),
            BlocProvider(
-          create: (context) => injector<CartBloc>()..add(CartStarted()),
+          create: (context) => injector<CartBloc>(),
+        ),
+         BlocProvider(
+          create: (context) => injector<LocationBloc>(),
+        ),
+         BlocProvider(
+          create: (context) => injector<AddressCubit>(),
         ),
       ],
       child: MaterialApp(

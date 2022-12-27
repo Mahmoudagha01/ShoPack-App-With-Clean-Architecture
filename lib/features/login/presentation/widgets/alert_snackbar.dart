@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 showSnackbar(String message, context, Color color) {
   final snackbar = SnackBar(
-    content: Text(message,style: const TextStyle(fontWeight: FontWeight.bold),),
+    content: Text(message,style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.black),),
     duration: const Duration(seconds: 2),
     backgroundColor: color,
     behavior: SnackBarBehavior.floating,
