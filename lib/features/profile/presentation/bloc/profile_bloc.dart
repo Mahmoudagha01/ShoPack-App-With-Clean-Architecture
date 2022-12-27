@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloudinary_sdk/cloudinary_sdk.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../core/env/env.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/profile_entity.dart';
 import '../../domain/usecases/getUserDetail.dart';
@@ -42,7 +42,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           await imagePicker.pickImage(source: ImageSource.gallery);
           emit(UploadImagesLoadingState());
       final cloudinary = Cloudinary.full(
-          apiKey: Env.apiKey, apiSecret: Env.secretKey, cloudName: Env.nameKey);
+          apiKey: dotenv.env['CLOUDINARY_API_KEY']!, apiSecret: dotenv.env['CLOUDINARY_SECRET_KEY']!, cloudName: dotenv.env['CLOUDINARY_NAME']!);
       response = await cloudinary.uploadResource(CloudinaryUploadResource(
           filePath: selectedImage!.path,
           resourceType: CloudinaryResourceType.image,

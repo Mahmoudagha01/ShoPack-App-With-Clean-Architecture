@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
+import 'package:shopack_user/core/utilities/mediaquery.dart';
 import 'package:shopack_user/features/home/presentation/view/product_details.dart';
 import '../../../../core/utilities/strings.dart';
 import '../../../shop/presentation/bloc/products_bloc.dart';
@@ -76,7 +78,21 @@ class HomeView extends StatelessWidget {
                   },
                 ));
               } else if (state is AllProductsErrorState) {
-                return Center(child: Text(state.message));
+                return state.message == AppStrings.noInternetError
+                    ? Expanded(
+                      child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              child: FittedBox(child: SizedBox(
+                                height: kHeight(context)/4,
+                                child: LottieBuilder.asset('assets/images/nointernet.json'))),
+                            ),
+                            Text(state.message)
+                          ],
+                        ),
+                    )
+                    : Center(child: Text(state.message));
               } else {
                 return const SizedBox();
               }

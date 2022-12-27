@@ -31,10 +31,11 @@ environment:
 dependencies:
   carousel_slider: ^4.2.0
   cloudinary_sdk: ^4.0.2+10
+  build_runner: ^2.3.2
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
-  envied: ^0.3.0
+  flutter_dotenv: ^5.0.2
   equatable: ^2.0.5
   flutter:
     sdk: flutter
@@ -58,7 +59,6 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^2.0.0
-  build_runner: ^2.3.2
   hive_generator: ^2.0.0
   flutter_test:
     sdk: flutter
@@ -75,6 +75,7 @@ flutter:
 
   assets:
     - assets/images/
+    - .env
 
   fonts:
     - family: Roboto

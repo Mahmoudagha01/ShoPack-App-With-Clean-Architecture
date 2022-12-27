@@ -79,7 +79,7 @@ packages:
     source: hosted
     version: "2.1.0"
   build_runner:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: build_runner
       url: "https://pub.dartlang.org"
@@ -204,13 +204,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
-  envied:
-    dependency: "direct main"
-    description:
-      name: envied
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
   equatable:
     dependency: "direct main"
     description:
@@ -258,6 +251,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.1.1"
+  flutter_dotenv:
+    dependency: "direct main"
+    description:
+      name: flutter_dotenv
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.2"
   flutter_keyboard_visibility:
     dependency: transitive
     description:

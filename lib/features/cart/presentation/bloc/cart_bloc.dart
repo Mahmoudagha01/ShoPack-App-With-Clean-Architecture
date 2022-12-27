@@ -10,13 +10,14 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-    final CartItem cart;
+
   List<ProductEntity> products = [];
   List<ProductEntity> basketItems = [];
   int totalPrice = 0;
     Map<String, CartItem> items = {};
   CartBloc(
-    this.cart,
+   
+   
 
   ) : super(CartInitial()) {
     on<AddToCart>((event, emit) async {

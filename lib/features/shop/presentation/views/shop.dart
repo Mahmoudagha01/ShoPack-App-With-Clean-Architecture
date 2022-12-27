@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shopack_user/core/utilities/mediaquery.dart';
 import 'package:shopack_user/core/utilities/strings.dart';
 import '../../../../core/colors/colors.dart';
@@ -147,8 +148,18 @@ class ShopView extends StatelessWidget {
                                       ProductItem(product: products[index])));
                         },
                       ));
-                    } else if (state is ProductsErrorState) {
-                      return Center(child: Text(state.message));
+                    } else if (state is ProductsErrorState ) {
+                      return state.message == AppStrings.noInternetError
+                    ? Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            child: LottieBuilder.asset('assets/images/nointernet.json'),
+                          ),
+                          Text(state.message)
+                        ],
+                      )
+                    : Center(child: Text(state.message));;
                     } else if (state is FilterProductsLoadedState) {
                       final products = state.data.products;
                       return Expanded(
@@ -177,8 +188,7 @@ class ShopView extends StatelessWidget {
                                       ProductItem(product: products[index])));
                         },
                       ));
-                    } else if (state is ProductsErrorState) {
-                      return Center(child: Text(state.message));
+                    
                     } else if (state is SpecificProductsLoadedState) {
                       final products = state.data.products;
                       return Expanded(
@@ -207,7 +217,19 @@ class ShopView extends StatelessWidget {
                                       ProductItem(product: products[index])));
                         },
                       ));
-                    } else {
+                    } else if (state is SpecificProductsErrorState ) {
+                      return state.message == AppStrings.noInternetError
+                    ? Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            child: LottieBuilder.asset('assets/images/nointernet.json'),
+                          ),
+                          Text(state.message)
+                        ],
+                      )
+                    : Center(child: Text(state.message));;
+                    }  else {
                       return const SizedBox();
                     }
                   },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
@@ -8,6 +10,7 @@ import 'core/theme/theme_data.dart';
 import 'dependancy_injection.dart';
 import 'features/favorite/presentation/bloc/favourite_bloc.dart';
 import 'features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
+import 'features/profile/data/datasources/profile_local_datasource.dart';
 import 'features/profile/presentation/bloc/update_password_bloc.dart';
 import 'features/setpassword/presentation/bloc/reset_password_bloc.dart';
 import 'features/shop/presentation/bloc/products_bloc.dart';
@@ -20,9 +23,12 @@ import 'features/register/presentation/bloc/register_bloc.dart';
 import 'features/forgotpass&verifyemail/presentation/forgotpass&verifyemail_bloc/forgotpass&verifyemail_bloc.dart';
 
 void main() async {
- WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await init();
   await PreferenceHelper.init();
+  await Hive.initFlutter();
+  await CacheManager().init();
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -42,34 +48,34 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => injector<ForgetpasswordAndeVerifyEmailBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => injector<ResetPasswordBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => injector<BottomNavigationBarBloc>(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (context) => injector<ProductsBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => injector<ProfileBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => injector<UpdatePasswordBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => injector<SendReviewBloc>(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (context) => injector<FavouriteBloc>(),
         ),
-           BlocProvider(
+        BlocProvider(
           create: (context) => injector<CartBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => injector<LocationBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => injector<AddressCubit>(),
         ),
       ],

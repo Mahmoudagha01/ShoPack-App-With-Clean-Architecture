@@ -19,7 +19,7 @@ import 'features/login/data/repositories/login_repostory_impl.dart';
 import 'features/login/domin/repositories/login_repository.dart';
 import 'features/login/domin/usecases/login_usecase.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
-import 'features/profile/data/datasources/profile_datasource.dart';
+import 'features/profile/data/datasources/profile_remote_datasource.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
 import 'features/profile/domain/repositories/profile_repository.dart';
 import 'features/profile/domain/usecases/getUserDetail.dart';

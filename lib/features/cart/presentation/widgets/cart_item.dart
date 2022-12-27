@@ -271,7 +271,7 @@ class CatItem extends StatelessWidget {
                                 ),
                               )),
                           Text(
-                            '${BlocProvider.of<CartBloc>(context).cart.quantity}',
+                            '${BlocProvider.of<CartBloc>(context)}',
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           Container(

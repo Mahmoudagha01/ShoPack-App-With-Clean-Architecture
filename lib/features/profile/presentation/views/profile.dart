@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/local/shared_preference.dart';
 import '../../../../core/utilities/routes.dart';
@@ -15,12 +16,7 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: IconButton(
-            onPressed: () {
-              BlocProvider.of<ProfileBloc>(context).add(GetProfile());
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_ios)),
+       centerTitle: true,
         title: Text(
           AppStrings.myProfile,
           style: Theme.of(context)
@@ -41,10 +37,15 @@ class ProfileView extends StatelessWidget {
                     const SizedBox(
                       height: 25,
                     ),
-                state.data.user!.avtar !=null ?    CircleAvatar(
-                      radius: 50,
-                      backgroundImage: NetworkImage(state.data.user!.avtar!.url),
-                    ):const CircleAvatar(radius: 50,),
+                    state.data.user!.avtar != null
+                        ? CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                NetworkImage(state.data.user!.avtar!.url),
+                          )
+                        : const CircleAvatar(
+                            radius: 50,
+                          ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
@@ -115,7 +116,17 @@ class ProfileView extends StatelessWidget {
               } else if (state is ProfileLoadingState) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is ProfileErrorState) {
-                return Center(child: Text(state.message));
+                return state.message == AppStrings.noInternetError
+                    ? Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: LottieBuilder.asset('assets/images/nointernet.json'),
+                          ),
+                          Text(state.message)
+                        ],
+                      )
+                    : Center(child: Text(state.message));
               } else {
                 return const SizedBox();
               }

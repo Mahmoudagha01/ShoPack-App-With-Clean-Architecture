@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shopack_user/core/env/env.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 
 import 'package:shopack_user/core/utilities/endpoints.dart';
@@ -20,7 +21,7 @@ abstract class PlacesDataSource {
 
 class PlacesDatasourceImpl implements PlacesDataSource {
   static String sessionToken = '';
-  static const apiKey = Env.mapKey;
+  static String apiKey = dotenv.env['MAP_API_KEY']!;
   final dio = Dio();
 
   @override
