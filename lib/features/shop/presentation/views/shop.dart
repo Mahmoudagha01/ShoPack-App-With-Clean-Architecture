@@ -154,12 +154,15 @@ class ShopView extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            child: LottieBuilder.asset('assets/images/nointernet.json'),
+                            child: Card(child: LottieBuilder.asset('assets/images/nointernet.json')),
                           ),
-                          Text(state.message)
+                          Card(child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(state.message),
+                          ))
                         ],
                       )
-                    : Center(child: Text(state.message));;
+                    : Center(child: Text(state.message));
                     } else if (state is FilterProductsLoadedState) {
                       final products = state.data.products;
                       return Expanded(
@@ -222,13 +225,19 @@ class ShopView extends StatelessWidget {
                     ? Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            child: LottieBuilder.asset('assets/images/nointernet.json'),
+                            
+                            padding: const EdgeInsets.symmetric(vertical: 14,horizontal: 19),
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: LottieBuilder.asset('assets/images/nointernet.json')),
                           ),
-                          Text(state.message)
+                          Card(child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(state.message),
+                          ))
                         ],
                       )
-                    : Center(child: Text(state.message));;
+                    : Center(child: Text(state.message));
                     }  else {
                       return const SizedBox();
                     }

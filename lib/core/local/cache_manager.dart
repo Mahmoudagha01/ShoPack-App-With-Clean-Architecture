@@ -5,5 +5,5 @@ abstract class CacheManagerBase<T> {
   Future<void> putItem(T item);
   T? getItem(String key);
   Future<void> clearAll();
+  Future<void> clearAt(int id);
 }
-

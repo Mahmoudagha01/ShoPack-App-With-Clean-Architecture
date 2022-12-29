@@ -6,11 +6,9 @@ import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/widgets/cart_item.dart';
 import 'package:shopack_user/features/login/presentation/widgets/alert_snackbar.dart';
-import 'package:shopack_user/features/login/presentation/widgets/mainbutton.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/strings.dart';
-import '../../../shop/domain/entities/products_entity.dart';
 
 class CartView extends StatefulWidget {
   const CartView({super.key});
@@ -20,7 +18,7 @@ class CartView extends StatefulWidget {
 }
 
 class _CartViewState extends State<CartView> {
-  List<ProductEntity>? items;
+
   @override
   void initState() {
     super.initState();
@@ -36,23 +34,23 @@ class _CartViewState extends State<CartView> {
             AppStrings.mybag,
             style: Theme.of(context).textTheme.headline6,
           )),
-      floatingActionButton: SizedBox(
+      floatingActionButton:BlocProvider.of<CartBloc>(context).cartItems.isEmpty? const SizedBox(): SizedBox(
         width: kWidth(context) / 1.12,
         height: kHeight(context) / 14,
-        child: FloatingActionButton.extended(
+        child:  FloatingActionButton.extended(
             backgroundColor: ColorManager.orangeLight,
             elevation: 8,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             onPressed: () {
-              if (items!.isNotEmpty) {
+            if (BlocProvider.of<CartBloc>(context).cartItems.isNotEmpty) {
                 Navigator.pushNamed(context, AppRoutes.checkout);
                 BlocProvider.of<LocationBloc>(context)
                     .add(CheckPermission(context));
                 BlocProvider.of<LocationBloc>(context)
                     .add(GetCurrentLocation());
-              } else {
-                showSnackbar(AppStrings.emptybag, context, Colors.red);
+             } else {
+              showSnackbar(AppStrings.emptybag, context, Colors.red);
               }
             },
             label: BlocConsumer<CartBloc, CartState>(
@@ -74,7 +72,20 @@ class _CartViewState extends State<CartView> {
             child: BlocBuilder<CartBloc, CartState>(
               builder: (context, state) {
                 if (state is CartLoading) {
-                  return const CircularProgressIndicator();
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: kHeight(context)/10,
+                            width: kWidth(context)/10,
+                            child: const CircularProgressIndicator()),
+                        ],
+                      ),
+                    ],
+                  );
                 }
                 if (state is CartLoaded) {
                  
@@ -86,20 +97,18 @@ class _CartViewState extends State<CartView> {
                       ],
                     );
                   }
-                  return ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 22),
-                    itemCount: state.items.length,
-                    itemBuilder: (context, index) {
-                      return CatItem(item:items![index]);
-                    },
-                  );
-                }
-
-                return const SizedBox();
-              },
-            ),
-          ),
-          SafeArea(
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          padding: const EdgeInsets.symmetric(vertical: 22),
+                          itemCount: state.items.length,
+                          itemBuilder: (context, index) {
+                            return CatItem(item:state.items[index],index: index,);
+                          },
+                        ),
+                      ),
+                       SafeArea(
             top: false,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
@@ -129,7 +138,7 @@ class _CartViewState extends State<CartView> {
                                   .copyWith(color: ColorManager.grey),
                             ),
                             Text(
-                              '${BlocProvider.of<CartBloc>(context).totalPrice}  \$',
+                              '${BlocProvider.of<CartBloc>(context).totalAmount}  \$',
                               style: Theme.of(context).textTheme.headline6,
                             )
                           ],
@@ -143,6 +152,15 @@ class _CartViewState extends State<CartView> {
             ),
           ),
           SizedBox(height: kHeight(context) / 12,)
+                    ],
+                  );
+                }
+
+                return const SizedBox();
+              },
+            ),
+          ),
+         
         ],
       ),
     );

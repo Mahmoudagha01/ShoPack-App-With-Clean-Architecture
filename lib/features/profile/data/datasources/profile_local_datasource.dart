@@ -1,21 +1,15 @@
-
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../../core/local/cache_manager.dart';
 import '../../domain/entities/profile_entity.dart';
 
 class CacheManager implements CacheManagerBase<ProfileEntity> {
-
- 
   @override
   Future<void> init() async {
- Hive.registerAdapter(ProfileEntityAdapter());
-      Hive.registerAdapter(UserEntityAdapter());
-      Hive.registerAdapter(AvatarEntityAdapter());
-    
+    registerAdapter();
+
     await Hive.openBox("profile-cahce");
   }
-
 
   @override
   Future<void> addItem(ProfileEntity item) async {
@@ -24,7 +18,7 @@ class CacheManager implements CacheManagerBase<ProfileEntity> {
 
   @override
   void registerAdapter() {
-    if(!Hive.isAdapterRegistered(1)){
+    if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(ProfileEntityAdapter());
       Hive.registerAdapter(UserEntityAdapter());
       Hive.registerAdapter(AvatarEntityAdapter());
@@ -32,11 +26,11 @@ class CacheManager implements CacheManagerBase<ProfileEntity> {
   }
 
   @override
- ProfileEntity? getItem(String key) {
-    return Hive.box("profile-cahce").get(key,);
+  ProfileEntity? getItem(String key) {
+    return Hive.box("profile-cahce").get(
+      key,
+    );
   }
-
- 
 
   @override
   Future<void> putItem(ProfileEntity item) async {
@@ -48,4 +42,9 @@ class CacheManager implements CacheManagerBase<ProfileEntity> {
     await Hive.box("profile-cahce").clear();
   }
 
+  @override
+  Future<void> clearAt(id) {
+    // TODO: implement clearAt
+    throw UnimplementedError();
+  }
 }

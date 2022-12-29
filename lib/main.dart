@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import 'core/local/shared_preference.dart';
 import 'core/theme/theme_data.dart';
 import 'dependancy_injection.dart';
+import 'features/cart/data/datasource/local_datasource.dart';
 import 'features/favorite/presentation/bloc/favourite_bloc.dart';
 import 'features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
 import 'features/profile/data/datasources/profile_local_datasource.dart';
@@ -26,8 +28,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
   await PreferenceHelper.init();
-  await Hive.initFlutter();
+final document = await getApplicationDocumentsDirectory();
+  await Hive.initFlutter(document.path);
   await CacheManager().init();
+  await CartLocalDataSourceManager().init();
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }

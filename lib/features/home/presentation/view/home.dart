@@ -84,11 +84,18 @@ class HomeView extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 14),
-                              child: FittedBox(child: SizedBox(
-                                height: kHeight(context)/4,
-                                child: LottieBuilder.asset('assets/images/nointernet.json'))),
+                              child: FittedBox(child: Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: SizedBox(
+
+                                  height: kHeight(context)/4,
+                                  child: LottieBuilder.asset('assets/images/nointernet.json')),
+                              )),
                             ),
-                            Text(state.message)
+                            Card(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(state.message),
+                            ))
                           ],
                         ),
                     )

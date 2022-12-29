@@ -8,37 +8,24 @@ abstract class CartEvent extends Equatable {
 }
 
 class AddToCart extends CartEvent {
-  final String pdtid;
-  final String name;
-  final int price;
-
-  const AddToCart(this.pdtid, this.name, this.price);
+  final ProductEntity product;
+  const AddToCart(this.product);
 }
 
 class RemoveFromCart extends CartEvent {
-  final String id;
+  final int id;
 
   const RemoveFromCart(this.id);
 }
 
-class RemoveSingleItemFromCart extends CartEvent {
-  final String id;
+class IncrementCount extends CartEvent {
+  final CartProduct cartProduct;
 
-  const RemoveSingleItemFromCart(this.id);
+  const IncrementCount(this.cartProduct);
 }
 
-class GetTotalMoney extends CartEvent {
-  final ProductEntity product;
+class DecrementCount extends CartEvent {
+  final CartProduct cartProduct;
 
-  const GetTotalMoney(this.product);
+  const DecrementCount(this.cartProduct);
 }
-
-
-
-
-// class ChangeQuantity extends CartEvent {
-//   final ProductEntity item;
-//   final bool isAdd;
-
-//   const ChangeQuantity(this.item, this.isAdd);
-// }

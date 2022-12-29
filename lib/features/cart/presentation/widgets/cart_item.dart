@@ -158,10 +158,9 @@
 //   }
 // }
 
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_user/features/cart/data/models/cart_model.dart';
 import 'package:shopack_user/features/shop/domain/entities/products_entity.dart';
 
 import '../../../../core/colors/colors.dart';
@@ -171,8 +170,9 @@ import '../../../login/presentation/widgets/alert_snackbar.dart';
 import '../bloc/cart_bloc.dart';
 
 class CatItem extends StatelessWidget {
-  final ProductEntity item;
-  const CatItem({super.key, required this.item});
+  final CartProduct item;
+  final int index;
+  const CatItem({super.key, required this.item, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +191,7 @@ class CatItem extends StatelessWidget {
             SizedBox(
               width: kWidth(context) * 0.25,
               child: Image.network(
-                item.images[0].url,
+                item.productImage,
               ),
             ),
             Expanded(
@@ -229,7 +229,7 @@ class CatItem extends StatelessWidget {
                         child: IconButton(
                           onPressed: () async {
                             BlocProvider.of<CartBloc>(context)
-                                .add(RemoveFromCart(item.id));
+                                .add(RemoveFromCart(index));
                           },
                           icon: const Icon(
                             Icons.clear,
@@ -259,8 +259,7 @@ class CatItem extends StatelessWidget {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     onTap: () {
-                                    BlocProvider.of<CartBloc>(context)
-                                .add(RemoveSingleItemFromCart(item.id));
+                                          BlocProvider.of<CartBloc>(context).add(DecrementCount(item));
                                     },
                                     child: const Icon(
                                       Icons.remove,
@@ -271,7 +270,7 @@ class CatItem extends StatelessWidget {
                                 ),
                               )),
                           Text(
-                            '${BlocProvider.of<CartBloc>(context)}',
+                            '${item.amount}',
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           Container(
@@ -285,8 +284,7 @@ class CatItem extends StatelessWidget {
                                   color: Colors.transparent,
                                   child: InkWell(
                                     onTap: () {
-                              BlocProvider.of<CartBloc>(context)
-                                .add(AddToCart(item.id,item.name,item.price));
+                                      BlocProvider.of<CartBloc>(context).add(IncrementCount(item));
                                     },
                                     child: const Icon(
                                       Icons.add,

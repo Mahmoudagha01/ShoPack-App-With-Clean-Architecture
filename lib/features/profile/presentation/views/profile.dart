@@ -120,10 +120,15 @@ class ProfileView extends StatelessWidget {
                     ? Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            child: LottieBuilder.asset('assets/images/nointernet.json'),
+                            padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 16),
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: LottieBuilder.asset('assets/images/nointernet.json')),
                           ),
-                          Text(state.message)
+                          Card(child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(state.message),
+                          ))
                         ],
                       )
                     : Center(child: Text(state.message));

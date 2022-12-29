@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 class ProductsEntity extends Equatable {
@@ -21,7 +20,6 @@ class ProductEntity extends Equatable {
   final String name;
   final String description;
 
-    
   final int price;
   final num ratings;
   final List<ImageEntity> images;
@@ -30,8 +28,9 @@ class ProductEntity extends Equatable {
   final int numOfReviews;
   final String user;
   final List<ReviewEntity>? reviews;
-  bool isFavourite =false;
-   ProductEntity({
+  int qouantity = 1;
+  bool isFavourite = false;
+  ProductEntity({
     required this.id,
     required this.name,
     required this.description,
@@ -43,9 +42,8 @@ class ProductEntity extends Equatable {
     required this.numOfReviews,
     required this.user,
     required this.reviews,
-    
-     this.isFavourite= false,
-
+    this.isFavourite = false,
+    this.qouantity=1,
   });
 
   @override
