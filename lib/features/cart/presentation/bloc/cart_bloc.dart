@@ -14,6 +14,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   final Box<CartProduct> itemBox = Hive.box<CartProduct>("product-cahce");
   CartBloc() : super(CartInitial()) {
+
+    on<CartStarted>((event, emit) {
+      if (state is CartInitial) {
+        emit(CartLoading());
+        emit(CartLoaded(cartItems));
+      }
+    });
     on<AddToCart>((event, emit) {
       emit(CartLoading());
 

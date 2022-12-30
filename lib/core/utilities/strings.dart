@@ -13,9 +13,9 @@ class AppStrings {
   static const String price = "Price";
   static const String check = "Check";
   static const String description = "Description";
-    static const String addedToCart = "Product Added To Cart";
+  static const String addedToCart = "Product Added To Cart";
   static const String addToCart = "Add To Cart";
-    static const String removeFromCart = "Product Removed From Cart";
+  static const String removeFromCart = "Product Removed From Cart";
   static const String apply = "Apply";
   static const String writereview = "Write a review";
   static const String recentlyAddedProducts = "Recently Added Products";
@@ -26,7 +26,7 @@ class AppStrings {
   static const String password = "Password";
   static const String nameError = "Name should have more than 3 characters";
   static const String nameEmpty = "Name is required";
-    static const String codeEmpty = "Code is required";
+  static const String codeEmpty = "Code is required";
   static const String passwordEmpty = "Password is Required";
   static const String repeatpasswordEmpty = "Confirm New Password is Required";
   static const String oldpasswordEmpty = "Old Password is Required";
@@ -43,7 +43,7 @@ class AppStrings {
   static const String registeruccess = "Registration done successfully";
   static const String forgetPassword = "Forgot your pasasword?";
   static const String forgetPasswordtext = "Forgot password";
-   static const String deletefav = 'Product Removed from Favorite';
+  static const String deletefav = 'Product Removed from Favorite';
   static const String addfav = 'Product Added to Favorite';
   static const String verify = "Verify Email";
   static const String registerText = "Sign Up";
@@ -73,12 +73,13 @@ class AppStrings {
   static const String codeLink = "Code is required";
   static const String invalidCode = "Please Enter Valid Code";
   static const String emptyEmail = "Email is required";
+  static const String emptyaddress = "Address is required";
   static const String invalidEmail =
       "Not a valid email address. Should be your@email.com";
   static const String notValidConfirmPassword =
       'Confirm Password must equal Password';
   static const String enterPassword = "Please Enter New Password";
-    static const String emptybag = "Look like you haven't added any product yet";
+  static const String emptybag = "Look like you haven't added any product yet";
   static const String success = "success";
   static const String updateprofile = "Update Profile";
   static const String updateproflesuccess = 'Profile Updated Successfully';
@@ -91,15 +92,21 @@ class AppStrings {
   static const String donthaveAccount = "Don't have an account?";
   static const String haveAccount = "Already have an account?";
   static const String home = "home";
-  static const String notifications = "notification";
+  static const String phone = "Phone";
+  static const String enterphone = "Enter Phone Number";
+  static const String deliveryAddress = "Delivery Address";
+  static const String addressLine = "Address Line";
   static const String search = "search";
-    static const String searchlocation = 'Search Location';
-  static const String settings = "settings";
-  static const String services = "servicecs";
-   static const String addnewaddress = "Add New address";
-    static const String selectnewaddress = "Select New Address";
-    static const String yourCurrentLocation = "Your Current Location";
+  static const String phoneRequired = "Phone is Required";
+  static const String searchlocation = 'Search Location';
+  static const String deliveryMethod = "Delivery Method";
+  static const String selectnewaddress = "Select New Address";
+  static const String currentLocation = "Current Location";
   static const String whatrate = "What is you rate?";
+  static const String addNew = "Add New";
+
+  static const String phonemust =
+      "phone number must be more than 10 and less than 15";
   static const String plsshareopinion =
       "Please share your opinion\nabout the product";
   static const String shop = "Shop";
@@ -110,15 +117,18 @@ class AppStrings {
   static const String personalinfo = "Personal Information";
   static const String myorders = "My Orders";
   static const String orders = "Orders Details";
-  static const String storeDetails = "store_details";
+  static const String order = "Order:";
+  static const String delivery = "Delivery:";
+  static const String summery = "Summary:";
+    static const String submitOrder = "Submit Order";
   static const String changePassword = "Change Password";
   static const String changePasswordsub = "Update & Change Password";
   static const String edit = "Edit Avatar, name, email";
-    static const String mybag = "My Bag";
+  static const String mybag = "My Bag";
   static const String checkout = "Checkout";
-    static const String notfavorite = "There is No Favorite yet!";
-      static const String notCart = "There is No Products in Bag yet!";
-    static const String totalAmount = "Total amount";
+  static const String notfavorite = "There is No Favorite yet!";
+  static const String notCart = "There is No Products in Bag yet!";
+  static const String totalAmount = "Total amount";
   static const String inviteYourFriends = "invite_your_friends";
   static const String logout = "logout";
 

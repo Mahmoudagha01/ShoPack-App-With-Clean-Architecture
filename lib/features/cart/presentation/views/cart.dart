@@ -18,9 +18,9 @@ class CartView extends StatefulWidget {
 }
 
 class _CartViewState extends State<CartView> {
-
   @override
   void initState() {
+    BlocProvider.of<LocationBloc>(context).add(GetCurrentLocation());
     super.initState();
   }
 
@@ -34,38 +34,41 @@ class _CartViewState extends State<CartView> {
             AppStrings.mybag,
             style: Theme.of(context).textTheme.headline6,
           )),
-      floatingActionButton:BlocProvider.of<CartBloc>(context).cartItems.isEmpty? const SizedBox(): SizedBox(
-        width: kWidth(context) / 1.12,
-        height: kHeight(context) / 14,
-        child:  FloatingActionButton.extended(
-            backgroundColor: ColorManager.orangeLight,
-            elevation: 8,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            onPressed: () {
-            if (BlocProvider.of<CartBloc>(context).cartItems.isNotEmpty) {
-                Navigator.pushNamed(context, AppRoutes.checkout);
-                BlocProvider.of<LocationBloc>(context)
-                    .add(CheckPermission(context));
-                BlocProvider.of<LocationBloc>(context)
-                    .add(GetCurrentLocation());
-             } else {
-              showSnackbar(AppStrings.emptybag, context, Colors.red);
-              }
-            },
-            label: BlocConsumer<CartBloc, CartState>(
-              listener: (context, state) {
-                if (state is AddToCartState) {
-                  showSnackbar(AppStrings.addedToCart, context, Colors.green);
-                }
-              },
-              builder: (context, state) {
-                return Text(
-                  AppStrings.addToCart.toUpperCase(),
-                );
-              },
-            )),
-      ),
+      floatingActionButton: BlocProvider.of<CartBloc>(context).cartItems.isEmpty
+          ? const SizedBox()
+          : SizedBox(
+              width: kWidth(context) / 1.12,
+              height: kHeight(context) / 14,
+              child: FloatingActionButton.extended(
+                  backgroundColor: ColorManager.orangeLight,
+                  elevation: 8,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)),
+                  onPressed: () {
+                    if (BlocProvider.of<CartBloc>(context)
+                        .cartItems
+                        .isNotEmpty) {
+                      Navigator.pushNamed(context, AppRoutes.checkout);
+                      BlocProvider.of<LocationBloc>(context)
+                          .add(CheckPermission(context));
+                    } else {
+                      showSnackbar(AppStrings.emptybag, context, Colors.red);
+                    }
+                  },
+                  label: BlocConsumer<CartBloc, CartState>(
+                    listener: (context, state) {
+                      if (state is AddToCartState) {
+                        showSnackbar(
+                            AppStrings.addedToCart, context, Colors.green);
+                      }
+                    },
+                    builder: (context, state) {
+                      return Text(
+                        AppStrings.addToCart.toUpperCase(),
+                      );
+                    },
+                  )),
+            ),
       body: Column(
         children: [
           Expanded(
@@ -79,16 +82,15 @@ class _CartViewState extends State<CartView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: kHeight(context)/10,
-                            width: kWidth(context)/10,
-                            child: const CircularProgressIndicator()),
+                              height: kHeight(context) / 10,
+                              width: kWidth(context) / 10,
+                              child: const CircularProgressIndicator()),
                         ],
                       ),
                     ],
                   );
                 }
                 if (state is CartLoaded) {
-                 
                   if (state.items.isEmpty) {
                     return Column(
                       children: [
@@ -104,54 +106,64 @@ class _CartViewState extends State<CartView> {
                           padding: const EdgeInsets.symmetric(vertical: 22),
                           itemCount: state.items.length,
                           itemBuilder: (context, index) {
-                            return CatItem(item:state.items[index],index: index,);
+                            return CatItem(
+                              item: state.items[index],
+                              index: index,
+                            );
                           },
                         ),
                       ),
-                       SafeArea(
-            top: false,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
-              width: double.infinity,
-              child: BlocBuilder<CartBloc, CartState>(
-                builder: (context, state) {
-                  if (state is CartLoaded) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${state.items.length} items",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: ColorManager.orangeLight,
+                      SafeArea(
+                        top: false,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 22),
+                          width: double.infinity,
+                          child: BlocBuilder<CartBloc, CartState>(
+                            builder: (context, state) {
+                              if (state is CartLoaded) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "${state.items.length} items",
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorManager.orangeLight,
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "${AppStrings.totalAmount}: ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6!
+                                              .copyWith(
+                                                  color: ColorManager.grey),
+                                        ),
+                                        Text(
+                                          '${BlocProvider.of<CartBloc>(context).totalAmount}  \$',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6,
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                );
+                              }
+                              return const SizedBox();
+                            },
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "${AppStrings.totalAmount}: ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6!
-                                  .copyWith(color: ColorManager.grey),
-                            ),
-                            Text(
-                              '${BlocProvider.of<CartBloc>(context).totalAmount}  \$',
-                              style: Theme.of(context).textTheme.headline6,
-                            )
-                          ],
-                        )
-                      ],
-                    );
-                  }
-                  return const SizedBox();
-                },
-              ),
-            ),
-          ),
-          SizedBox(height: kHeight(context) / 12,)
+                      ),
+                      SizedBox(
+                        height: kHeight(context) / 12,
+                      )
                     ],
                   );
                 }
@@ -160,7 +172,6 @@ class _CartViewState extends State<CartView> {
               },
             ),
           ),
-         
         ],
       ),
     );

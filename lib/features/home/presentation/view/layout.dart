@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 
 import '../../../../core/colors/colors.dart';
 import '../../../cart/presentation/views/cart.dart';
@@ -57,7 +58,7 @@ class _LayoutPageState extends State<LayoutPage> {
                   break;
                 case 3:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
-                      .add(LoadFavorite());
+                      .add(LoadFavorite());  
                   break;
                 case 4:
                   BlocProvider.of<BottomNavigationBarBloc>(context)

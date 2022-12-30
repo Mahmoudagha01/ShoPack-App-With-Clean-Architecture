@@ -28,6 +28,11 @@ class SearchLocation extends LocationEvent {
 
   const SearchLocation({
     required this.query,
-   
   });
+}
+
+class SelectMethod extends LocationEvent {
+
+  final int index;
+  const SelectMethod( this.index);
 }

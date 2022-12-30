@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopack_user/features/cart/presentation/views/add_new_address.dart';
+import 'package:shopack_user/features/cart/presentation/views/checkout.dart';
 import '../../features/cart/presentation/views/map_screen.dart';
 import '../../features/forgotpass&verifyemail/presentation/views/forgotpassword.dart';
 import '../../features/home/presentation/view/home.dart';

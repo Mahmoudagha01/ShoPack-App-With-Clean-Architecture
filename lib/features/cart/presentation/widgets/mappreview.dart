@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'package:shopack_user/core/colors/colors.dart';
 import 'package:shopack_user/core/utilities/routes.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
-
 import '../../../../core/utilities/mediaquery.dart';
 
 class MapPreview extends StatelessWidget {

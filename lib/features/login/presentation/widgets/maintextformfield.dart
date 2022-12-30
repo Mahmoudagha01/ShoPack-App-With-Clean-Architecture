@@ -19,7 +19,7 @@ required this.validate,
     this.suffixPressed,
   }) : super(key: key);
 
-  final IconData? prefix;
+  final Widget? prefix;
   final Widget? suffix;
   final TextEditingController controller;
   final bool isPassword;
@@ -46,6 +46,7 @@ required this.validate,
         decoration: InputDecoration(
           alignLabelWithHint: true,
             suffixIcon: suffix,
+            prefixIcon: prefix,
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
             label: Text(labelText!),

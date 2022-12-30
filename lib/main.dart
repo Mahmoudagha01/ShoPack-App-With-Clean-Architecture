@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
@@ -28,8 +27,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
   await PreferenceHelper.init();
-final document = await getApplicationDocumentsDirectory();
-  await Hive.initFlutter(document.path);
+  await Hive.initFlutter();
   await CacheManager().init();
   await CartLocalDataSourceManager().init();
   await dotenv.load(fileName: ".env");
@@ -74,7 +72,7 @@ class MyApp extends StatelessWidget {
           create: (context) => injector<FavouriteBloc>(),
         ),
         BlocProvider(
-          create: (context) => injector<CartBloc>(),
+          create: (context) => injector<CartBloc>()..add(CartStarted()),
         ),
         BlocProvider(
           create: (context) => injector<LocationBloc>(),

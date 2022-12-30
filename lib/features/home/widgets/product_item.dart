@@ -26,38 +26,6 @@ class ProductItem extends StatelessWidget {
               height: 200,
             ),
             Positioned(
-              left: kWidth(context) * 0.33,
-              top: 5,
-              child: Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 5,
-                        color: ColorManager.grey,
-                        spreadRadius: 2,
-                      )
-                    ],
-                  ),
-                  child: product.isFavourite
-                      ? CircleAvatar(
-                          backgroundColor: ColorManager.orangeLight,
-                          radius: 20.0,
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.shopping_bag,
-                                size: 20.0,
-                                color: ColorManager.white,
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox()),
-            ),
-            Positioned(
               left: kWidth(context) * 0.3,
               bottom: kHeight(context) * 0.13,
               child: Container(

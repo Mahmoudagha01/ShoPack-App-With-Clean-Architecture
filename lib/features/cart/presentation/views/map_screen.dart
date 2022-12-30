@@ -41,7 +41,7 @@ class MapView extends StatelessWidget {
           final bloc = BlocProvider.of<LocationBloc>(context);
           if (state is MapSelectedPosition) {
             showSnackbar(
-                "The selected area is : ${bloc.currentAddress![0].street}  ${bloc.currentAddress![0].name!}  ${bloc.currentAddress![0].administrativeArea!} - ${bloc.currentAddress![0].country!}",
+                "The selected area is :  ${bloc.currentAddressDetails}",
                 context,
                 ColorManager.white);
           }
@@ -58,7 +58,7 @@ class MapView extends StatelessWidget {
                 const Center(child: CircularProgressIndicator()),
               ],
             );
-          } else if (state is MapLoadedState || state is MapSelectedPosition) {
+          } else if (state is MapLoadedState || state is MapSelectedPosition || state is SelectMethodState) {
             return Stack(
               children: [
                 SizedBox(

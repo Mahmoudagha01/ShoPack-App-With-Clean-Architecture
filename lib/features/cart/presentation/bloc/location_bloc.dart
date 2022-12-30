@@ -10,15 +10,36 @@ import 'package:shopack_user/core/network/network_info.dart';
 import 'package:shopack_user/core/utilities/strings.dart';
 import 'package:shopack_user/features/cart/data/datasource/placesAPI.dart';
 
+import '../../../../core/utilities/enums.dart';
 import '../widgets/permissiondialog.dart';
 
 part 'location_event.dart';
 part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
+  List<Map<String, dynamic>> deliveryMethods = [
+    {
+      'image': 'assets/images/fedex.png',
+      'title': '2-3 Days',
+      'isSelected': true,
+    },
+    {
+      'image': 'assets/images/dhl.png',
+      'title': '1-3 Days',
+      'isSelected': false,
+    },
+    {
+      'image': 'assets/images/aramex.png',
+      'title': '2-5 Days',
+      'isSelected': false,
+    },
+  ];
   final PlacesDataSource placesDataSource;
+  String? currentAddressDetails;
   Position? myCurrentPosition;
   CameraPosition? initialTarget;
+  int delivery = 0;
+  int currentIndex = -1;
   List<Placemark>? currentAddress;
   late GoogleMapController googleMapController;
   TextEditingController searchController = TextEditingController();
@@ -52,11 +73,13 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
                   myCurrentPosition!.latitude, myCurrentPosition!.longitude),
               zoom: 16);
           emit(MapLoadedState());
-          currentAddress = await GeocodingPlatform.instance.placemarkFromCoordinates(
-              myCurrentPosition!.latitude, myCurrentPosition!.longitude);
+          currentAddress = await GeocodingPlatform.instance
+              .placemarkFromCoordinates(
+                  myCurrentPosition!.latitude, myCurrentPosition!.longitude);
+          currentAddressDetails =
+              "${currentAddress![0].street}  ${currentAddress![0].name!}  ${currentAddress![0].administrativeArea!} - ${currentAddress![0].country!}";
           emit(MapSelectedPosition(currentAddress!));
         } catch (error) {
-          print(error);
           emit(MapErrorState(ErrorHandler.handle(error).failure.message));
         }
       } else {
@@ -87,17 +110,38 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
               ),
             ),
           );
+
           emit(MapLoadedState());
-          currentAddress = await GeocodingPlatform.instance.placemarkFromCoordinates(
-              myCurrentPosition!.latitude, myCurrentPosition!.longitude);
+          currentAddress = await GeocodingPlatform.instance
+              .placemarkFromCoordinates(
+                  myCurrentPosition!.latitude, myCurrentPosition!.longitude);
+          currentAddressDetails =
+              "${currentAddress![0].street}  ${currentAddress![0].name!}  ${currentAddress![0].administrativeArea!} - ${currentAddress![0].country!}";
           emit(MapSelectedPosition(currentAddress!));
         } catch (error) {
-          print(error);
           emit(MapErrorState(ErrorHandler.handle(error).failure.message));
         }
       } else {
         ErrorHandler.handle(AppStrings.noInternetError);
       }
+    });
+    on<SelectMethod>((event, emit) {
+      emit(MapLoadingState());
+      currentIndex = event.index;
+      switch (event.index) {
+        case 0:
+         delivery = 15; 
+           break;
+         case 1:
+         delivery = 20; 
+          break;
+           case 2:
+         delivery = 10; 
+          break;
+        default:
+      }
+      
+      emit(SelectMethodState());
     });
   }
 }
