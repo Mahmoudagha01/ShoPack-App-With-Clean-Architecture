@@ -10,6 +10,8 @@ class AppStrings {
   static const String onBoardingSubTitle4 = "on_boarding_desc4";
   static const String skip = "skip";
   static const String name = "Name";
+    static const String firstname = "First Name";
+      static const String lastname = "Last Name";
   static const String price = "Price";
   static const String check = "Check";
   static const String description = "Description";

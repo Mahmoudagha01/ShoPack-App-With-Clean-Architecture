@@ -94,8 +94,11 @@ class _CartViewState extends State<CartView> {
                   if (state.items.isEmpty) {
                     return Column(
                       children: [
-                        LottieBuilder.asset('assets/images/empty.json'),
-                        const Text(AppStrings.notCart),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: LottieBuilder.asset('assets/images/empty.json'),
+                        ),
+                         Text(AppStrings.notCart,style: Theme.of(context).textTheme.titleMedium,),
                       ],
                     );
                   }

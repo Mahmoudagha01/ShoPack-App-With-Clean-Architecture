@@ -18,8 +18,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
     if (await networkInfo.isConnected) {
       try {
-        final profile = CacheManager().getItem("user-info",);
-        if (profile !=null) return right(profile);
+       
         
         final data = await profileDatasource.getUserDetails();
         CacheManager().putItem(data);

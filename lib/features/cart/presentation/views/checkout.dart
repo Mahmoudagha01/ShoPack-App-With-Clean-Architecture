@@ -9,6 +9,7 @@ import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart'
 import 'package:shopack_user/features/cart/presentation/widgets/deliverymethod_card.dart';
 import 'package:shopack_user/features/cart/presentation/widgets/mappreview.dart';
 import 'package:shopack_user/features/login/presentation/widgets/maintextformfield.dart';
+import 'package:shopack_user/features/profile/presentation/bloc/profile_bloc.dart';
 import '../../../../core/utilities/routes.dart';
 import '../../../profile/data/datasources/profile_local_datasource.dart';
 
@@ -20,16 +21,18 @@ class AddNewAddressView extends StatefulWidget {
 }
 
 class _AddNewAddressViewState extends State<AddNewAddressView> {
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+
+  final TextEditingController phoneController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  var countryPicker = const FlCountryCodePicker();
+
+  CountryCode? countryFlag =
+      const CountryCode(name: 'Egypt', code: 'EG', dialCode: '+20');
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController addressController = TextEditingController();
-    final TextEditingController phoneController = TextEditingController();
-    final formKey = GlobalKey<FormState>();
-    const countryPicker = FlCountryCodePicker();
-
-    CountryCode? countryFlag =
-        const CountryCode(name: 'Egypt', code: 'EG', dialCode: '+20');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -47,20 +50,16 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
       ),
       floatingActionButton: SizedBox(
         width: kWidth(context) / 1.12,
-              height: kHeight(context) / 14,
-              child: FloatingActionButton.extended(
-                  backgroundColor: ColorManager.orangeLight,
-                  elevation: 8,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
-                  onPressed: () {
-                  
-                  },
-                  label:  Text(
-                        AppStrings.submitOrder.toUpperCase(),
-                  )
-                    
-                ),
+        height: kHeight(context) / 14,
+        child: FloatingActionButton.extended(
+            backgroundColor: ColorManager.orangeLight,
+            elevation: 8,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            onPressed: () {},
+            label: Text(
+              AppStrings.submitOrder.toUpperCase(),
+            )),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -74,9 +73,13 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                   AppStrings.currentLocation,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                ElevatedButton.icon(onPressed: () {
-                   Navigator.pushNamed(context, AppRoutes.mapview);
-                }, icon: const Icon(Icons.add), label: const Text(AppStrings.addNew),),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.mapview);
+                  },
+                  icon: const Icon(Icons.add),
+                  label: const Text(AppStrings.addNew),
+                ),
               ],
             ),
             BlocBuilder<LocationBloc, LocationState>(
@@ -93,16 +96,19 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                     ],
                   );
                 } else if (state is MapLoadedState ||
-                    state is MapSelectedPosition || state is SelectMethodState) {
+                    state is MapSelectedPosition ||
+                    state is SelectMethodState) {
                   addressController.text =
                       BlocProvider.of<LocationBloc>(context)
                           .currentAddressDetails!;
-                  nameController.text = CacheManager()
-                      .getItem(
-                        "user-info",
-                      )!
-                      .user!
-                      .name;
+                  firstNameController.text =
+                      BlocProvider.of<ProfileBloc>(context)
+                          .userName
+                          .split(' ')
+                          .first;
+                          lastNameController.text= BlocProvider.of<ProfileBloc>(context)
+                          .userName.split(' ').last
+                          ;
                   return Form(
                     key: formKey,
                     child: Column(
@@ -137,8 +143,24 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                         ),
                         MainTFF(
                             max: 1,
-                            labelText: AppStrings.name,
-                            controller: nameController,
+                            labelText: AppStrings.firstname,
+                            controller: firstNameController,
+                            validate: (value) {
+                              if (value!.isEmpty) {
+                                return AppStrings.nameEmpty;
+                              }
+                              return null;
+                            },
+                            isPassword: false,
+                            borderRadius: 15,
+                            inputType: TextInputType.text),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        MainTFF(
+                            max: 1,
+                            labelText: AppStrings.lastname,
+                            controller: lastNameController,
                             validate: (value) {
                               if (value!.isEmpty) {
                                 return AppStrings.nameEmpty;
@@ -217,65 +239,73 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                           height: 20,
                         ),
                         SizedBox(
-              height: kHeight(context) / 6.5,
-              child: ListView.builder(
-                clipBehavior: Clip.antiAlias,
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) => DeliveryMethodCard(
-                  index: index,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(AppStrings.order,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: ColorManager.grey),),
-                  Text('${BlocProvider.of<CartBloc>(context).totalAmount} \$',
-                      style: Theme.of(context).textTheme.headline6),
-                           
-                ],
-              ),
-            ),
-                Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                   Text(AppStrings.delivery,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: ColorManager.grey),),
-                  Text('${BlocProvider.of<LocationBloc>(context).delivery} \$',
-                      style: Theme.of(context).textTheme.headline6),
-                ],
-              ),
-            ),
-
-                Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                   Text(AppStrings.summery,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: ColorManager.grey),),
-                  Text('${BlocProvider.of<CartBloc>(context).totalAmount + BlocProvider.of<LocationBloc>(context).delivery} \$',
-                      style: Theme.of(context).textTheme.headline6),
-                           
-                ],
-              ),
-            ),
-            SizedBox(height: kHeight(context)/12,)
+                          height: kHeight(context) / 6.5,
+                          child: ListView.builder(
+                            clipBehavior: Clip.antiAlias,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 3,
+                            itemBuilder: (context, index) => DeliveryMethodCard(
+                              index: index,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                AppStrings.order,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(color: ColorManager.grey),
+                              ),
+                              Text(
+                                  '${BlocProvider.of<CartBloc>(context).totalAmount} \$',
+                                  style: Theme.of(context).textTheme.headline6),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                AppStrings.delivery,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(color: ColorManager.grey),
+                              ),
+                              Text(
+                                  '${BlocProvider.of<LocationBloc>(context).delivery} \$',
+                                  style: Theme.of(context).textTheme.headline6),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                AppStrings.summery,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(color: ColorManager.grey),
+                              ),
+                              Text(
+                                  '${BlocProvider.of<CartBloc>(context).totalAmount + BlocProvider.of<LocationBloc>(context).delivery} \$',
+                                  style: Theme.of(context).textTheme.headline6),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: kHeight(context) / 12,
+                        )
                       ],
                     ),
                   );
@@ -286,12 +316,9 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                 }
               },
             ),
-            
           ]),
         ),
       ),
     );
   }
 }
-
-                           
