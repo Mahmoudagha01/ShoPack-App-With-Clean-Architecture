@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
+import 'package:shopack_user/features/payment/presentation/bloc/order_bloc.dart';
 import 'core/local/shared_preference.dart';
 import 'core/theme/theme_data.dart';
 import 'dependancy_injection.dart';
@@ -83,6 +84,9 @@ class MyApp extends StatelessWidget {
         ),
          BlocProvider(
           create: (context) => injector<PaymentBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => injector<OrderBloc>(),
         ),
       ],
       child: MaterialApp(

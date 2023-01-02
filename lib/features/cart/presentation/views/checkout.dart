@@ -9,8 +9,11 @@ import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/widgets/deliverymethod_card.dart';
 import 'package:shopack_user/features/cart/presentation/widgets/mappreview.dart';
+import 'package:shopack_user/features/login/presentation/widgets/alert_snackbar.dart';
 import 'package:shopack_user/features/login/presentation/widgets/maintextformfield.dart';
+import 'package:shopack_user/features/payment/presentation/bloc/order_bloc.dart';
 import 'package:shopack_user/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../core/utilities/routes.dart';
 import '../../../payment/presentation/bloc/payment_bloc.dart';
@@ -54,30 +57,38 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
       floatingActionButton: SizedBox(
         width: kWidth(context) / 1.12,
         height: kHeight(context) / 14,
-        child: BlocConsumer<PaymentBloc, PaymentState>(
+        child: BlocListener<OrderBloc, OrderState>(
           listener: (context, state) {
-            if (state is PaymentRequestFinished) {
-              Navigator.pushNamed(context, AppRoutes.payment);
+            if (state is CreateOrderLoaded) {
+              showSnackbar(state.data.message, context, ColorManager.green);
             }
           },
-          builder: (context, state) {
-            return state is Paymentloading
-                ? const Center(child: CircularProgressIndicator())
-                : FloatingActionButton.extended(
-                    backgroundColor: ColorManager.orangeLight,
-                    elevation: 8,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        BlocProvider.of<PaymentBloc>(context).add(
+          child: BlocConsumer<PaymentBloc, PaymentState>(
+            listener: (context, state) {
+              if (state is PaymentRequestFinished) {
+                Navigator.pushNamed(context, AppRoutes.payment);
+              }
+            },
+            builder: (context, state) {
+              return state is Paymentloading || state is CreateOrderLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : FloatingActionButton.extended(
+                      backgroundColor: ColorManager.orangeLight,
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          BlocProvider.of<PaymentBloc>(context).add(
                             RequestPayment(
                                 BlocProvider.of<PaymentBloc>(context)
                                     .PAYMOB_FIRST_TOKEN,
                                 (BlocProvider.of<CartBloc>(context)
-                                            .totalAmount*100 +
+                                                .totalAmount *
+                                            100 +
                                         BlocProvider.of<LocationBloc>(context)
-                                            .delivery*100)
+                                                .delivery *
+                                            100)
                                     .toString(),
                                 BlocProvider.of<PaymentBloc>(context).ORDER_ID,
                                 firstNameController.text,
@@ -96,13 +107,59 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                                 BlocProvider.of<LocationBloc>(context)
                                     .currentAddress![0]
                                     .subAdministrativeArea!,
-                                dotenv.env['INTEGRATION_ID_CARD']!));
-                      }
-                    },
-                    label: Text(
-                      AppStrings.submitOrder.toUpperCase(),
-                    ));
-          },
+                                dotenv.env['INTEGRATION_ID_CARD']!),
+                          );
+                          BlocProvider.of<OrderBloc>(context).add(
+                            CreateNewOrder(
+                              BlocProvider.of<CartBloc>(context)
+                                  .totalAmount
+                                  .toInt(),
+                              BlocProvider.of<LocationBloc>(context).delivery,
+                              BlocProvider.of<CartBloc>(context)
+                                      .totalAmount
+                                      .toInt() +
+                                  BlocProvider.of<LocationBloc>(context)
+                                      .delivery,
+                              BlocProvider.of<CartBloc>(context)
+                                  .cartItems[0]
+                                  .name,
+                              BlocProvider.of<CartBloc>(context)
+                                  .cartItems[0]
+                                  .price,
+                              BlocProvider.of<CartBloc>(context)
+                                  .cartItems[0]
+                                  .amount
+                                  .toInt(),
+                              BlocProvider.of<CartBloc>(context)
+                                  .cartItems[0]
+                                  .productImage,
+                              phoneController.text,
+                              BlocProvider.of<LocationBloc>(context)
+                                  .currentAddress![0]
+                                  .postalCode!,
+                              BlocProvider.of<LocationBloc>(context)
+                                  .currentAddress![0]
+                                  .street!,
+                              BlocProvider.of<LocationBloc>(context)
+                                  .currentAddress![0]
+                                  .locality!,
+                              BlocProvider.of<LocationBloc>(context)
+                                  .currentAddress![0]
+                                  .country!,
+                              "succeeded",
+                              const Uuid().v4(),
+                              BlocProvider.of<LocationBloc>(context)
+                                  .currentAddress![0]
+                                  .administrativeArea!,
+                            ),
+                          );
+                        }
+                      },
+                      label: Text(
+                        AppStrings.submitOrder.toUpperCase(),
+                      ));
+            },
+          ),
         ),
       ),
       body: Padding(

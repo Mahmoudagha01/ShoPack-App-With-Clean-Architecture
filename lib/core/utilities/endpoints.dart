@@ -11,7 +11,7 @@ const String updateProfileEndPoint = '/users/profile/update';
 const String updatePasswordEndPoint = '/users/password/update';
 const String productsEndPoint = '/products';
 const String reviewEndPoint ='/product/review';
-
+const String newOrderEndPoint ='/order/new';
 const String requestAuthEndPoint ='/auth/tokens';
 const String requestOrderEndPoint ='/ecommerce/orders';
 const String requestPaymentEndPoint ='/acceptance/payment_keys';

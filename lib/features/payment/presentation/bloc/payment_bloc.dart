@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:shopack_user/core/utilities/strings.dart';
 import 'package:shopack_user/features/payment/domain/entities/auth_request_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/order_request_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/payment_request_entity.dart';
@@ -14,7 +13,7 @@ part 'payment_state.dart';
 
 class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
   String PAYMOB_FIRST_TOKEN = '';
-    String FINAL_TOKEN_CARD = '';
+  String FINAL_TOKEN_CARD = '';
   String ORDER_ID = '';
 
   final RequestAuthUsecase requestAuthUsecase;
@@ -33,7 +32,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
           .fold((failure) => emit(PaymentAuthError(error: failure.message)),
               (success) async {
         PAYMOB_FIRST_TOKEN = success.token;
-     
+
         emit(PaymentAuthFinished(success));
       });
     });
@@ -45,7 +44,6 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
           .fold((failure) => emit(PaymentOrderError(error: failure.message)),
               (success) {
         ORDER_ID = success.id.toString();
-        print(success.id.toString());
         emit(PaymentOrderFinished(success));
       });
     });
@@ -68,9 +66,8 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
       failureOrSuccess
           .fold((failure) => emit(PaymentRequestError(error: failure.message)),
               (success) {
-
         FINAL_TOKEN_CARD = success.token;
-              print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${FINAL_TOKEN_CARD}");
+
         emit(PaymentRequestFinished(success));
       });
     });

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:shopack_user/core/error/failure.dart';
 import 'package:shopack_user/features/payment/domain/entities/auth_request_entity.dart';
+import 'package:shopack_user/features/payment/domain/entities/new_order_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/order_request_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/payment_request_entity.dart';
 
@@ -10,6 +11,7 @@ abstract class PaymentRepository {
   Future<Either<Failure, OrderRequest>> orderRequest(OrderRequestParams params);
   Future<Either<Failure, PaymentRequestEntity>> paymentRequest(
       PaymentRequestParams params);
+Future<Either<Failure, NewOrderEntity>> createNewOrder(CreateNewOrderParams params);
 }
 
 class RequestAuthParams {
@@ -51,4 +53,24 @@ class PaymentRequestParams {
       this.country,
       this.state,
       this.integrationId);
+}
+
+class CreateNewOrderParams {
+    final int itemsPrice;
+     final int shippingPrice;
+  final int totlaPrice;
+  final String name;
+  final int price;
+  final int quantity;
+  final String image;
+  final String phone;
+  final String pinCode;
+  final String address;
+  final String city;
+  final String country;
+  final String status;
+   final String id;
+  final String state;
+
+  CreateNewOrderParams(this.itemsPrice, this.shippingPrice, this.totlaPrice, this.name, this.price, this.quantity, this.image, this.phone, this.pinCode, this.address, this.city, this.country, this.status, this.id, this.state);
 }

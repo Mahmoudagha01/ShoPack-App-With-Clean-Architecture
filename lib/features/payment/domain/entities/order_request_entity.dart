@@ -1,20 +1,16 @@
-
 import 'package:equatable/equatable.dart';
 
 class OrderRequest extends Equatable {
   final int id;
- 
+
   const OrderRequest({
     required this.id,
-   
   });
-  
-  @override
 
+  @override
   List<Object> get props {
     return [
       id,
-      
     ];
   }
 }

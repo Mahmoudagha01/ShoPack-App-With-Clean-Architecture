@@ -2,6 +2,7 @@ import 'package:shopack_user/core/error/error_handler.dart';
 import 'package:shopack_user/core/network/network_info.dart';
 import 'package:shopack_user/core/utilities/strings.dart';
 import 'package:shopack_user/features/payment/data/datasources/payment_datasource.dart';
+import 'package:shopack_user/features/payment/domain/entities/new_order_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/payment_request_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/order_request_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/auth_request_entity.dart';
@@ -23,7 +24,6 @@ class PaymentRepositoryImpl implements PaymentRepository {
             .requestOrder(OrderRequestParams(params.token, params.totlaPrice));
         return right(data);
       } catch (error) {
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>$error');
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
@@ -67,6 +67,37 @@ class PaymentRepositoryImpl implements PaymentRepository {
         final data = await paymentDataSource.requestAuth(RequestAuthParams(
           params.apiKey,
         ));
+        return right(data);
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, NewOrderEntity>> createNewOrder(
+      CreateNewOrderParams params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await paymentDataSource.createNewOrder(
+            CreateNewOrderParams(
+                params.itemsPrice,
+                params.shippingPrice,
+                params.totlaPrice,
+                params.name,
+                params.price,
+                params.quantity,
+                params.image,
+                params.phone,
+                params.pinCode,
+                params.address,
+                params.city,
+                params.country,
+                params.status,
+                params.id,
+                params.state));
         return right(data);
       } catch (error) {
         return left(ErrorHandler.handle(error).failure);
