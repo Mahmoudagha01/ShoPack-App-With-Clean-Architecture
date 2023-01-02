@@ -11,6 +11,7 @@ import 'dependancy_injection.dart';
 import 'features/cart/data/datasource/local_datasource.dart';
 import 'features/favorite/presentation/bloc/favourite_bloc.dart';
 import 'features/home/presentation/bloc/BottomNavigationBar_bloc.dart';
+import 'features/payment/presentation/bloc/payment_bloc.dart';
 import 'features/profile/data/datasources/profile_local_datasource.dart';
 import 'features/profile/presentation/bloc/update_password_bloc.dart';
 import 'features/setpassword/presentation/bloc/reset_password_bloc.dart';
@@ -79,6 +80,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => injector<AddressCubit>(),
+        ),
+         BlocProvider(
+          create: (context) => injector<PaymentBloc>(),
         ),
       ],
       child: MaterialApp(

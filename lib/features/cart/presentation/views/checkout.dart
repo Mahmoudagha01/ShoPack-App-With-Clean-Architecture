@@ -1,6 +1,7 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shopack_user/core/colors/colors.dart';
 import 'package:shopack_user/core/utilities/mediaquery.dart';
 import 'package:shopack_user/core/utilities/strings.dart';
@@ -10,8 +11,9 @@ import 'package:shopack_user/features/cart/presentation/widgets/deliverymethod_c
 import 'package:shopack_user/features/cart/presentation/widgets/mappreview.dart';
 import 'package:shopack_user/features/login/presentation/widgets/maintextformfield.dart';
 import 'package:shopack_user/features/profile/presentation/bloc/profile_bloc.dart';
+
 import '../../../../core/utilities/routes.dart';
-import '../../../profile/data/datasources/profile_local_datasource.dart';
+import '../../../payment/presentation/bloc/payment_bloc.dart';
 
 class AddNewAddressView extends StatefulWidget {
   const AddNewAddressView({super.key});
@@ -24,13 +26,14 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   var countryPicker = const FlCountryCodePicker();
 
   CountryCode? countryFlag =
       const CountryCode(name: 'Egypt', code: 'EG', dialCode: '+20');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,15 +54,56 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
       floatingActionButton: SizedBox(
         width: kWidth(context) / 1.12,
         height: kHeight(context) / 14,
-        child: FloatingActionButton.extended(
-            backgroundColor: ColorManager.orangeLight,
-            elevation: 8,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            onPressed: () {},
-            label: Text(
-              AppStrings.submitOrder.toUpperCase(),
-            )),
+        child: BlocConsumer<PaymentBloc, PaymentState>(
+          listener: (context, state) {
+            if (state is PaymentRequestFinished) {
+              Navigator.pushNamed(context, AppRoutes.payment);
+            }
+          },
+          builder: (context, state) {
+            return state is Paymentloading
+                ? const Center(child: CircularProgressIndicator())
+                : FloatingActionButton.extended(
+                    backgroundColor: ColorManager.orangeLight,
+                    elevation: 8,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        BlocProvider.of<PaymentBloc>(context).add(
+                            RequestPayment(
+                                BlocProvider.of<PaymentBloc>(context)
+                                    .PAYMOB_FIRST_TOKEN,
+                                (BlocProvider.of<CartBloc>(context)
+                                            .totalAmount*100 +
+                                        BlocProvider.of<LocationBloc>(context)
+                                            .delivery*100)
+                                    .toString(),
+                                BlocProvider.of<PaymentBloc>(context).ORDER_ID,
+                                firstNameController.text,
+                                lastNameController.text,
+                                phoneController.text,
+                                emailController.text,
+                                BlocProvider.of<LocationBloc>(context)
+                                    .currentAddress![0]
+                                    .street!,
+                                BlocProvider.of<LocationBloc>(context)
+                                    .currentAddress![0]
+                                    .locality!,
+                                BlocProvider.of<LocationBloc>(context)
+                                    .currentAddress![0]
+                                    .country!,
+                                BlocProvider.of<LocationBloc>(context)
+                                    .currentAddress![0]
+                                    .subAdministrativeArea!,
+                                dotenv.env['INTEGRATION_ID_CARD']!));
+                      }
+                    },
+                    label: Text(
+                      AppStrings.submitOrder.toUpperCase(),
+                    ));
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -106,9 +150,14 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                           .userName
                           .split(' ')
                           .first;
-                          lastNameController.text= BlocProvider.of<ProfileBloc>(context)
-                          .userName.split(' ').last
-                          ;
+                  lastNameController.text =
+                      BlocProvider.of<ProfileBloc>(context)
+                          .userName
+                          .split(' ')
+                          .last;
+                  emailController.text =
+                      BlocProvider.of<ProfileBloc>(context).userEmail;
+
                   return Form(
                     key: formKey,
                     child: Column(
@@ -170,6 +219,22 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                             isPassword: false,
                             borderRadius: 15,
                             inputType: TextInputType.text),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        MainTFF(
+                            max: 1,
+                            labelText: AppStrings.email,
+                            controller: emailController,
+                            validate: (value) {
+                              if (value!.isEmpty) {
+                                return AppStrings.emptyEmail;
+                              }
+                              return null;
+                            },
+                            isPassword: false,
+                            borderRadius: 15,
+                            inputType: TextInputType.emailAddress),
                         const SizedBox(
                           height: 20,
                         ),

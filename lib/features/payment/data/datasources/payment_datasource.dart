@@ -1,9 +1,11 @@
-import 'package:shopack_user/core/network/api_provider.dart';
+
 import 'package:shopack_user/core/utilities/endpoints.dart';
 import 'package:shopack_user/features/payment/data/models/auth_request_model.dart';
 import 'package:shopack_user/features/payment/data/models/order_request_model.dart';
 import 'package:shopack_user/features/payment/data/models/payment_request_model.dart';
 import 'package:shopack_user/features/payment/domain/repositories/payment_repository.dart';
+import '../../../../core/network/paymentApiProvider.dart';
+
 
 abstract class PaymentDataSource {
   Future<AuthRequestModel> requestAuth(RequestAuthParams params);
@@ -12,7 +14,7 @@ abstract class PaymentDataSource {
 }
 
 class PaymentDataSourceImpl implements PaymentDataSource {
-  final APIProvider apiProvider;
+  final PaymentAPIProvider apiProvider;
 
   PaymentDataSourceImpl(this.apiProvider);
   @override
@@ -25,7 +27,7 @@ class PaymentDataSourceImpl implements PaymentDataSource {
 
   @override
   Future<OrderRequestModel> requestOrder(OrderRequestParams params) async{
-   final response = await apiProvider.post(endPoint: requestAuthEndPoint,data: {
+   final response = await apiProvider.post(endPoint: requestOrderEndPoint,data: {
       'auth_token':params.token,
       'amount_cents':params.totlaPrice
     });
@@ -34,7 +36,7 @@ class PaymentDataSourceImpl implements PaymentDataSource {
 
   @override
   Future<PaymenyRequestModel> requestPayment(PaymentRequestParams params) async{
-final response = await apiProvider.post(endPoint: requestAuthEndPoint,data: {
+final response = await apiProvider.post(endPoint: requestPaymentEndPoint,data: {
       'auth_token':params.token,
       'amount_cents':params.totlaPrice,
       'order_id':params.orderId,

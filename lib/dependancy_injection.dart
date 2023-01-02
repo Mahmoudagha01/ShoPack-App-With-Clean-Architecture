@@ -1,13 +1,20 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shopack_user/core/network/payment_api_provider_impl.dart';
 import 'package:shopack_user/features/cart/data/datasource/placesAPI.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import 'package:shopack_user/features/favorite/presentation/bloc/favourite_bloc.dart';
+import 'package:shopack_user/features/payment/data/datasources/payment_datasource.dart';
+import 'package:shopack_user/features/payment/data/repositrories/payment_repository_impl.dart';
+import 'package:shopack_user/features/payment/domain/repositories/payment_repository.dart';
+import 'package:shopack_user/features/payment/domain/usecases/requestAuth_Usecase.dart';
+import 'package:shopack_user/features/payment/presentation/bloc/payment_bloc.dart';
 import 'core/network/api_provider.dart';
 import 'core/network/api_provider_impl.dart';
 import 'core/network/network_info.dart';
+import 'core/network/paymentApiProvider.dart';
 import 'features/forgotpass&verifyemail/data/datasources/forgotpassword_datasource.dart';
 import 'features/forgotpass&verifyemail/data/repositories/forgotpassword_repositoryimpl.dart';
 import 'features/forgotpass&verifyemail/domain/repositories/forgotpassword_repository.dart';
@@ -19,6 +26,8 @@ import 'features/login/data/repositories/login_repostory_impl.dart';
 import 'features/login/domin/repositories/login_repository.dart';
 import 'features/login/domin/usecases/login_usecase.dart';
 import 'features/login/presentation/bloc/login_bloc.dart';
+import 'features/payment/domain/usecases/requestOrder_Usecase.dart';
+import 'features/payment/domain/usecases/requestPayment_Usecase.dart';
 import 'features/profile/data/datasources/profile_remote_datasource.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
 import 'features/profile/domain/repositories/profile_repository.dart';
@@ -61,8 +70,10 @@ Future<void> init() async {
   injector.registerFactory(() => SendReviewBloc(injector()));
   injector.registerFactory(() => FavouriteBloc());
   injector.registerFactory(() => CartBloc());
-  injector.registerFactory(() => AddressCubit(injector(),injector()));
-  injector.registerFactory(() => LocationBloc(injector(),injector()));
+  injector.registerFactory(() => AddressCubit(injector(), injector()));
+  injector.registerFactory(() => LocationBloc(injector(), injector()));
+  injector
+      .registerFactory(() => PaymentBloc(injector(), injector(), injector()));
 
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
@@ -75,6 +86,9 @@ Future<void> init() async {
   injector.registerLazySingleton(() => UpdateUserDetailUsecase(injector()));
   injector.registerLazySingleton(() => UpdatePasswordUsecase(injector()));
   injector.registerLazySingleton(() => SendReviewUsecase(injector()));
+  injector.registerLazySingleton(() => RequestAuthUsecase(injector()));
+  injector.registerLazySingleton(() => RequestOrderUsecase(injector()));
+  injector.registerLazySingleton(() => RequestPaymentUsecase(injector()));
   //Repository
   injector.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(injector(), injector()));
@@ -88,6 +102,8 @@ Future<void> init() async {
       () => ProductsRepositoryImpl(injector(), injector()));
   injector.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(injector(), injector()));
+  injector.registerLazySingleton<PaymentRepository>(
+      () => PaymentRepositoryImpl(injector(), injector()));
 
   //DataSource
   injector.registerLazySingleton<LoginDatasource>(
@@ -104,10 +120,14 @@ Future<void> init() async {
       () => ProfileDataSourceImpl(injector()));
   injector
       .registerLazySingleton<PlacesDataSource>(() => PlacesDatasourceImpl());
+  injector.registerLazySingleton<PaymentDataSource>(
+      () => PaymentDataSourceImpl(injector()));
 
   //---Core---//
   //API Provider
   injector.registerLazySingleton<APIProvider>(() => APIProviderImpl());
+  injector.registerLazySingleton<PaymentAPIProvider>(
+      () => PaymentAPIProviderImpl());
   //Network Info
   injector
       .registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(injector()));

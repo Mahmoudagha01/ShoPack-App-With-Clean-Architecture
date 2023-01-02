@@ -23,6 +23,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
             .requestOrder(OrderRequestParams(params.token, params.totlaPrice));
         return right(data);
       } catch (error) {
+        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>$error');
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

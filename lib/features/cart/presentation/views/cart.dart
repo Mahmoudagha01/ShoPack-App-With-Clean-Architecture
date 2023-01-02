@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shopack_user/core/utilities/routes.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:shopack_user/features/login/presentation/widgets/alert_snackbar.
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/strings.dart';
+import '../../../payment/presentation/bloc/payment_bloc.dart';
 
 class CartView extends StatefulWidget {
   const CartView({super.key});
@@ -21,6 +23,9 @@ class _CartViewState extends State<CartView> {
   @override
   void initState() {
     BlocProvider.of<LocationBloc>(context).add(GetCurrentLocation());
+    BlocProvider.of<PaymentBloc>(context)
+                    .add(RequestAuth(dotenv.env['PAYMENT_API_KEY']!));
+    
     super.initState();
   }
 
@@ -51,6 +56,15 @@ class _CartViewState extends State<CartView> {
                       Navigator.pushNamed(context, AppRoutes.checkout);
                       BlocProvider.of<LocationBloc>(context)
                           .add(CheckPermission(context));
+                          
+                BlocProvider.of<PaymentBloc>(context).add(
+                  RequestOrder(
+                   BlocProvider.of<PaymentBloc>(context).PAYMOB_FIRST_TOKEN,
+                    (BlocProvider.of<CartBloc>(context).totalAmount +
+                            BlocProvider.of<LocationBloc>(context).delivery)
+                        .toString(),
+                  ),
+                );
                     } else {
                       showSnackbar(AppStrings.emptybag, context, Colors.red);
                     }

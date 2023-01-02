@@ -13,4 +13,5 @@ class AppRoutes {
   static const updatePassword = "/update-password";
   static const checkout = "/checkout";
   static const mapview = "/mapview";
+  static const payment = "/payment";
 }
