@@ -120,19 +120,7 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                                       .toInt() +
                                   BlocProvider.of<LocationBloc>(context)
                                       .delivery,
-                              BlocProvider.of<CartBloc>(context)
-                                  .cartItems[0]
-                                  .name,
-                              BlocProvider.of<CartBloc>(context)
-                                  .cartItems[0]
-                                  .price,
-                              BlocProvider.of<CartBloc>(context)
-                                  .cartItems[0]
-                                  .amount
-                                  .toInt(),
-                              BlocProvider.of<CartBloc>(context)
-                                  .cartItems[0]
-                                  .productImage,
+                              
                               phoneController.text,
                               BlocProvider.of<LocationBloc>(context)
                                   .currentAddress![0]
@@ -151,6 +139,7 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
                               BlocProvider.of<LocationBloc>(context)
                                   .currentAddress![0]
                                   .administrativeArea!,
+                              BlocProvider.of<CartBloc>(context).orderItems    
                             ),
                           );
                         }

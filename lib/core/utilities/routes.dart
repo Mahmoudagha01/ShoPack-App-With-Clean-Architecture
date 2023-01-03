@@ -14,4 +14,5 @@ class AppRoutes {
   static const checkout = "/checkout";
   static const mapview = "/mapview";
   static const payment = "/payment";
+    static const success = "/success";
 }

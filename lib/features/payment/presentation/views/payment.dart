@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shopack_user/core/utilities/routes.dart';
+import 'package:shopack_user/core/utilities/strings.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import '../../../../core/utilities/endpoints.dart';
 import '../bloc/payment_bloc.dart';
 
 class Payment extends StatefulWidget {
@@ -26,30 +25,47 @@ class _PaymentState extends State<Payment> {
       WebView.platform = SurfaceAndroidWebView();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WebView(
-        initialUrl: "https://accept.paymob.com/api/acceptance/iframes/390170?payment_token=${BlocProvider.of<PaymentBloc>(context).FINAL_TOKEN_CARD}",
-        javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController webViewController) {
-          _controller.complete(webViewController);
-        },
-        javascriptChannels: <JavascriptChannel>{
-          _toasterJavascriptChannel(context),
-        },
-        gestureNavigationEnabled: true,
-        backgroundColor: const Color(0x00000000),
-      ),
+      body: Stack(children: [
+        WebView(
+          
+          initialUrl:
+              "https://accept.paymob.com/api/acceptance/iframes/390170?payment_token=${BlocProvider.of<PaymentBloc>(context).FINAL_TOKEN_CARD}",
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController webViewController) {
+            _controller.complete(webViewController);
+          },
+          javascriptChannels: <JavascriptChannel>{
+            _toasterJavascriptChannel(context),
+          },
+          gestureNavigationEnabled: true,
+          backgroundColor: const Color(0x00000000),
+        ),
+        Positioned(
+          top: 40,
+          right: 10,
+          child: ElevatedButton.icon(
+              onPressed: () {
+                
+                Navigator.pushReplacementNamed(context, AppRoutes.success);
+              },
+              icon: const Icon(Icons.navigate_next),
+              label: const Text(AppStrings.next)),
+        ),
+      ]),
     );
   }
 }
- JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
-    return JavascriptChannel(
-        name: 'Toaster',
-        onMessageReceived: (JavascriptMessage message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message.message)),
-          );
-        });
-  }
+
+JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
+  return JavascriptChannel(
+      name: 'Toaster',
+      onMessageReceived: (JavascriptMessage message) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message.message)),
+        );
+      });
+}

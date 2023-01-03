@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:shopack_user/core/network/api_provider.dart';
 import 'package:shopack_user/core/utilities/endpoints.dart';
 import 'package:shopack_user/features/payment/data/models/auth_request_model.dart';
@@ -6,7 +6,6 @@ import 'package:shopack_user/features/payment/data/models/neworder_model.dart';
 import 'package:shopack_user/features/payment/data/models/order_request_model.dart';
 import 'package:shopack_user/features/payment/data/models/payment_request_model.dart';
 import 'package:shopack_user/features/payment/domain/repositories/payment_repository.dart';
-
 import '../../../../core/network/paymentApiProvider.dart';
 
 abstract class PaymentDataSource {
@@ -70,18 +69,11 @@ class PaymentDataSourceImpl implements PaymentDataSource {
   @override
   Future<NewOrderModel> createNewOrder(CreateNewOrderParams params) async {
     final response = await apiBaseProvider
-        .post(endPoint: newOrderEndPoint, token: token ?? '', data: {
+        .post(endPoint: newOrderEndPoint, token: token ?? '', data: ({
       "itemsPrice": params.itemsPrice,
       "shippingPrice": params.shippingPrice,
       "totalPrice": params.totlaPrice,
-      "orderItems": [
-        {
-          "name": params.name,
-          "price": params.price,
-          "quantity": params.quantity,
-          "image": params.image
-        }
-      ],
+      "orderItems": params.orderItems,
       "shippingInfo": {
         "address": params.address,
         "city": params.city,
@@ -91,7 +83,7 @@ class PaymentDataSourceImpl implements PaymentDataSource {
         "phoneNo": params.phone
       },
       "paymentInfo": {"id": params.id, "status": params.status}
-    });
+    }));
     return NewOrderModel.fromJson(response.data);
   }
 }

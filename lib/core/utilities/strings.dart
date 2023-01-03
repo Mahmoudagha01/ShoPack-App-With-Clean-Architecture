@@ -12,8 +12,8 @@ class AppStrings {
   static const String onBoardingSubTitle4 = "on_boarding_desc4";
   static const String skip = "skip";
   static const String name = "Name";
-    static const String firstname = "First Name";
-      static const String lastname = "Last Name";
+  static const String firstname = "First Name";
+  static const String lastname = "Last Name";
   static const String price = "Price";
   static const String check = "Check";
   static const String description = "Description";
@@ -64,6 +64,7 @@ class AppStrings {
   static const String myOrders = "My Orders";
   static const String seeMore = "See more>";
   static const String mayLike = "You can also like this";
+  static const String continueShopping = "CONTINUE SHOPPING";
   static const String rateandreview = "Rating & Reviews";
   static const String headerTitle = "Give your workout\nA New Style!";
   static const String headerSuTitle =
@@ -85,6 +86,8 @@ class AppStrings {
   static const String enterPassword = "Please Enter New Password";
   static const String emptybag = "Look like you haven't added any product yet";
   static const String success = "success";
+  static const String successMsg =
+      'Your order will be delivered soon.\nThank you for choosing our app!';
   static const String updateprofile = "Update Profile";
   static const String updateproflesuccess = 'Profile Updated Successfully';
   static const String editPersonalInfo = "Personal Information";
@@ -113,6 +116,7 @@ class AppStrings {
       "phone number must be more than 10 and less than 15";
   static const String plsshareopinion =
       "Please share your opinion\nabout the product";
+  static const String next = "Next";
   static const String shop = "Shop";
   static const String details = "details";
   static const String changepass = "Change Password";
@@ -124,7 +128,7 @@ class AppStrings {
   static const String order = "Order:";
   static const String delivery = "Delivery:";
   static const String summery = "Summary:";
-    static const String submitOrder = "Submit Order";
+  static const String submitOrder = "Submit Order";
   static const String changePassword = "Change Password";
   static const String changePasswordsub = "Update & Change Password";
   static const String edit = "Edit Avatar, name, email";

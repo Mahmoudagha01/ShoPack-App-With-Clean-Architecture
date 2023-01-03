@@ -86,10 +86,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
                 params.itemsPrice,
                 params.shippingPrice,
                 params.totlaPrice,
-                params.name,
-                params.price,
-                params.quantity,
-                params.image,
+              
                 params.phone,
                 params.pinCode,
                 params.address,
@@ -97,7 +94,8 @@ class PaymentRepositoryImpl implements PaymentRepository {
                 params.country,
                 params.status,
                 params.id,
-                params.state));
+                params.state,
+                params.orderItems));
         return right(data);
       } catch (error) {
         return left(ErrorHandler.handle(error).failure);

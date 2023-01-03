@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopack_user/features/cart/presentation/views/checkout.dart';
 import 'package:shopack_user/features/payment/presentation/views/payment.dart';
+import 'package:shopack_user/features/payment/presentation/views/success.dart';
 import '../../features/cart/presentation/views/map_screen.dart';
 import '../../features/forgotpass&verifyemail/presentation/views/forgotpassword.dart';
 import '../../features/home/presentation/view/home.dart';
@@ -62,6 +63,9 @@ final product = settings.arguments as ProductEntity;
           case AppRoutes.payment:
       return MaterialPageRoute(
           builder: (context) => const Payment());
+              case AppRoutes.success:
+      return MaterialPageRoute(
+          builder: (context) => const SuccessView());
     default:
       return MaterialPageRoute(builder: (context) => const LoginView());
   }

@@ -10,11 +10,11 @@ part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
   List<CartProduct> cartItems = [];
+  List<Map<String, dynamic>> orderItems = [];
   num totalAmount = 0;
 
   final Box<CartProduct> itemBox = Hive.box<CartProduct>("product-cahce");
   CartBloc() : super(CartInitial()) {
-
     on<CartStarted>((event, emit) {
       if (state is CartInitial) {
         emit(CartLoading());
@@ -37,6 +37,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           productImage: event.product.images.first.url,
           amount: event.product.qouantity);
       itemBox.add(cartProduct);
+      Map<String, dynamic> orderitem = {
+        "name": event.product.name,
+        "image": event.product.images.first.url,
+        "price": event.product.price,
+        "quantity": event.product.qouantity
+      };
+      orderItems.add(orderitem);
 
       List<CartProduct> list = itemBox.values.toList();
       cartItems = list;

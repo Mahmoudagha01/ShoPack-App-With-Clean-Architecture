@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:shopack_user/features/payment/data/models/neworder_model.dart';
 import 'package:shopack_user/features/payment/domain/entities/new_order_entity.dart';
 import 'package:shopack_user/features/payment/domain/usecases/createNewOrder_Usecase.dart';
 
@@ -16,10 +17,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               event.itemsPrice,
               event.shippingPrice,
               event.totlaPrice,
-              event.name,
-              event.price,
-              event.quantity,
-              event.image,
+             
+            
               event.phone,
               event.pinCode,
               event.address,
@@ -27,7 +26,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
               event.country,
               event.status,
               event.id,
-              event.state));
+              event.state,
+              event.orderItems));
       failureOrSuccess.fold(
           (failure) => emit(CreateOrderError(failure.message)),
           (success) => emit(CreateOrderLoaded(success)));
