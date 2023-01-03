@@ -62,6 +62,7 @@ class AppStrings {
   static const String rate = "Rating";
   static const String myProfile = "My Profile";
   static const String myOrders = "My Orders";
+    static const String orderdetails = "Order Details";
     static const String viewdetails = "View Order Details";
     static const String activeOrders = "Active Orders";
       static const String deliveredOrders = "Delivered Orders";

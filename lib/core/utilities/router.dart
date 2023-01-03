@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shopack_user/features/cart/presentation/views/checkout.dart';
+import 'package:shopack_user/features/payment/domain/entities/all_orders_entity.dart';
 import 'package:shopack_user/features/payment/presentation/views/payment.dart';
 import 'package:shopack_user/features/payment/presentation/views/success.dart';
+import 'package:shopack_user/features/profile/presentation/views/order_details.dart';
 import 'package:shopack_user/features/profile/presentation/views/orders.dart';
 import '../../features/cart/presentation/views/map_screen.dart';
 import '../../features/forgotpass&verifyemail/presentation/views/forgotpassword.dart';
@@ -43,7 +45,7 @@ Route<dynamic> onGenerate(RouteSettings settings) {
                 index: index,
               ));
     case AppRoutes.productreviews:
-final product = settings.arguments as ProductEntity;
+      final product = settings.arguments as ProductEntity;
       return MaterialPageRoute(
           builder: (context) => ReviewsView(product: product));
     case AppRoutes.updateProfile:
@@ -52,24 +54,23 @@ final product = settings.arguments as ProductEntity;
           builder: (context) => UpdateProfileView(
                 user: user,
               ));
-              case AppRoutes.checkout:
-      return MaterialPageRoute(
-          builder: (context) => const AddNewAddressView());
+    case AppRoutes.checkout:
+      return MaterialPageRoute(builder: (context) => const AddNewAddressView());
     case AppRoutes.updatePassword:
       return MaterialPageRoute(
           builder: (context) => const UpdatePasswordView());
-          case AppRoutes.mapview:
+    case AppRoutes.mapview:
+      return MaterialPageRoute(builder: (context) => const MapView());
+    case AppRoutes.payment:
+      return MaterialPageRoute(builder: (context) => const Payment());
+    case AppRoutes.success:
+      return MaterialPageRoute(builder: (context) => const SuccessView());
+    case AppRoutes.orders:
+      return MaterialPageRoute(builder: (context) => const OrdersView());
+    case AppRoutes.orderDetails:
+      final order = settings.arguments as AllOrderEntity;
       return MaterialPageRoute(
-          builder: (context) => const MapView());
-          case AppRoutes.payment:
-      return MaterialPageRoute(
-          builder: (context) => const Payment());
-              case AppRoutes.success:
-      return MaterialPageRoute(
-          builder: (context) => const SuccessView());
-          case AppRoutes.orders:
-      return MaterialPageRoute(
-          builder: (context) => const OrdersView());
+          builder: (context) => OrderDetailsView(order: order));
     default:
       return MaterialPageRoute(builder: (context) => const LoginView());
   }

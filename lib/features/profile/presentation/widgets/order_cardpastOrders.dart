@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
+import '../../../../core/utilities/routes.dart';
 import '../../../../core/utilities/strings.dart';
 import '../../../payment/presentation/bloc/order_bloc.dart';
 
@@ -48,7 +49,10 @@ class OrderCardPastOrders extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                       Navigator.pushNamed(context, AppRoutes.orderDetails,
+                          arguments: bloc.pastOrders[index]);
+                    },
                     child: const Text(AppStrings.viewdetails),
                   ),
                   Row(
