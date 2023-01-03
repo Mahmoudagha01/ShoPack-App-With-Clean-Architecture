@@ -22,3 +22,5 @@ abstract class OrderEvent extends Equatable {
 
   const CreateNewOrder(this.itemsPrice, this.shippingPrice, this.totlaPrice, this.phone, this.pinCode, this.address, this.city, this.country, this.status, this.id, this.state, this.orderItems);
  }
+
+ class GetAllOrders extends OrderEvent{}

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:shopack_user/core/error/failure.dart';
-import 'package:shopack_user/features/payment/data/models/neworder_model.dart';
+import 'package:shopack_user/core/usecase/usecase.dart';
+import 'package:shopack_user/features/payment/domain/entities/all_orders_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/auth_request_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/new_order_entity.dart';
 import 'package:shopack_user/features/payment/domain/entities/order_request_entity.dart';
@@ -14,6 +15,8 @@ abstract class PaymentRepository {
       PaymentRequestParams params);
   Future<Either<Failure, NewOrderEntity>> createNewOrder(
       CreateNewOrderParams params);
+      Future<Either<Failure, AllOrdersEntity>> getAllOrders(
+      NoParams params);
 }
 
 class RequestAuthParams {

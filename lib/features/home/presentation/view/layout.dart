@@ -12,7 +12,6 @@ import '../../../shop/presentation/views/shop.dart';
 import '../bloc/BottomNavigationBar_bloc.dart';
 import 'home.dart';
 
-
 class LayoutPage extends StatefulWidget {
   const LayoutPage({super.key});
 
@@ -44,6 +43,7 @@ class _LayoutPageState extends State<LayoutPage> {
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadHome());
                   BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
+                  BlocProvider.of<ProfileBloc>(context).add(GetProfile());
                   break;
                 case 1:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
@@ -55,10 +55,11 @@ class _LayoutPageState extends State<LayoutPage> {
                 case 2:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
                       .add(LoadBag());
+                  BlocProvider.of<CartBloc>(context).add(CartStarted());
                   break;
                 case 3:
                   BlocProvider.of<BottomNavigationBarBloc>(context)
-                      .add(LoadFavorite());  
+                      .add(LoadFavorite());
                   break;
                 case 4:
                   BlocProvider.of<BottomNavigationBarBloc>(context)

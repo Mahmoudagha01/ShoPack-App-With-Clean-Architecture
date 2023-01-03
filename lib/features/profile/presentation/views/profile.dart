@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shopack_user/features/payment/presentation/bloc/order_bloc.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/local/shared_preference.dart';
 import '../../../../core/utilities/routes.dart';
@@ -16,7 +17,7 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-       centerTitle: true,
+        centerTitle: true,
         title: Text(
           AppStrings.myProfile,
           style: Theme.of(context)
@@ -83,7 +84,10 @@ class ProfileView extends StatelessWidget {
                     MYListTile(
                       title: AppStrings.myOrders,
                       subtitle: AppStrings.orders,
-                      ontab: () {},
+                      ontab: () {
+                        BlocProvider.of<OrderBloc>(context).add(GetAllOrders());
+                        Navigator.pushNamed(context, AppRoutes.orders);
+                      },
                     ),
                     MYListTile(
                       title: AppStrings.changePassword,
@@ -120,12 +124,15 @@ class ProfileView extends StatelessWidget {
                     ? Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 16),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 16),
                             child: Card(
-                              clipBehavior: Clip.antiAlias,
-                              child: LottieBuilder.asset('assets/images/nointernet.json')),
+                                clipBehavior: Clip.antiAlias,
+                                child: LottieBuilder.asset(
+                                    'assets/images/nointernet.json')),
                           ),
-                          Card(child: Padding(
+                          Card(
+                              child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(state.message),
                           ))

@@ -22,3 +22,17 @@ class CreateOrderError extends OrderState {
 
   const CreateOrderError(this.message);
 }
+
+class AllOrdersLoading extends OrderState {}
+
+class AllOrdersLoaded extends OrderState {
+  final AllOrdersEntity data;
+
+  const AllOrdersLoaded(this.data);
+}
+
+class AllOrdersError extends OrderState {
+  final String message;
+
+  const AllOrdersError(this.message);
+}

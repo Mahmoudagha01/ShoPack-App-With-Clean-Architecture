@@ -10,6 +10,7 @@ import 'package:shopack_user/features/payment/data/datasources/payment_datasourc
 import 'package:shopack_user/features/payment/data/repositrories/payment_repository_impl.dart';
 import 'package:shopack_user/features/payment/domain/repositories/payment_repository.dart';
 import 'package:shopack_user/features/payment/domain/usecases/createNewOrder_Usecase.dart';
+import 'package:shopack_user/features/payment/domain/usecases/getAllOrders.dart';
 import 'package:shopack_user/features/payment/domain/usecases/requestAuth_Usecase.dart';
 import 'package:shopack_user/features/payment/presentation/bloc/order_bloc.dart';
 import 'package:shopack_user/features/payment/presentation/bloc/payment_bloc.dart';
@@ -76,7 +77,7 @@ Future<void> init() async {
   injector.registerFactory(() => LocationBloc(injector(), injector()));
   injector
       .registerFactory(() => PaymentBloc(injector(), injector(), injector()));
-  injector.registerFactory(() => OrderBloc(injector()));
+  injector.registerFactory(() => OrderBloc(injector(), injector()));
   //Usecase
   injector.registerLazySingleton(() => LoginUsecase(injector()));
   injector.registerLazySingleton(() => RegisterUsecase(injector()));
@@ -92,6 +93,7 @@ Future<void> init() async {
   injector.registerLazySingleton(() => RequestOrderUsecase(injector()));
   injector.registerLazySingleton(() => RequestPaymentUsecase(injector()));
   injector.registerLazySingleton(() => CreateNewOrderUsecase(injector()));
+  injector.registerLazySingleton(() => GetAllOrderesUsecase(injector()));
   //Repository
   injector.registerLazySingleton<LoginBaseRepository>(
       () => LoginRepositoryImpl(injector(), injector()));

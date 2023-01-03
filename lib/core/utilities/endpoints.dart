@@ -14,5 +14,6 @@ const String reviewEndPoint ='/product/review';
 const String newOrderEndPoint ='/order/new';
 const String requestAuthEndPoint ='/auth/tokens';
 const String requestOrderEndPoint ='/ecommerce/orders';
+const String getAllOrdersEndPoint ='/orders/me';
 const String requestPaymentEndPoint ='/acceptance/payment_keys';
 String? token;

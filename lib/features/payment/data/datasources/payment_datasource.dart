@@ -1,6 +1,7 @@
-
 import 'package:shopack_user/core/network/api_provider.dart';
+import 'package:shopack_user/core/usecase/usecase.dart';
 import 'package:shopack_user/core/utilities/endpoints.dart';
+import 'package:shopack_user/features/payment/data/models/all_orders_model.dart';
 import 'package:shopack_user/features/payment/data/models/auth_request_model.dart';
 import 'package:shopack_user/features/payment/data/models/neworder_model.dart';
 import 'package:shopack_user/features/payment/data/models/order_request_model.dart';
@@ -13,6 +14,7 @@ abstract class PaymentDataSource {
   Future<OrderRequestModel> requestOrder(OrderRequestParams params);
   Future<PaymenyRequestModel> requestPayment(PaymentRequestParams params);
   Future<NewOrderModel> createNewOrder(CreateNewOrderParams params);
+  Future<AllOrdersModel> getAllOrders(NoParams params);
 }
 
 class PaymentDataSourceImpl implements PaymentDataSource {
@@ -68,22 +70,31 @@ class PaymentDataSourceImpl implements PaymentDataSource {
 
   @override
   Future<NewOrderModel> createNewOrder(CreateNewOrderParams params) async {
-    final response = await apiBaseProvider
-        .post(endPoint: newOrderEndPoint, token: token ?? '', data: ({
-      "itemsPrice": params.itemsPrice,
-      "shippingPrice": params.shippingPrice,
-      "totalPrice": params.totlaPrice,
-      "orderItems": params.orderItems,
-      "shippingInfo": {
-        "address": params.address,
-        "city": params.city,
-        "state": params.state,
-        "country": params.country,
-        "pinCode": params.pinCode,
-        "phoneNo": params.phone
-      },
-      "paymentInfo": {"id": params.id, "status": params.status}
-    }));
+    final response = await apiBaseProvider.post(
+        endPoint: newOrderEndPoint,
+        token: token ?? '',
+        data: ({
+          "itemsPrice": params.itemsPrice,
+          "shippingPrice": params.shippingPrice,
+          "totalPrice": params.totlaPrice,
+          "orderItems": params.orderItems,
+          "shippingInfo": {
+            "address": params.address,
+            "city": params.city,
+            "state": params.state,
+            "country": params.country,
+            "pinCode": params.pinCode,
+            "phoneNo": params.phone
+          },
+          "paymentInfo": {"id": params.id, "status": params.status}
+        }));
     return NewOrderModel.fromJson(response.data);
+  }
+
+  @override
+  Future<AllOrdersModel> getAllOrders(NoParams params) async {
+    final response = await apiBaseProvider.get(
+        endPoint: getAllOrdersEndPoint, token: token ?? "");
+    return AllOrdersModel.fromJson(response.data);
   }
 }
