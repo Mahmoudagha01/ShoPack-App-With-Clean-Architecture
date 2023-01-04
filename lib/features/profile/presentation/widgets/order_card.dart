@@ -35,17 +35,19 @@ class OrderCard extends StatelessWidget {
                 children: [
                   Text(
                     DateFormat.yMMMEd().format(bloc.activeOrders[index].paidAt),
-                    style: Theme.of(context).textTheme.labelLarge,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.dark,)
                   ),
-                  Text('${bloc.activeOrders[index].itemsPrice} \$')
+                  Text('${bloc.activeOrders[index].itemsPrice} \$',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.dark,))
                 ],
               ),
               Text(
                 "Order ID #${bloc.activeOrders[index].id}",
-                style: Theme.of(context).textTheme.labelSmall,
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(color: ColorManager.dark,),
               ),
               Text("Shipping To : ${bloc.activeOrders[index].shippingInfo.city}"
-                  .toUpperCase()),
+                  .toUpperCase(),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.dark,)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -68,7 +70,7 @@ class OrderCard extends StatelessWidget {
                       ),
                       Text(
                         "Processing",
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(color: ColorManager.dark,)
                       )
                     ],
                   )

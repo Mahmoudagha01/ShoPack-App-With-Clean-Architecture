@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:shopack_user/core/theme/bloc/theme_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import 'package:shopack_user/features/payment/presentation/bloc/order_bloc.dart';
 import 'core/local/shared_preference.dart';
 import 'core/theme/theme_data.dart';
+import 'core/theme/theme_service.dart';
 import 'dependancy_injection.dart';
 import 'features/cart/data/datasource/local_datasource.dart';
 import 'features/favorite/presentation/bloc/favourite_bloc.dart';
@@ -32,6 +34,7 @@ void main() async {
   await Hive.initFlutter();
   await CacheManager().init();
   await CartLocalDataSourceManager().init();
+  await ThemeDatabaseService.checkDatabaseExists();
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
@@ -82,18 +85,25 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => injector<AddressCubit>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => injector<PaymentBloc>(),
         ),
         BlocProvider(
           create: (context) => injector<OrderBloc>(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme(),
-        onGenerateRoute: onGenerate,
-        initialRoute: AppRoutes.login,
+      child: BlocProvider(
+        create: (context) => ThemeBloc(),
+        child: BlocBuilder<ThemeBloc, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  theme: state.themeData,
+                  onGenerateRoute: onGenerate,
+                  initialRoute: AppRoutes.login,
+                );
+          },
+        ),
       ),
     );
   }

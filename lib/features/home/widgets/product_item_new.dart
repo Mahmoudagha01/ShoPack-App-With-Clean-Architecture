@@ -166,7 +166,7 @@ class NewProductItem extends StatelessWidget {
                     const SizedBox(height: 6.0),
                     Text(
                       product.name,
-                      style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
                     ),

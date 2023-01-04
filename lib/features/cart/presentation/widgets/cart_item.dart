@@ -47,13 +47,14 @@ class CatItem extends StatelessWidget {
                             width: kWidth(context) * 0.5,
                             child: Text(
                               item.name,
+                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: ColorManager.dark,),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                             ),
                           ),
                           Text(
                             item.category,
-                            style: Theme.of(context).textTheme.bodySmall,
+                            style: Theme.of(context).textTheme.bodySmall!.copyWith(color: ColorManager.dark,)
                           )
                         ],
                       ),
@@ -109,7 +110,7 @@ class CatItem extends StatelessWidget {
                               )),
                           Text(
                             '${item.amount}',
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.headline6!.copyWith(color: ColorManager.dark,),
                           ),
                           Container(
                               decoration: BoxDecoration(

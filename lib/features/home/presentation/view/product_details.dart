@@ -102,7 +102,7 @@ class _ProductDetailsState extends State<ProductDetails>
         ),
         title: Text(
           widget.product.name,
-          style: const TextStyle(color: ColorManager.dark),
+          style: Theme.of(context).textTheme.headline6,
         ),
         actions: [
           Padding(

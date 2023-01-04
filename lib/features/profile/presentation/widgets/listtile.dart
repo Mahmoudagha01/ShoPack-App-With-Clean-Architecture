@@ -22,7 +22,7 @@ class MYListTile extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .bodyLarge!
-            .copyWith(color: ColorManager.dark),
+           ,
       ),
       subtitle:  SizedBox(
             width: kWidth(context) / 4,

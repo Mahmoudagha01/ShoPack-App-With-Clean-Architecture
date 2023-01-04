@@ -4,6 +4,10 @@ import 'package:lottie/lottie.dart';
 import 'package:shopack_user/features/payment/presentation/bloc/order_bloc.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/local/shared_preference.dart';
+import '../../../../core/theme/bloc/theme_bloc.dart';
+import '../../../../core/theme/theme_data.dart';
+import '../../../../core/theme/theme_service.dart';
+import '../../../../core/utilities/enums.dart';
 import '../../../../core/utilities/routes.dart';
 import '../../../../core/utilities/strings.dart';
 import '../bloc/profile_bloc.dart';
@@ -16,14 +20,39 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          BlocBuilder<ThemeBloc, ThemeState>(
+            
+            builder: (context, state) {
+               late AppTheme currentTheme;
+              return IconButton(
+                onPressed: () {
+                  if (state.themeData == appThemeData[AppTheme.lightTheme]) {
+                    currentTheme = AppTheme.values[1];
+                    ThemeDatabaseService.putThemeSettings(1);
+                  } else {
+                    currentTheme = AppTheme.values[0];
+                    ThemeDatabaseService.putThemeSettings(0);
+                  }
+
+                  context
+                      .read<ThemeBloc>()
+                      .add(ThemeChanged(theme: currentTheme));
+                },
+                icon: state.themeData == appThemeData[AppTheme.lightTheme]
+                    ? const Icon(Icons.sunny)
+                    : const Icon(Icons.mode_night),
+              );
+            },
+          ),
+        ],
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           AppStrings.myProfile,
-          style: Theme.of(context)
-              .textTheme
-              .headline6!
-              .copyWith(fontWeight: FontWeight.bold, color: ColorManager.dark),
+          style: Theme.of(context).textTheme.headline6!.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
       body: SafeArea(

@@ -76,9 +76,8 @@ class ShopView extends StatelessWidget {
                                   width: 80,
                                   height: 45,
                                   decoration: BoxDecoration(
-                                    color: bloc.current == index
-                                        ? Colors.white70
-                                        : Colors.white54,
+                                    color:  Colors.white70,
+                                        
                                     borderRadius: bloc.current == index
                                         ? BorderRadius.circular(15)
                                         : BorderRadius.circular(10),
