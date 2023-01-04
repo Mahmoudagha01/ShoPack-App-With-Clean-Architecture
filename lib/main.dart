@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shopack_user/core/theme/bloc/theme_bloc.dart';
+import 'package:shopack_user/core/utilities/endpoints.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
@@ -91,19 +92,23 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => injector<OrderBloc>(),
         ),
-      ],
-      child: BlocProvider(
-        create: (context) => ThemeBloc(),
-        child: BlocBuilder<ThemeBloc, ThemeState>(
-          builder: (context, state) {
-            return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  theme: state.themeData,
-                  onGenerateRoute: onGenerate,
-                  initialRoute: AppRoutes.login,
-                );
-          },
+        BlocProvider(
+          create: (context) => injector<ThemeBloc>(),
         ),
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          isSkipedOnBoarding = PreferenceHelper.getDataFromSharedPreference(
+              key: 'IsSkippedOnBoarding');
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: state.themeData,
+            onGenerateRoute: onGenerate,
+            initialRoute: isSkipedOnBoarding != null
+                ? AppRoutes.splash
+                : AppRoutes.onBoarding,
+          );
+        },
       ),
     );
   }

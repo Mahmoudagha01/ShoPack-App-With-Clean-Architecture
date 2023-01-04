@@ -1,16 +1,19 @@
-// ignore_for_file: non_constant_identifier_names
-
 class AppStrings {
-  static const String noRouteFound = "no_route_found";
-  static const String onBoardingTitle1 = "on_boarding_title1";
-  static const String onBoardingTitle2 = "on_boarding_title2";
-  static const String onBoardingTitle3 = "on_boarding_title3";
-  static const String onBoardingTitle4 = "on_boarding_title4";
-  static const String onBoardingSubTitle1 = "on_boarding_desc1";
-  static const String onBoardingSubTitle2 = "on_boarding_desc2";
-  static const String onBoardingSubTitle3 = "on_boarding_desc3";
-  static const String onBoardingSubTitle4 = "on_boarding_desc4";
-  static const String skip = "skip";
+  static const String appName = "ShoPack App";
+  static const String onBoardingTitle1 = "Explore & Select What You Love";
+  static const String onBoardingTitle2 = "Add To Cart";
+  static const String onBoardingTitle3 = "Pay By Card";
+  static const String onBoardingTitle4 = "Fast Delievery Service";
+  static const String onBoardingSubTitle1 =
+      "Select Wide Range Of Products from Shop the most cool products available on the store let it be T-shirts, Electronics and much more!";
+  static const String onBoardingSubTitle2 =
+      "Just Two Clicks and you can buy all you want.";
+  static const String onBoardingSubTitle3 =
+      "Pay as per your convenience, we accept all credit and debit cards.";
+  static const String onBoardingSubTitle4 =
+      "Our Modern Delivering technologies shipping to the porch of your apartment.";
+  static const String skip = "Skip";
+  static const String start = "Start";
   static const String name = "Name";
   static const String firstname = "First Name";
   static const String lastname = "Last Name";
@@ -62,10 +65,10 @@ class AppStrings {
   static const String rate = "Rating";
   static const String myProfile = "My Profile";
   static const String myOrders = "My Orders";
-    static const String orderdetails = "Order Details";
-    static const String viewdetails = "View Order Details";
-    static const String activeOrders = "Active Orders";
-      static const String deliveredOrders = "Delivered Orders";
+  static const String orderdetails = "Order Details";
+  static const String viewdetails = "View Order Details";
+  static const String activeOrders = "Active Orders";
+  static const String deliveredOrders = "Delivered Orders";
   static const String seeMore = "See more>";
   static const String mayLike = "You can also like this";
   static const String continueShopping = "CONTINUE SHOPPING";

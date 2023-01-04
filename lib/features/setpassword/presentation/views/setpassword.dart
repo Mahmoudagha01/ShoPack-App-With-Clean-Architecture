@@ -17,11 +17,11 @@ class SetPassword extends StatefulWidget {
 }
 
 class _SetPasswordState extends State<SetPassword> {
- final TextEditingController passController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
   final TextEditingController confirmPassController = TextEditingController();
-  final formKey= GlobalKey<FormState>();
-    bool hidePass = true;
-        bool hideConfirmPass = true;
+  final formKey = GlobalKey<FormState>();
+  bool hidePass = true;
+  bool hideConfirmPass = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _SetPasswordState extends State<SetPassword> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Form(
             key: formKey,
             child: Column(
@@ -49,14 +49,14 @@ class _SetPasswordState extends State<SetPassword> {
                         color: ColorManager.dark,
                       ),
                 ),
-                    SizedBox(height: kHeight(context) * 0.05),
-                    
-                        Text(
-                          AppStrings.enterPassword,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        SizedBox(height: kHeight(context) * 0.05),
+                SizedBox(height: kHeight(context) * 0.05),
+                Text(
+                  AppStrings.enterPassword,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                SizedBox(height: kHeight(context) * 0.05),
                 MainTFF(
+                    max: 1,
                     labelText: AppStrings.password,
                     hintText: AppStrings.password,
                     controller: passController,
@@ -84,8 +84,11 @@ class _SetPasswordState extends State<SetPassword> {
                     ),
                     borderRadius: 16,
                     inputType: TextInputType.text),
-                    const SizedBox(height: 15,),
-                     MainTFF(
+                const SizedBox(
+                  height: 15,
+                ),
+                MainTFF(
+                    max: 1,
                     labelText: AppStrings.confirmpass,
                     hintText: AppStrings.confirmpass,
                     controller: confirmPassController,
@@ -93,7 +96,7 @@ class _SetPasswordState extends State<SetPassword> {
                       if (value!.isEmpty) {
                         return AppStrings.passwordEmpty;
                       } else {
-                        if (confirmPassController.text!=passController.text) {
+                        if (confirmPassController.text != passController.text) {
                           return AppStrings.notValidConfirmPassword;
                         }
                       }
@@ -113,37 +116,38 @@ class _SetPasswordState extends State<SetPassword> {
                     ),
                     borderRadius: 16,
                     inputType: TextInputType.text),
-                    const SizedBox(height: 20,),
-                     BlocConsumer<ResetPasswordBloc, ResetPasswordState>(
-                      listener: (context, state) {
-                        if (state is ResetPasswordFinished && state.data.success) {
-                          showSnackbar(state.data.message, context,
-                              ColorManager.green);
-                          Navigator.pushReplacementNamed(context, AppRoutes.login);
-                        } else if (state is ResetPasswordError) {
-                          showSnackbar(state.message, context, Colors.red);
-                        }else if (state is ResetPasswordFinished) {
-                          showSnackbar(state.data.message, context, Colors.red);
-                        }
-                      },
-                      builder: (context, state) {
-                        return Center(
-                          child: state is ResetPasswordLoading
-                              ? const CircularProgressIndicator()
-                              : MainButton(
-                                  text: AppStrings.login.toUpperCase(),
-                                   height: 50,
-                                  ontab: () {
-                                    if (formKey.currentState!.validate()) {
-                                      BlocProvider.of<ResetPasswordBloc>(context).add(
-                                        ConfirmPassword(passController.text, confirmPassController.text)
-                                              
-                                              );
-                                    }
-                                  }),
-                        );
-                      },
-                    ),
+                const SizedBox(
+                  height: 20,
+                ),
+                BlocConsumer<ResetPasswordBloc, ResetPasswordState>(
+                  listener: (context, state) {
+                    if (state is ResetPasswordFinished && state.data.success) {
+                      showSnackbar(
+                          state.data.message, context, ColorManager.green);
+                      Navigator.pushReplacementNamed(context, AppRoutes.login);
+                    } else if (state is ResetPasswordError) {
+                      showSnackbar(state.message, context, Colors.red);
+                    } else if (state is ResetPasswordFinished) {
+                      showSnackbar(state.data.message, context, Colors.red);
+                    }
+                  },
+                  builder: (context, state) {
+                    return Center(
+                      child: state is ResetPasswordLoading
+                          ? const CircularProgressIndicator()
+                          : MainButton(
+                              text: AppStrings.login.toUpperCase(),
+                              height: 50,
+                              ontab: () {
+                                if (formKey.currentState!.validate()) {
+                                  BlocProvider.of<ResetPasswordBloc>(context)
+                                      .add(ConfirmPassword(passController.text,
+                                          confirmPassController.text));
+                                }
+                              }),
+                    );
+                  },
+                ),
               ],
             ),
           ),

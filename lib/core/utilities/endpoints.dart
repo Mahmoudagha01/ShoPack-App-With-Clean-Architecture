@@ -17,3 +17,6 @@ const String requestOrderEndPoint ='/ecommerce/orders';
 const String getAllOrdersEndPoint ='/orders/me';
 const String requestPaymentEndPoint ='/acceptance/payment_keys';
 String? token;
+String? code;
+bool? isSkipedOnBoarding;
+bool? isLoggedIN;

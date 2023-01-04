@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shopack_user/core/network/payment_api_provider_impl.dart';
+import 'package:shopack_user/core/theme/bloc/theme_bloc.dart';
 import 'package:shopack_user/features/cart/data/datasource/placesAPI.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit.dart';
@@ -73,6 +74,7 @@ Future<void> init() async {
   injector.registerFactory(() => SendReviewBloc(injector()));
   injector.registerFactory(() => FavouriteBloc());
   injector.registerFactory(() => CartBloc());
+  injector.registerFactory(() => ThemeBloc());
   injector.registerFactory(() => AddressCubit(injector(), injector()));
   injector.registerFactory(() => LocationBloc(injector(), injector()));
   injector

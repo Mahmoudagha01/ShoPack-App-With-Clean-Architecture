@@ -32,10 +32,11 @@ class _RegisterViewState extends State<RegisterView> {
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_ios),),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -58,7 +59,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                   SizedBox(height: kHeight(context) * 0.05),
                   MainTFF(
-                    max: 1,
+                      max: 1,
                       labelText: AppStrings.name,
                       hintText: AppStrings.name,
                       controller: nameController,
@@ -79,7 +80,7 @@ class _RegisterViewState extends State<RegisterView> {
                     height: 10,
                   ),
                   MainTFF(
-                    max: 1,
+                      max: 1,
                       labelText: AppStrings.email,
                       hintText: AppStrings.email,
                       controller: emailController,
@@ -100,7 +101,7 @@ class _RegisterViewState extends State<RegisterView> {
                     height: 10,
                   ),
                   MainTFF(
-                    max: 1,
+                      max: 1,
                       labelText: AppStrings.password,
                       hintText: AppStrings.password,
                       controller: passController,
@@ -136,11 +137,14 @@ class _RegisterViewState extends State<RegisterView> {
                       if (state is RegisterFinishedState) {
                         showSnackbar(AppStrings.registeruccess, context,
                             ColorManager.green);
-                             PreferenceHelper.saveDataInSharedPreference(
+                        PreferenceHelper.saveDataInSharedPreference(
                             key: "token", value: state.data.token);
                         token = PreferenceHelper.getDataFromSharedPreference(
                             key: 'token');
-                        Navigator.pushReplacementNamed(context, AppRoutes.layout);
+                        PreferenceHelper.saveDataInSharedPreference(
+                            key: "IsLoggedIn", value: true);
+                        Navigator.pushReplacementNamed(
+                            context, AppRoutes.layout);
                       } else if (state is RegisterErrorState) {
                         showSnackbar(state.message, context, Colors.red);
                       }

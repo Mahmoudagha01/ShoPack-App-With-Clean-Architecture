@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopack_user/core/colors/colors.dart';
-
 import '../utilities/enums.dart';
 
 final appThemeData = {
@@ -95,7 +94,7 @@ final appThemeData = {
       backgroundColor: ColorManager.dark,
       elevation: 0.3,
       selectedItemColor: ColorManager.orangeDark,
-      selectedIconTheme: IconThemeData(color: ColorManager.dark),
+      selectedIconTheme: IconThemeData(color: ColorManager.orangeDark),
       unselectedIconTheme: IconThemeData(color: ColorManager.grey),
       unselectedItemColor: ColorManager.white,
     ),

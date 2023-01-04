@@ -68,7 +68,7 @@ class _LoginViewState extends State<LoginView> {
                     height: 10,
                   ),
                   MainTFF(
-                    max: 1,
+                      max: 1,
                       labelText: AppStrings.password,
                       hintText: AppStrings.password,
                       controller: passController,
@@ -116,6 +116,9 @@ class _LoginViewState extends State<LoginView> {
                             key: "token", value: state.data.token);
                         token = PreferenceHelper.getDataFromSharedPreference(
                             key: 'token');
+                        PreferenceHelper.saveDataInSharedPreference(
+                            key: "IsLoggedIn", value: true);
+                       
                         Navigator.pushReplacementNamed(
                             context, AppRoutes.layout);
                       } else if (state is LoginErrorState) {

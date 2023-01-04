@@ -5,6 +5,8 @@ import 'package:shopack_user/features/payment/presentation/views/payment.dart';
 import 'package:shopack_user/features/payment/presentation/views/success.dart';
 import 'package:shopack_user/features/profile/presentation/views/order_details.dart';
 import 'package:shopack_user/features/profile/presentation/views/orders.dart';
+import 'package:shopack_user/features/splash&onboarding/presentation/views/onBoarding.dart';
+import 'package:shopack_user/features/splash&onboarding/presentation/views/splash.dart';
 import '../../features/cart/presentation/views/map_screen.dart';
 import '../../features/forgotpass&verifyemail/presentation/views/forgotpassword.dart';
 import '../../features/home/presentation/view/home.dart';
@@ -22,6 +24,10 @@ import 'routes.dart';
 
 Route<dynamic> onGenerate(RouteSettings settings) {
   switch (settings.name) {
+    case AppRoutes.splash:
+      return MaterialPageRoute(builder: (context) => const SplashView());
+    case AppRoutes.onBoarding:
+      return MaterialPageRoute(builder: (context) => const OnBoardingView());
     case AppRoutes.login:
       return MaterialPageRoute(builder: (context) => const LoginView());
     case AppRoutes.register:

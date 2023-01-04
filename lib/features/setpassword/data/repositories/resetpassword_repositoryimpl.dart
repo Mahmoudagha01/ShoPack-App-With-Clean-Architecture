@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/error/failure.dart';
@@ -13,6 +12,7 @@ class ResetPasswordRepositoryImpl implements ResetPasswordRepository {
   final ResetPasswordDatasource resetPasswordDatasource;
 
   ResetPasswordRepositoryImpl(this.networkInfo, this.resetPasswordDatasource);
+  @override
   Future<Either<Failure, ResetPasswordEntity>> resetPassword(
       ResetPasswordParams params) async {
     if (await networkInfo.isConnected) {

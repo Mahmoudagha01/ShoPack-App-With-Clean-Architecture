@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopack_user/core/utilities/endpoints.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/local/shared_preference.dart';
 import '../../../../core/utilities/enums.dart';
@@ -132,7 +133,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             : status == VerifyStatus.forgotPassword
                                 ? MainButton(
                                     text: AppStrings.send.toUpperCase(),
-                                     height: 50,
+                                    height: 50,
                                     ontab: () {
                                       if (formKey.currentState!.validate()) {
                                         BlocProvider.of<
@@ -145,13 +146,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     })
                                 : MainButton(
                                     text: AppStrings.send.toUpperCase(),
-                                     height: 50,
+                                    height: 50,
                                     ontab: () {
                                       if (formKey.currentState!.validate()) {
                                         PreferenceHelper
                                             .saveDataInSharedPreference(
                                                 key: "code",
                                                 value: inputController.text);
+                                        code = PreferenceHelper
+                                            .getDataFromSharedPreference(
+                                                key: 'code');
                                         Navigator.pushReplacementNamed(
                                             context, AppRoutes.setPassword);
                                       }

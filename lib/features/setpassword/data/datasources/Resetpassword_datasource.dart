@@ -18,7 +18,7 @@ class ResetPasswordDataSourceImpl implements ResetPasswordDatasource {
   Future<ResetPasswordModel> resetPassword(ResetPasswordParams params) async {
     final response = await apiProvider.put(
         endPoint:
-            "$resetPasswordEndPoint${PreferenceHelper.getDataFromSharedPreference(key: "Link")}",
+            '$resetPasswordEndPoint$code',
         data: {
           "password": params.password,
           "confirmPassword": params.confirmPassword
