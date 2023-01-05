@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import 'package:shopack_user/core/network/paymentApiProvider.dart';
 import '../utilities/endpoints.dart';
 
@@ -62,10 +61,7 @@ class PaymentAPIProviderImpl implements PaymentAPIProvider {
       'Content-Type': 'application/json',
     };
 
-    debugPrint('URL => ${dio.options.baseUrl + endPoint}');
-    debugPrint('Header => ${dio.options.headers.toString()}');
-    debugPrint('Body => $data');
-    debugPrint('Query => $query');
+ 
 
     return await dio.post(
       endPoint,

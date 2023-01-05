@@ -5,7 +5,7 @@
    <application
         android:label="shopack_user"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
          <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyAsSsbdSWPvFxb7YSYQHjbw-s0yb86gj0E"/>
         <activity

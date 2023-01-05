@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
-
 import '../../../../core/colors/colors.dart';
+import '../../../cart/presentation/bloc/location_bloc.dart';
 import '../../../cart/presentation/views/cart.dart';
 import '../../../favorite/presentation/views/favorite.dart';
 import '../../../profile/presentation/bloc/profile_bloc.dart';
@@ -23,6 +23,7 @@ class _LayoutPageState extends State<LayoutPage> {
   @override
   void initState() {
     BlocProvider.of<ProductsBloc>(context).add(GetAllProducts());
+    BlocProvider.of<LocationBloc>(context).add(CheckPermission(context));
     super.initState();
   }
 

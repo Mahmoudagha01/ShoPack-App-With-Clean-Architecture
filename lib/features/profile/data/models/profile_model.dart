@@ -1,10 +1,14 @@
-
 import '../../domain/entities/profile_entity.dart';
 
 class ProfileModel extends ProfileEntity {
-  const ProfileModel(super.success, super.user,super.message);
-  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
-      ProfileModel(json['success'],json['user']!=null? UserModel.fromJson(json['user']):null,json['message']??'');
+  const ProfileModel(super.success, super.user, super.message);
+  factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
+      json['success'],
+      json['user'] != null
+          ? UserModel.fromJson(json['user'])
+          : const UserModel(
+              "id", "name", "email", AvatarModel("publicId", "url")),
+      json['message'] ?? '');
 }
 
 class UserModel extends UserEntity {
@@ -13,7 +17,7 @@ class UserModel extends UserEntity {
       json['_id'],
       json['name'],
       json['email'],
-    json['avatar']!=null? AvatarModel.fromJson(json['avatar']):null);
+      json['avatar'] != null ? AvatarModel.fromJson(json['avatar']) : null);
 }
 
 class AvatarModel extends AvatarEntity {

@@ -9,7 +9,6 @@ import 'package:shopack_user/features/cart/presentation/bloc/cubit/address_cubit
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import 'package:shopack_user/features/payment/presentation/bloc/order_bloc.dart';
 import 'core/local/shared_preference.dart';
-import 'core/theme/theme_data.dart';
 import 'core/theme/theme_service.dart';
 import 'dependancy_injection.dart';
 import 'features/cart/data/datasource/local_datasource.dart';

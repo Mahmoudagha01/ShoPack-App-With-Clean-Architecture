@@ -9,8 +9,6 @@ import 'package:shopack_user/core/error/error_handler.dart';
 import 'package:shopack_user/core/network/network_info.dart';
 import 'package:shopack_user/core/utilities/strings.dart';
 import 'package:shopack_user/features/cart/data/datasource/placesAPI.dart';
-
-import '../../../../core/utilities/enums.dart';
 import '../widgets/permissiondialog.dart';
 
 part 'location_event.dart';

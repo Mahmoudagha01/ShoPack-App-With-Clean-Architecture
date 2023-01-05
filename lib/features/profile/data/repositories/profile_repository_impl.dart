@@ -15,21 +15,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ProfileRepositoryImpl(this.profileDatasource, this.networkInfo);
   @override
   Future<Either<Failure, ProfileEntity>> getUserDetail() async {
-
     if (await networkInfo.isConnected) {
       try {
-       
-        
         final data = await profileDatasource.getUserDetails();
         CacheManager().putItem(data);
         return right(data);
       } catch (error) {
+        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
       final profile = CacheManager().getItem("user-info");
-      if (profile!=null)   return right(profile);
-    
+      if (profile != null) return right(profile);
+
       return left(const OfflineFailure(AppStrings.noInternetError));
     }
   }

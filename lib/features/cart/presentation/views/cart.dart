@@ -22,6 +22,7 @@ class CartView extends StatefulWidget {
 class _CartViewState extends State<CartView> {
   @override
   void initState() {
+    
     BlocProvider.of<LocationBloc>(context).add(GetCurrentLocation());
     BlocProvider.of<PaymentBloc>(context)
                     .add(RequestAuth(dotenv.env['PAYMENT_API_KEY']!));
@@ -54,8 +55,7 @@ class _CartViewState extends State<CartView> {
                         .cartItems
                         .isNotEmpty) {
                       Navigator.pushNamed(context, AppRoutes.checkout);
-                      BlocProvider.of<LocationBloc>(context)
-                          .add(CheckPermission(context));
+                     
                           
                 BlocProvider.of<PaymentBloc>(context).add(
                   RequestOrder(
