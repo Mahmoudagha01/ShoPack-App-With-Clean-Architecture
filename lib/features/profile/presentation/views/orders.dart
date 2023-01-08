@@ -27,7 +27,7 @@ class OrdersView extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
           ),
           bottom: const TabBar(
-            tabs: <Widget>[
+            tabs: [
               Tab(
                 text: AppStrings.activeOrders,
               ),

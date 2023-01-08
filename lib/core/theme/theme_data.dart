@@ -87,6 +87,7 @@ final appThemeData = {
         color: ColorManager.light,
       ),
     ),
+    cardColor:ColorManager.green ,
     scaffoldBackgroundColor: ColorManager.dark,
     bottomSheetTheme:
         const BottomSheetThemeData(backgroundColor: ColorManager.dark),

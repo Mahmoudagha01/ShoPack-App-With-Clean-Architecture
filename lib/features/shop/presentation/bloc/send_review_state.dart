@@ -22,3 +22,17 @@ class SendReviewErrorState extends SendReviewState {
 
   const SendReviewErrorState(this.message);
 }
+
+class GetAllReviewsLoadingState extends SendReviewState {}
+
+class GetAllReviewsLoadedState extends SendReviewState {
+  final GetReviewsEntity data;
+
+  const GetAllReviewsLoadedState(this.data);
+}
+
+class GetAllReviewsErrorState extends SendReviewState {
+  final String message;
+
+  const GetAllReviewsErrorState(this.message);
+}

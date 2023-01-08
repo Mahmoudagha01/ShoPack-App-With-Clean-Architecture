@@ -1,3 +1,4 @@
+import '../../../../core/local/shared_preference.dart';
 import '../../../../core/network/api_provider.dart';
 import '../../../../core/utilities/endpoints.dart';
 import '../../domain/repositories/profile_repository.dart';
@@ -17,7 +18,8 @@ class ProfileDataSourceImpl implements ProfileDatasource {
   Future<ProfileModel> getUserDetails() async {
     final response = await apiProvider.get(
       endPoint: profileEndPoint,
-      token: token ?? '',
+      token: PreferenceHelper.getDataFromSharedPreference(
+                            key: 'token') ?? '',
     );
     return ProfileModel.fromJson(response.data);
   }
@@ -31,7 +33,8 @@ class ProfileDataSourceImpl implements ProfileDatasource {
         "name": params.name,
         "email": params.email,
       },
-      token: token ?? '',
+      token: PreferenceHelper.getDataFromSharedPreference(
+                            key: 'token') ?? '',
     );
     return ProfileModel.fromJson(response.data);
   }
@@ -45,7 +48,8 @@ class ProfileDataSourceImpl implements ProfileDatasource {
         'newPassword': params.newPassword,
         'confirmPassword': params.confirmPassword,
       },
-      token: token ?? '',
+      token: PreferenceHelper.getDataFromSharedPreference(
+                            key: 'token') ?? '',
     );
     return ProfileModel.fromJson(response.data);
   }

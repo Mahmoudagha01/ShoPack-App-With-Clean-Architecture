@@ -112,10 +112,7 @@ class _LoginViewState extends State<LoginView> {
                         showSnackbar(AppStrings.loginsuccess, context,
                             ColorManager.green);
 
-                        PreferenceHelper.saveDataInSharedPreference(
-                            key: "token", value: state.data.token);
-                        token = PreferenceHelper.getDataFromSharedPreference(
-                            key: 'token');
+                    
                         PreferenceHelper.saveDataInSharedPreference(
                             key: "IsLoggedIn", value: true);
                        

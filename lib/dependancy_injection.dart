@@ -15,6 +15,7 @@ import 'package:shopack_user/features/payment/domain/usecases/getAllOrders.dart'
 import 'package:shopack_user/features/payment/domain/usecases/requestAuth_Usecase.dart';
 import 'package:shopack_user/features/payment/presentation/bloc/order_bloc.dart';
 import 'package:shopack_user/features/payment/presentation/bloc/payment_bloc.dart';
+import 'package:shopack_user/features/shop/domain/usecases/getAllReviews.dart';
 import 'core/network/api_provider.dart';
 import 'core/network/api_provider_impl.dart';
 import 'core/network/network_info.dart';
@@ -71,7 +72,7 @@ Future<void> init() async {
   injector.registerFactory(() => ProductsBloc(injector(), injector()));
   injector.registerFactory(() => ProfileBloc(injector(), injector()));
   injector.registerFactory(() => UpdatePasswordBloc(injector()));
-  injector.registerFactory(() => SendReviewBloc(injector()));
+  injector.registerFactory(() => SendReviewBloc(injector(), injector()));
   injector.registerFactory(() => FavouriteBloc());
   injector.registerFactory(() => CartBloc());
   injector.registerFactory(() => ThemeBloc());
@@ -90,6 +91,7 @@ Future<void> init() async {
   injector.registerLazySingleton(() => GetUserDetails(injector()));
   injector.registerLazySingleton(() => UpdateUserDetailUsecase(injector()));
   injector.registerLazySingleton(() => UpdatePasswordUsecase(injector()));
+  injector.registerLazySingleton(() => GetReviewsUsecase(injector()));
   injector.registerLazySingleton(() => SendReviewUsecase(injector()));
   injector.registerLazySingleton(() => RequestAuthUsecase(injector()));
   injector.registerLazySingleton(() => RequestOrderUsecase(injector()));

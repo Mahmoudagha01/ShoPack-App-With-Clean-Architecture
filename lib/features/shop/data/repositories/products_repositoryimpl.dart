@@ -1,5 +1,5 @@
-
 import 'package:dartz/dartz.dart';
+import 'package:shopack_user/features/shop/domain/entities/reviews_entity.dart';
 import '../../../../core/error/error_handler.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/network/network_info.dart';
@@ -21,7 +21,6 @@ class ProductsRepositoryImpl implements ProductRepository {
         final data = await productsDatasource.getAllProducts();
         return right(data);
       } catch (error) {
-   
         return left(ErrorHandler.handle(error).failure);
       }
     } else {
@@ -45,12 +44,29 @@ class ProductsRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<Failure, ResponseEntity>> sendReview(SendReviewParams params) async{
-   if (await networkInfo.isConnected) {
+  Future<Either<Failure, ResponseEntity>> sendReview(
+      SendReviewParams params) async {
+    if (await networkInfo.isConnected) {
       try {
         final data = await productsDatasource.sendReview(params);
         return right(data);
       } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return left(const OfflineFailure(AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, GetReviewsEntity>> getReviews(
+      GetReviewsParams params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final data = await productsDatasource.getReviews(params);
+        return right(data);
+      } catch (error) {
+        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

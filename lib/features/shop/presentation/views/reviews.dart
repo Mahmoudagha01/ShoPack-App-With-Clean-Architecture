@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shopack_user/features/shop/presentation/bloc/send_review_bloc.dart';
 import 'package:shopack_user/features/shop/presentation/widgets/review_card.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
@@ -77,50 +79,140 @@ class _ReviewsViewState extends State<ReviewsView> {
             )),
       ),
       body: Stack(children: [
-        ListView(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      Text(widget.product.ratings.toString(),
-                          style: Theme.of(context).textTheme.headline6),
-                      Text('${widget.product.numOfReviews.toString()} ratings',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: ColorManager.grey)),
-                    ],
-                  ),
-                  RatingBarIndicator(
-                    itemSize: 50.0,
-                    rating: widget.product.ratings.toDouble(),
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: Colors.amber,
+          child: BlocBuilder<SendReviewBloc, SendReviewState>(
+            builder: (context, state) {
+              if (state is GetAllReviewsLoadingState) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is GetAllReviewsLoadedState) {
+                return Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            Text(widget.product.ratings.toString(),
+                                style: Theme.of(context).textTheme.headline6),
+                            Text(
+                                '${state.data.reviews!.length.toString()} ratings',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(color: ColorManager.grey)),
+                          ],
+                        ),
+                        RatingBarIndicator(
+                          itemSize: 50.0,
+                          rating: widget.product.ratings.toDouble(),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          direction: Axis.horizontal,
+                        ),
+                      ],
                     ),
-                    direction: Axis.horizontal,
-                  ),
-                ],
-              ),
-              Expanded(
-                  child: Center(
-                      child: widget.product.reviews!.isEmpty
-                          ? Lottie.asset('assets/images/empty.json')
-                          : ListView.builder(
-                              itemCount: widget.product.reviews!.length,
-                              itemBuilder: (context, index) {
-                                return ReviewCard(
-                                  product: widget.product,
-                                  index: index,
-                                );
-                              },
-                            )))
-            ],
+                    Expanded(
+                        child: Center(
+                            child: state.data.reviews!.isEmpty
+                                ? Lottie.asset('assets/images/empty.json')
+                                : ListView.builder(
+                                    itemCount: state.data.reviews!.length,
+                                    itemBuilder: (context, index) {
+                                      return Stack(children: [
+                                        SizedBox(
+                                          height: kHeight(context) / 3.9,
+                                          width: kWidth(context),
+                                        ),
+                                        Positioned(
+                                          top: 25,
+                                          left: 10,
+                                          right: 10,
+                                          child: SizedBox(
+                                            width: kWidth(context),
+                                            height: kHeight(context) / 4.5,
+                                            child: Card(
+                                                child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20,
+                                                      vertical: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(state.data
+                                                      .reviews![index].name!),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      RatingBarIndicator(
+                                                        itemSize: 20.0,
+                                                        rating: state.data.reviews![index].rating!.toDouble(),
+                                                            
+                                                        itemBuilder:
+                                                            (context, _) =>
+                                                                const Icon(
+                                                          Icons.star,
+                                                          color: Colors.amber,
+                                                        ),
+                                                        direction:
+                                                            Axis.horizontal,
+                                                      ),
+                                                      Text(
+                                                        DateFormat.yMMMEd()
+                                                            .format(state
+                                                                .data
+                                                                .reviews![index]
+                                                                .createdAt!),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyLarge!
+                                                            .copyWith(
+                                                                color:
+                                                                    ColorManager
+                                                                        .grey),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      maxLines: 7,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      state.data.reviews![index]
+                                                          .comment!,
+                                                      textAlign:
+                                                          TextAlign.justify,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            )),
+                                          ),
+                                        ),
+                                        const CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                              'assets/images/avatar.jpg'),
+                                        ),
+                                      ]);
+                                    },
+                                  )))
+                  ],
+                );
+              } else if (state is GetAllReviewsErrorState) {
+                return Center(child: Text(state.message));
+              } else {
+                return const SizedBox();
+              }
+            },
           ),
         ),
       ]),

@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shopack_user/features/favorite/presentation/bloc/favourite_bloc.dart';
 import '../../../core/colors/colors.dart';
+import '../../../core/theme/bloc/theme_bloc.dart';
+import '../../../core/theme/theme_data.dart';
+import '../../../core/utilities/enums.dart';
 import '../../../core/utilities/mediaquery.dart';
 import '../../../core/utilities/strings.dart';
 import '../../login/presentation/widgets/alert_snackbar.dart';
@@ -17,7 +20,9 @@ class NewProductItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Container(
         decoration: BoxDecoration(
-            color: ColorManager.white, borderRadius: BorderRadius.circular(15)),
+            color: BlocProvider.of<ThemeBloc>(context).themeData== appThemeData[AppTheme.lightTheme]
+                    ? ColorManager.white
+                    : Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(15)),
         child: Stack(
           children: [
             Image.network(

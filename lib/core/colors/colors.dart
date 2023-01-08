@@ -8,5 +8,5 @@ class ColorManager {
   static const Color orangeLight = Color.fromRGBO(240, 31, 14, 1);
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color green = Color.fromRGBO(42, 169, 82, 1);
-  static const Color onBoadingColor = Color(0xffF0ECCF);
+  static const Color onBoadingColor = Color(0xffFFB26B);
 }

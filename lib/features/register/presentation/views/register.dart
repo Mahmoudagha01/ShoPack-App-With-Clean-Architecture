@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/local/shared_preference.dart';
-import '../../../../core/utilities/endpoints.dart';
 import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/routes.dart';
 import '../../../../core/utilities/strings.dart';
@@ -139,8 +138,6 @@ class _RegisterViewState extends State<RegisterView> {
                             ColorManager.green);
                         PreferenceHelper.saveDataInSharedPreference(
                             key: "token", value: state.data.token);
-                        token = PreferenceHelper.getDataFromSharedPreference(
-                            key: 'token');
                         PreferenceHelper.saveDataInSharedPreference(
                             key: "IsLoggedIn", value: true);
                         Navigator.pushReplacementNamed(

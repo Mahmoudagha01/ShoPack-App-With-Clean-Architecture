@@ -1,4 +1,5 @@
-
+import 'package:shopack_user/features/shop/data/models/reviews_model.dart';
+import '../../../../core/local/shared_preference.dart';
 import '../../../../core/network/api_provider.dart';
 import '../../../../core/utilities/endpoints.dart';
 import '../../domain/repositories/product_repository.dart';
@@ -9,6 +10,7 @@ abstract class ProductsDatasource {
   Future<ProductsModel> getAllProducts();
   Future<ProductsModel> getSpecificProduct(GetProductParams params);
   Future<ResponseModel> sendReview(SendReviewParams params);
+  Future<GetReviewsModel> getReviews(GetReviewsParams params);
 }
 
 class ProductsDatasourceImpl implements ProductsDatasource {
@@ -36,13 +38,22 @@ class ProductsDatasourceImpl implements ProductsDatasource {
   @override
   Future<ResponseModel> sendReview(SendReviewParams params) async {
     final response = await apiProvider.put(
-        endPoint: reviewEndPoint,
+        endPoint: getAllReviewsEndPoint,
         data: {
           'productId': params.productId,
           'comment': params.comment,
           'rating': params.rating,
         },
-        token: token ?? '');
+        token:
+            PreferenceHelper.getDataFromSharedPreference(key: 'token') ?? '');
     return ResponseModel.fromJson(response.data);
+  }
+
+  @override
+  Future<GetReviewsModel> getReviews(GetReviewsParams params) async {
+    final response = await apiProvider.get(
+      endPoint: "$reviewEndPoint?id=${params.productId}",
+    );
+    return GetReviewsModel.fromJson(response.data);
   }
 }

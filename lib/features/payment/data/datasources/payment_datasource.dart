@@ -7,6 +7,7 @@ import 'package:shopack_user/features/payment/data/models/neworder_model.dart';
 import 'package:shopack_user/features/payment/data/models/order_request_model.dart';
 import 'package:shopack_user/features/payment/data/models/payment_request_model.dart';
 import 'package:shopack_user/features/payment/domain/repositories/payment_repository.dart';
+import '../../../../core/local/shared_preference.dart';
 import '../../../../core/network/paymentApiProvider.dart';
 
 abstract class PaymentDataSource {
@@ -72,7 +73,8 @@ class PaymentDataSourceImpl implements PaymentDataSource {
   Future<NewOrderModel> createNewOrder(CreateNewOrderParams params) async {
     final response = await apiBaseProvider.post(
         endPoint: newOrderEndPoint,
-        token: token ?? '',
+        token: PreferenceHelper.getDataFromSharedPreference(
+                            key: 'token') ?? '',
         data: ({
           "itemsPrice": params.itemsPrice,
           "shippingPrice": params.shippingPrice,
@@ -94,7 +96,8 @@ class PaymentDataSourceImpl implements PaymentDataSource {
   @override
   Future<AllOrdersModel> getAllOrders(NoParams params) async {
     final response = await apiBaseProvider.get(
-        endPoint: getAllOrdersEndPoint, token: token ?? "");
+        endPoint: getAllOrdersEndPoint, token: PreferenceHelper.getDataFromSharedPreference(
+                            key: 'token') ?? "");
     return AllOrdersModel.fromJson(response.data);
   }
 }

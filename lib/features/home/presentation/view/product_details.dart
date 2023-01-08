@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:shopack_user/features/shop/presentation/bloc/send_review_bloc.dart';
 import 'package:shopack_user/features/shop/presentation/widgets/review_card.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
@@ -166,8 +167,7 @@ class _ProductDetailsState extends State<ProductDetails>
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             onPressed: () {
-             BlocProvider.of<CartBloc>(context)
-                                .add(AddToCart(widget.product));
+              BlocProvider.of<CartBloc>(context).add(AddToCart(widget.product));
               animateCartAdd(
                 context,
                 NetworkImage(
@@ -293,6 +293,8 @@ class _ProductDetailsState extends State<ProductDetails>
                         onPressed: () {
                           Navigator.pushNamed(context, AppRoutes.productreviews,
                               arguments: widget.product);
+                          BlocProvider.of<SendReviewBloc>(context)
+                              .add(GetReviews(widget.product.id));
                         },
                         child: const Text(AppStrings.seeMore))
                   ],
@@ -329,11 +331,13 @@ class _ProductDetailsState extends State<ProductDetails>
                   ],
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                child: ReviewCard(product: widget.product, index: 0),
-              ),
+              widget.product.numOfReviews != 0
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 15),
+                      child: ReviewCard(product: widget.product, index: 0),
+                    )
+                  : const SizedBox(),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 15),

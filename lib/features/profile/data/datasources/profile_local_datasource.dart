@@ -44,7 +44,7 @@ class CacheManager implements CacheManagerBase<ProfileEntity> {
 
   @override
   Future<void> clearAt(id) {
-    // TODO: implement clearAt
+
     throw UnimplementedError();
   }
 }

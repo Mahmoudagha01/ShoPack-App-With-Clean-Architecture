@@ -9,12 +9,14 @@ part 'theme_event.dart';
 part 'theme_state.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
+   ThemeData ? themeData;
   ThemeBloc()
       : super(ThemeState(
             themeData: appThemeData[
                 AppTheme.values[ThemeDatabaseService.getThemeSettings()]]!)) {
     on<ThemeChanged>((event, emit) {
       emit.call(ThemeState(themeData: appThemeData[event.theme]!));
+      themeData = appThemeData[event.theme];
     });
   }
 }
