@@ -50,6 +50,7 @@ Dark mode sample 1           | Dark mode sample 2     | Dark mode sample 3  | No
 * payment integration with paymob
 
 ## Directory Structure
+```
 lib
 ├───core
 │   ├───colors
@@ -173,7 +174,7 @@ lib
         └───presentation
             ├───views
             └───widgets
-
+```
 
 
 
