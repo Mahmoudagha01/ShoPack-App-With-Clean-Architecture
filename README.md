@@ -1,4 +1,6 @@
 # **ShoPack E-Commerce App Using Flutter (User App)**
+This app follow clean architecture proposed By Uncle Bob 
+I used BloC as state management to improve widget rebuilding performance. 
 
 # video
 You can see a Demo video [Here](https://youtu.be/ZHnQVbcstT0)
@@ -28,8 +30,149 @@ Dark mode sample 1           | Dark mode sample 2     | Dark mode sample 3  | No
 ![Screenshot_٢٠٢٣-٠١-٠٩-٢١-٣٧-٤٨-٢٤٤_com example shopack_user](https://user-images.githubusercontent.com/55716560/211394475-382c4af2-8b67-4c43-b663-b7c53fa1b218.jpg)|![Screenshot_٢٠٢٣-٠١-٠٩-٢١-٣٨-١٩-٣٥٢_com example shopack_user](https://user-images.githubusercontent.com/55716560/211394512-ac9650dd-0aab-47cd-93e1-77381461048f.jpg)|![Screenshot_٢٠٢٣-٠١-٠٩-٢١-٣٨-١٢-٩٥٤_com example shopack_user](https://user-images.githubusercontent.com/55716560/211394599-a85fbf5f-83de-4b01-8600-dff9eda8f568.jpg)|![Screenshot_٢٠٢٣-٠١-٠٩-٢١-٤٦-٣٧-٩٠٣_com example shopack_user](https://user-images.githubusercontent.com/55716560/211394911-93918279-35e8-44bf-bcd2-22a002799615.jpg)
 
 
+## APP FEATURES 
 
+* Authentication (Login/Register) 
+* Email sign-in backed up by Reset Password 
+* Beautiful onboarding layout and animations 
+* Shop by category and trending products 
+* Search products with Its Name 
+* Filter products by ratings or price 
+* Products, Favorite can be accessed in-app 
+* Edit account details easily 
+* Chang Password easily
+* Order products through quote based system 
+* Easily editable product widgets (Cards, Slider, Grids, Lists and more!) 
+* Beautiful Product pages with reviews, description and features 
+* Caching data in local database (Hive) 
+* Adaptive UI (changes color based on Mode dark or light)
+* Google Map (Get current Location & Search specific Location)
+* payment integration with paymob
 
+## Directory Structure
+lib
+├───core
+│   ├───colors
+│   ├───error
+│   ├───local
+│   ├───network
+│   ├───theme
+│   │   ├───bloc
+│   │   └───local_theme
+│   ├───usecase
+│   └───utilities
+└───features
+    ├───cart
+    │   ├───data
+    │   │   ├───datasource       
+    │   │   └───models
+    │   └───presentation
+    │       ├───bloc
+    │       │   └───cubit        
+    │       ├───views
+    │       └───widgets
+    ├───favorite
+    │   └───presentation
+    │       ├───bloc
+    │       └───views
+    ├───forgotpass&verifyemail   
+    │   ├───data
+    │   │   ├───datasources      
+    │   │   ├───models
+    │   │   └───repositories     
+    │   ├───domain
+    │   │   ├───entities
+    │   │   ├───repositories     
+    │   │   └───usecases
+    │   └───presentation
+    │       ├───forgotpass&verifyemail_bloc
+    │       └───views
+    ├───home
+    │   ├───presentation
+    │   │   ├───bloc
+    │   │   └───view
+    │   └───widgets
+    ├───login
+    │   ├───data
+    │   │   ├───datasources
+    │   │   ├───models
+    │   │   └───repositories
+    │   ├───domin
+    │   │   ├───entities
+    │   │   ├───repositories
+    │   │   └───usecases
+    │   └───presentation
+    │       ├───bloc
+    │       ├───view
+    │       └───widgets
+    ├───payment
+    │   ├───data
+    │   │   ├───datasources
+    │   │   ├───models
+    │   │   └───repositrories
+    │   ├───domain
+    │   │   ├───entities
+    │   │   ├───repositories
+    │   │   └───usecases
+    │   └───presentation
+    │       ├───bloc
+    │       └───views
+    ├───profile
+    │   ├───data
+    │   │   ├───datasources
+    │   │   ├───models
+    │   │   └───repositories
+    │   ├───domain
+    │   │   ├───entities
+    │   │   ├───repositories
+    │   │   └───usecases
+    │   └───presentation
+    │       ├───bloc
+    │       ├───views
+    │       └───widgets
+    ├───register
+    │   ├───data
+    │   │   ├───datasources
+    │   │   ├───models
+    │   │   └───repositories
+    │   ├───domain
+    │   │   ├───entities
+    │   │   ├───repositories
+    │   │   └───usecases
+    │   └───presentation
+    │       ├───bloc
+    │       └───views
+    ├───setpassword
+    │   ├───data
+    │   │   ├───datasources
+    │   │   ├───models
+    │   │   └───repositories
+    │   ├───domain
+    │   │   ├───entities
+    │   │   ├───repositories
+    │   │   └───usecases
+    │   └───presentation
+    │       ├───bloc
+    │       └───views
+    ├───shop
+    │   ├───data
+    │   │   ├───datasources
+    │   │   ├───models
+    │   │   └───repositories
+    │   ├───domain
+    │   │   ├───entities
+    │   │   ├───repositories
+    │   │   └───usecases
+    │   └───presentation
+    │       ├───bloc
+    │       ├───views
+    │       └───widgets
+    └───splash&onboarding
+        ├───data
+        │   └───models
+        └───presentation
+            ├───views
+            └───widgets
 
 
 
