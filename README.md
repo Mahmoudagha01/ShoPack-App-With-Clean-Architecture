@@ -62,6 +62,8 @@ lib
 │   │   └───local_theme
 │   ├───usecase
 │   └───utilities
+├── dependency_injection.dart
+├── main.dart
 └───features
     ├───cart
     │   ├───data
