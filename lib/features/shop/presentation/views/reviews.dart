@@ -4,7 +4,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shopack_user/features/shop/presentation/bloc/send_review_bloc.dart';
-import 'package:shopack_user/features/shop/presentation/widgets/review_card.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
 import '../../../../core/utilities/strings.dart';
@@ -93,7 +92,7 @@ class _ReviewsViewState extends State<ReviewsView> {
                       children: [
                         Column(
                           children: [
-                            Text(widget.product.ratings.toString(),
+                            Text(widget.product.ratings.toStringAsFixed(1),
                                 style: Theme.of(context).textTheme.headline6),
                             Text(
                                 '${state.data.reviews!.length.toString()} ratings',

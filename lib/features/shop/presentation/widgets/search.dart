@@ -42,8 +42,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                                       bloc.add(GetFilterSpecificProduct(
                                           bloc.categories[bloc.current],
                                           '0',
-                                          '10000',
-                                          bloc.rateValue.round().toString(),
+                                          '100000',
+                                          '-1',
                                           searchControler.text));
                                     },
                                     icon: const Icon(Icons.search)),

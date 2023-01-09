@@ -33,7 +33,7 @@ class OrderCardPastOrders extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    DateFormat.yMMMEd().format(bloc.activeOrders[index].paidAt),
+                    DateFormat.yMMMEd().format(bloc.pastOrders[index].paidAt),
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   Text('${bloc.pastOrders[index].itemsPrice} \$')
@@ -66,7 +66,7 @@ class OrderCardPastOrders extends StatelessWidget {
                         width: 4,
                       ),
                       Text(
-                        "Processing",
+                        "Delivered",
                         style: Theme.of(context).textTheme.bodySmall,
                       )
                     ],

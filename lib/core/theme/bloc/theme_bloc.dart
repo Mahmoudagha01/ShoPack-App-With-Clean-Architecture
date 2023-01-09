@@ -9,7 +9,7 @@ part 'theme_event.dart';
 part 'theme_state.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-   ThemeData ? themeData;
+   ThemeData?  themeData= appThemeData[AppTheme.lightTheme];
   ThemeBloc()
       : super(ThemeState(
             themeData: appThemeData[

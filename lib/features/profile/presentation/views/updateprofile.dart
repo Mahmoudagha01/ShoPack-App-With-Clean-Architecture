@@ -35,8 +35,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
           automaticallyImplyLeading: false,
           leading: IconButton(
               onPressed: () {
-                BlocProvider.of<ProfileBloc>(context)
-                    .add(GetProfile());
+                BlocProvider.of<ProfileBloc>(context).add(GetProfile());
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.arrow_back_ios)),
@@ -57,7 +56,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                   SizedBox(height: kHeight(context) * 0.1),
                   BlocBuilder<ProfileBloc, ProfileState>(
                     builder: (context, state) {
-                      if (state is UploadImageState ) {
+                      if (state is UploadImageState) {
                         return Stack(children: [
                           SizedBox(
                             width: kWidth(context) * .25,
@@ -65,8 +64,11 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                           ),
                           CircleAvatar(
                             radius: 50,
-                            backgroundImage:
-                                NetworkImage(state.image.secureUrl!),
+                            backgroundImage: NetworkImage(state
+                                        .image.secureUrl ==
+                                    null
+                                ? 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png'
+                                : state.image.secureUrl!),
                           ),
                           Positioned(
                             left: 2,
@@ -93,13 +95,14 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                             ),
                           )
                         ]);
-                      } else if (state is UploadImagesLoadingState || state is UpdateProfileLoadingState) {
+                      } else if (state is UploadImagesLoadingState ||
+                          state is UpdateProfileLoadingState) {
                         return const CircleAvatar(
                           radius: 50,
                           backgroundColor: ColorManager.grey,
                           child: CircularProgressIndicator(),
                         );
-                      } else if(state is ProfileUpdateState ){
+                      } else if (state is ProfileUpdateState) {
                         return Stack(children: [
                           SizedBox(
                             width: kWidth(context) * .25,
@@ -107,8 +110,11 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                           ),
                           CircleAvatar(
                             radius: 50,
-                            backgroundImage:
-                                NetworkImage(state.data.user!.avtar!.url),
+                            backgroundImage: NetworkImage(state
+                                        .data.user!.avtar ==
+                                    null
+                                ? 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png'
+                                : state.data.user!.avtar!.url),
                           ),
                           Positioned(
                             left: 2,
@@ -135,8 +141,7 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                             ),
                           )
                         ]);
-                      }
-                      else {
+                      } else {
                         return Stack(children: [
                           SizedBox(
                             width: kWidth(context) * .25,
@@ -144,8 +149,10 @@ class _UpdateProfileViewState extends State<UpdateProfileView> {
                           ),
                           CircleAvatar(
                             radius: 50,
-                            backgroundImage:
-                                NetworkImage(widget.user.avtar!.url),
+                            backgroundImage: NetworkImage(widget.user.avtar ==
+                                    null
+                                ? 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png'
+                                : widget.user.avtar!.url),
                           ),
                           Positioned(
                             left: 2,

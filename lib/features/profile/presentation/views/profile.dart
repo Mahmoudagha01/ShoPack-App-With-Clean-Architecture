@@ -22,9 +22,8 @@ class ProfileView extends StatelessWidget {
       appBar: AppBar(
         actions: [
           BlocBuilder<ThemeBloc, ThemeState>(
-            
             builder: (context, state) {
-               late AppTheme currentTheme;
+              late AppTheme currentTheme;
               return IconButton(
                 onPressed: () {
                   if (state.themeData == appThemeData[AppTheme.lightTheme]) {
@@ -75,6 +74,8 @@ class ProfileView extends StatelessWidget {
                           )
                         : const CircleAvatar(
                             radius: 50,
+                            backgroundImage: NetworkImage(
+                                'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png'),
                           ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),

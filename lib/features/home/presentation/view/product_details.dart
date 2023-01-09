@@ -316,7 +316,7 @@ class _ProductDetailsState extends State<ProductDetails>
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      '${widget.product.ratings}',
+                      widget.product.ratings.toStringAsFixed(1),
                       style: Theme.of(context).textTheme.caption!.copyWith(
                             color: Colors.grey,
                           ),
