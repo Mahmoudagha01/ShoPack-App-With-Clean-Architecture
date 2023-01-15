@@ -60,92 +60,94 @@ class ProfileView extends StatelessWidget {
           child: BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, state) {
               if (state is ProfileLoadedState) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    state.data.user!.avtar != null
-                        ? CircleAvatar(
-                            radius: 50,
-                            backgroundImage:
-                                NetworkImage(state.data.user!.avtar!.url),
-                          )
-                        : const CircleAvatar(
-                            radius: 50,
-                            backgroundImage: NetworkImage(
-                                'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png'),
-                          ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            Text(
-                              state.data.user!.name,
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              state.data.user!.email,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge!
-                                  .copyWith(color: ColorManager.grey),
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      state.data.user!.avtar != null
+                          ? CircleAvatar(
+                              radius: 50,
+                              backgroundImage:
+                                  NetworkImage(state.data.user!.avtar!.url),
                             )
-                          ],
+                          : const CircleAvatar(
+                              radius: 50,
+                              backgroundImage: NetworkImage(
+                                  'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png'),
+                            ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          child: Column(
+                            children: [
+                              Text(
+                                state.data.user!.name,
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                state.data.user!.email,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge!
+                                    .copyWith(color: ColorManager.grey),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    MYListTile(
-                      title: AppStrings.editPersonalInfo,
-                      subtitle: AppStrings.edit,
-                      ontab: () {
-                        Navigator.pushNamed(context, AppRoutes.updateProfile,
-                            arguments: state.data.user);
-                      },
-                    ),
-                    MYListTile(
-                      title: AppStrings.myOrders,
-                      subtitle: AppStrings.orders,
-                      ontab: () {
-                        BlocProvider.of<OrderBloc>(context).add(GetAllOrders());
-                        Navigator.pushNamed(context, AppRoutes.orders);
-                      },
-                    ),
-                    MYListTile(
-                      title: AppStrings.changePassword,
-                      subtitle: AppStrings.changePasswordsub,
-                      ontab: () {
-                        Navigator.pushNamed(context, AppRoutes.updatePassword);
-                      },
-                    ),
-                    ListTile(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, AppRoutes.login);
-                          PreferenceHelper.removeData(key: 'token');
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      MYListTile(
+                        title: AppStrings.editPersonalInfo,
+                        subtitle: AppStrings.edit,
+                        ontab: () {
+                          Navigator.pushNamed(context, AppRoutes.updateProfile,
+                              arguments: state.data.user);
                         },
-                        title: Text(
-                          AppStrings.logout,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(color: Colors.red),
-                        ),
-                        dense: true,
-                        trailing: const Icon(
-                          Icons.logout,
-                          size: 15,
-                          color: Colors.red,
-                        ))
-                  ],
+                      ),
+                      MYListTile(
+                        title: AppStrings.myOrders,
+                        subtitle: AppStrings.orders,
+                        ontab: () {
+                          BlocProvider.of<OrderBloc>(context).add(GetAllOrders());
+                          Navigator.pushNamed(context, AppRoutes.orders);
+                        },
+                      ),
+                      MYListTile(
+                        title: AppStrings.changePassword,
+                        subtitle: AppStrings.changePasswordsub,
+                        ontab: () {
+                          Navigator.pushNamed(context, AppRoutes.updatePassword);
+                        },
+                      ),
+                      ListTile(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, AppRoutes.login);
+                            PreferenceHelper.removeData(key: 'token');
+                          },
+                          title: Text(
+                            AppStrings.logout,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(color: Colors.red),
+                          ),
+                          dense: true,
+                          trailing: const Icon(
+                            Icons.logout,
+                            size: 15,
+                            color: Colors.red,
+                          ))
+                    ],
+                  ),
                 );
               } else if (state is ProfileLoadingState) {
                 return const Center(child: CircularProgressIndicator());

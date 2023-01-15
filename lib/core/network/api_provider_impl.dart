@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:shopack_user/core/network/api_provider.dart';
-
 import '../utilities/endpoints.dart';
 
 
@@ -34,12 +32,6 @@ class APIProviderImpl implements APIProvider {
       if (token != null) 'Authorization':'Bearer $token',
       'lang': 'en',
     };
-
-    debugPrint('URL => ${dio.options.baseUrl + endPoint}');
-    debugPrint('Header => ${dio.options.headers.toString()}');
-    debugPrint('Body => $data');
-    debugPrint('Query => $query');
-
     return await dio.get(
       endPoint,
       queryParameters: query,
@@ -69,11 +61,6 @@ class APIProviderImpl implements APIProvider {
       if (token != null) 'Authorization': 'Bearer $token',
       'lang': 'en',
     };
-
-    debugPrint('URL => ${dio.options.baseUrl + endPoint}');
-    debugPrint('Header => ${dio.options.headers.toString()}');
-    debugPrint('Body => $data');
-    debugPrint('Query => $query');
 
     return await dio.post(
       endPoint,
@@ -106,12 +93,6 @@ class APIProviderImpl implements APIProvider {
       if (token != null) 'Authorization': 'Bearer $token',
       'lang': 'en',
     };
-
-    debugPrint('URL => ${dio.options.baseUrl + endPoint}');
-    debugPrint('Header => ${dio.options.headers.toString()}');
-    debugPrint('Body => $data');
-    debugPrint('Query => $query');
-
     return await dio.put(
       endPoint,
       data: data,

@@ -19,8 +19,8 @@ class OrderCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Container(
         width: kWidth(context),
-        height: kHeight(context) / 6,
-        decoration: BoxDecoration(
+        height:kHeight(context)>=800? kHeight(context) / 6: kHeight(context) / 3.5,
+        decoration: BoxDecoration( 
             color: ColorManager.white,
             boxShadow: kElevationToShadow[6],
             borderRadius: BorderRadius.circular(10)),

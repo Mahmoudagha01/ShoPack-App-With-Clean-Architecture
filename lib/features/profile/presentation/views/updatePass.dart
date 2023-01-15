@@ -19,20 +19,13 @@ class UpdatePasswordView extends StatefulWidget {
 
 class _UpdatePasswordViewState extends State<UpdatePasswordView> {
   final formKey = GlobalKey<FormState>();
-
-    final TextEditingController oldpassController = TextEditingController();
-
-    final TextEditingController newpassController = TextEditingController();
-
-    final TextEditingController repeatpassController = TextEditingController();
+  final TextEditingController oldpassController = TextEditingController();
+  final TextEditingController newpassController = TextEditingController();
+  final TextEditingController repeatpassController = TextEditingController();
 
   @override
-  
   Widget build(BuildContext context) {
-   
-   
     return Scaffold(
-     
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
@@ -52,101 +45,103 @@ class _UpdatePasswordViewState extends State<UpdatePasswordView> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
-              
-                children: [
-                  SizedBox(height: kHeight(context)*.1,),
-                  MainTFF(
-                      labelText: AppStrings.oldpassword,
-                      hintText: AppStrings.oldpassword,
-                      controller: oldpassController,
-                      validate: (value) {
-                        if (value!.isEmpty) {
-                          return AppStrings.oldpasswordEmpty;
-                        } else {
-                          if (value.length < 6) {
-                            return AppStrings.passwordError;
-                          }
+              children: [
+                SizedBox(
+                  height: kHeight(context) * .1,
+                ),
+                MainTFF(
+                    labelText: AppStrings.oldpassword,
+                    hintText: AppStrings.oldpassword,
+                    controller: oldpassController,
+                    validate: (value) {
+                      if (value!.isEmpty) {
+                        return AppStrings.oldpasswordEmpty;
+                      } else {
+                        if (value.length < 6) {
+                          return AppStrings.passwordError;
                         }
-                        return null;
-                      },
-                      isPassword: false,
-                      borderRadius: 16,
-                      inputType: TextInputType.text),
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.forgotPassword);
-                          },
-                          child: const Text(AppStrings.forgetPassword))),
-                  MainTFF(
-                      labelText: AppStrings.newpassword,
-                      hintText: AppStrings.newpassword,
-                      controller: newpassController,
-                      validate: (value) {
-                        if (value!.isEmpty) {
-                          return AppStrings.newpasswordEmpty;
-                        } else {
-                          if (value.length < 6) {
-                            return AppStrings.passwordError;
-                          }
-                        }
-                        return null;
-                      },
-                      isPassword: false,
-                      borderRadius: 16,
-                      inputType: TextInputType.text),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  MainTFF(
-                      labelText: AppStrings.repeatpassword,
-                      hintText: AppStrings.repeatpassword,
-                      controller: repeatpassController,
-                      validate: (value) {
-                        if (value!.isEmpty) {
-                          return AppStrings.repeatpasswordEmpty;
-                        } else {
-                          if (value.length < 6) {
-                            return AppStrings.passwordError;
-                          }
-                        }
-                        return null;
-                      },
-                      isPassword: false,
-                      borderRadius: 16,
-                      inputType: TextInputType.text),
-                       const SizedBox(height: 30),
-                  BlocConsumer<UpdatePasswordBloc, UpdatePasswordState>(
-                    listener: (context, state) {
-                      if (state is UpdatePasswordLoaded && state.data.success) {
-                        showSnackbar(
-                            AppStrings.updatepasssuccess, context, ColorManager.green);
-                      } else if (state is UpdatePasswordError) {
-                        showSnackbar(state.message, context, Colors.red);
-                      } else if (state is UpdatePasswordLoaded) {
-                        showSnackbar(state.data.message!, context, Colors.red);
                       }
+                      return null;
                     },
-                    builder: (context, state) {
-                      return state is UpdatePasswordLoading
-                          ? const CircularProgressIndicator()
-                          : MainButton(
-                              text: AppStrings.login.toUpperCase(),
-                              height: 50,
-                              ontab: () {
-                                if (formKey.currentState!.validate()) {
-                                  BlocProvider.of<UpdatePasswordBloc>(context)
-                                      .add(UserUpdatePassword(
-                                          oldpassController.text,
-                                          newpassController.text,
-                                          repeatpassController.text));
-                                }
-                              });
+                    isPassword: false,
+                    borderRadius: 16,
+                    inputType: TextInputType.text),
+                Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, AppRoutes.forgotPassword);
+                        },
+                        child: const Text(AppStrings.forgetPassword))),
+                MainTFF(
+                    labelText: AppStrings.newpassword,
+                    hintText: AppStrings.newpassword,
+                    controller: newpassController,
+                    validate: (value) {
+                      if (value!.isEmpty) {
+                        return AppStrings.newpasswordEmpty;
+                      } else {
+                        if (value.length < 6) {
+                          return AppStrings.passwordError;
+                        }
+                      }
+                      return null;
                     },
-                  ),
-                ]),
+                    isPassword: false,
+                    borderRadius: 16,
+                    inputType: TextInputType.text),
+                const SizedBox(
+                  height: 20,
+                ),
+                MainTFF(
+                    labelText: AppStrings.repeatpassword,
+                    hintText: AppStrings.repeatpassword,
+                    controller: repeatpassController,
+                    validate: (value) {
+                      if (value!.isEmpty) {
+                        return AppStrings.repeatpasswordEmpty;
+                      } else {
+                        if (value.length < 6) {
+                          return AppStrings.passwordError;
+                        }
+                      }
+                      return null;
+                    },
+                    isPassword: false,
+                    borderRadius: 16,
+                    inputType: TextInputType.text),
+                const SizedBox(height: 30),
+                BlocConsumer<UpdatePasswordBloc, UpdatePasswordState>(
+                  listener: (context, state) {
+                    if (state is UpdatePasswordLoaded && state.data.success) {
+                      showSnackbar(AppStrings.updatepasssuccess, context,
+                          ColorManager.green);
+                    } else if (state is UpdatePasswordError) {
+                      showSnackbar(state.message, context, Colors.red);
+                    } else if (state is UpdatePasswordLoaded) {
+                      showSnackbar(state.data.message!, context, Colors.red);
+                    }
+                  },
+                  builder: (context, state) {
+                    return state is UpdatePasswordLoading
+                        ? const CircularProgressIndicator()
+                        : MainButton(
+                            text: AppStrings.updatePass.toUpperCase(),
+                            height: 50,
+                            ontab: () {
+                              if (formKey.currentState!.validate()) {
+                                BlocProvider.of<UpdatePasswordBloc>(context)
+                                    .add(UserUpdatePassword(
+                                        oldpassController.text,
+                                        newpassController.text,
+                                        repeatpassController.text),);
+                              }
+                            });
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

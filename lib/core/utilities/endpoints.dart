@@ -1,4 +1,6 @@
-const String baseUrlPath = 'http://192.168.1.6:4000/api/v1';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+String baseUrlPath =  dotenv.env['BASE_URL']!;
 const String paymentbaseUrlPath = 'https://accept.paymob.com/api';
 const String placesAutocompeleteUrlPath ="https://maps.googleapis.com/maps/api/place/autocomplete/json";
 const String placesUrlPath = "https://maps.googleapis.com/maps/api/place/details/json";

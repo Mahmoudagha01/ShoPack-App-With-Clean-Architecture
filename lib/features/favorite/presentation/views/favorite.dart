@@ -32,11 +32,13 @@ class _FavoriteViewState extends State<FavoriteView> {
               child: favouriteList.isEmpty
                   ? Column(
                     children: [
-                      Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: LottieBuilder.asset('assets/images/empty.json'),
+                      Expanded(
+                        child: Center(child: LottieBuilder.asset('assets/images/empty.json')),
                       ),
-                      Text(AppStrings.notfavorite,style: Theme.of(context).textTheme.titleMedium,)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(AppStrings.notfavorite,style: Theme.of(context).textTheme.titleMedium,),
+                      )
                     ],
                   )
                   : RefreshIndicator(

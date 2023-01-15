@@ -117,7 +117,7 @@ class FilterProduct extends StatelessWidget {
                                     ),
                                     Slider(
                                       min: 0,
-                                      max: 5,
+                                      max: 4,
                                       activeColor: ColorManager.orangeLight,
                                       value: bloc.rateValue,
                                       onChanged: (v) {
@@ -125,11 +125,9 @@ class FilterProduct extends StatelessWidget {
                                           bloc.rateValue = v;
                                         });
                                       },
-                                      divisions: 5,
+                                      divisions:4,
                                     ),
-                                    const SizedBox(
-                                      height: 30,
-                                    ),
+                           
                                     SizedBox(
                                       width: kWidth(context) / 2,
                                       child: BlocProvider.value(
@@ -159,7 +157,7 @@ class FilterProduct extends StatelessWidget {
                                               });
                                               Navigator.pop(context);
                                             },
-                                            height: 40),
+                                            height: kHeight(context)/15),
                                       ),
                                     ),
                                   ],

@@ -348,7 +348,7 @@ class _ProductDetailsState extends State<ProductDetails>
                 height: 330,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 6,
+                  itemCount:3,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {

@@ -26,7 +26,7 @@ class HomeHeader extends StatelessWidget {
                   image: AssetImage("assets/images/opacity.png"),
                   fit: BoxFit.cover))),
       Positioned(
-        top: kHeight(context) * 0.2,
+        bottom: kHeight(context) * 0.05,
         left: 20,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

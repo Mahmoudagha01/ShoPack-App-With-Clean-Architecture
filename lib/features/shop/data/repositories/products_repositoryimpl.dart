@@ -51,6 +51,7 @@ class ProductsRepositoryImpl implements ProductRepository {
         final data = await productsDatasource.sendReview(params);
         return right(data);
       } catch (error) {
+        print(error);
         return left(ErrorHandler.handle(error).failure);
       }
     } else {

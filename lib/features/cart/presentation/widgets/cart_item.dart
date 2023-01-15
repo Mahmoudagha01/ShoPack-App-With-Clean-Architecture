@@ -35,112 +35,110 @@ class CatItem extends StatelessWidget {
             Expanded(
                 child: Column(
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: kWidth(context) * 0.5,
-                            child: Text(
-                              item.name,
-                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: ColorManager.dark,),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                          ),
-                          Text(
-                            item.category,
-                            style: Theme.of(context).textTheme.bodySmall!.copyWith(color: ColorManager.dark,)
-                          )
-                        ],
-                      ),
-                      BlocListener<CartBloc, CartState>(
-                        listener: (context, state) {
-                          if (state is RemoveFromCart) {
-                            showSnackbar(AppStrings.removeFromCart, context,
-                                Colors.green);
-                          }
-                        },
-                        child: IconButton(
-                          onPressed: () async {
-                            BlocProvider.of<CartBloc>(context)
-                                .add(RemoveFromCart(index));
-                          },
-                          icon: const Icon(
-                            Icons.clear,
-                            color: ColorManager.grey,
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: kWidth(context) * 0.5,
+                          child: Text(
+                            item.name,
+                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: ColorManager.dark,),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      width: kWidth(context) * .4,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  boxShadow: kElevationToShadow[4]),
-                              child: CircleAvatar(
-                                backgroundColor: ColorManager.white,
-                                radius: 20.0,
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () {
-                                          BlocProvider.of<CartBloc>(context).add(DecrementCount(item));
-                                    },
-                                    child: const Icon(
-                                      Icons.remove,
-                                      size: 20.0,
-                                      color: ColorManager.grey,
-                                    ),
-                                  ),
-                                ),
-                              )),
-                          Text(
-                            '${item.amount}',
-                            style: Theme.of(context).textTheme.headline6!.copyWith(color: ColorManager.dark,),
-                          ),
-                          Container(
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  boxShadow: kElevationToShadow[4]),
-                              child: CircleAvatar(
-                                backgroundColor: ColorManager.white,
-                                radius: 20.0,
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () {
-                                      BlocProvider.of<CartBloc>(context).add(IncrementCount(item));
-                                    },
-                                    child: const Icon(
-                                      Icons.add,
-                                      size: 20.0,
-                                      color: ColorManager.grey,
-                                    ),
-                                  ),
-                                ),
-                              )),
-                        ],
+                        Text(
+                          item.category,
+                          style: Theme.of(context).textTheme.bodySmall!.copyWith(color: ColorManager.dark,)
+                        )
+                      ],
+                    ),
+                    BlocListener<CartBloc, CartState>(
+                      listener: (context, state) {
+                        if (state is RemoveFromCart) {
+                          showSnackbar(AppStrings.removeFromCart, context,
+                              Colors.green);
+                        }
+                      },
+                      child: IconButton(
+                        onPressed: () async {
+                          BlocProvider.of<CartBloc>(context)
+                              .add(RemoveFromCart(index));
+                        },
+                        icon: const Icon(
+                          Icons.clear,
+                          color: ColorManager.grey,
+                        ),
                       ),
                     ),
-                    Text(
-                      '${item.price} \$',
-                      style: Theme.of(context).textTheme.headline6,
-                    )
                   ],
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        width: kWidth(context) * .4,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    boxShadow: kElevationToShadow[4]),
+                                child: CircleAvatar(
+                                  backgroundColor: ColorManager.white,
+                                  radius: 20.0,
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                            BlocProvider.of<CartBloc>(context).add(DecrementCount(item));
+                                      },
+                                      child: const Icon(
+                                        Icons.remove,
+                                        size: 20.0,
+                                        color: ColorManager.grey,
+                                      ),
+                                    ),
+                                  ),
+                                )),
+                            Text(
+                              '${item.amount}',
+                              style: Theme.of(context).textTheme.headline6!.copyWith(color: ColorManager.dark,),
+                            ),
+                            Container(
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    boxShadow: kElevationToShadow[4]),
+                                child: CircleAvatar(
+                                  backgroundColor: ColorManager.white,
+                                  radius: 20.0,
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        BlocProvider.of<CartBloc>(context).add(IncrementCount(item));
+                                      },
+                                      child: const Icon(
+                                        Icons.add,
+                                        size: 20.0,
+                                        color: ColorManager.grey,
+                                      ),
+                                    ),
+                                  ),
+                                )),
+                          ],
+                        ),
+                      ),
+                      Text(
+                        '${item.price} \$',
+                        style: Theme.of(context).textTheme.headline6,
+                      )
+                    ],
+                  ),
                 )
               ],
             ))

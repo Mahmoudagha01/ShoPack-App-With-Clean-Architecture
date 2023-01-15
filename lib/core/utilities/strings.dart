@@ -55,7 +55,7 @@ class AppStrings {
   static const String verify = "Verify Email";
   static const String registerText = "Sign Up";
   static const String loading = "loading";
-  static const String retryAgain = "retry_again";
+  static const String updatePass = "Update Password";
   static const String ok = "Ok";
   static const String send = "Send";
   static const String sendReview = "Send Review";

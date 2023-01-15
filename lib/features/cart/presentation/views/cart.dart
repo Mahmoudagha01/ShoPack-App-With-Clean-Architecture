@@ -81,7 +81,7 @@ class _CartViewState extends State<CartView> {
                         AppStrings.addToCart.toUpperCase(),
                       );
                     },
-                  )),
+                  ),),
             ),
       body: Column(
         children: [
@@ -107,12 +107,15 @@ class _CartViewState extends State<CartView> {
                 if (state is CartLoaded) {
                   if (state.items.isEmpty) {
                     return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: LottieBuilder.asset('assets/images/empty.json'),
+                        Expanded(
+                          child: Center(child: LottieBuilder.asset('assets/images/empty.json')),
                         ),
-                         Text(AppStrings.notCart,style: Theme.of(context).textTheme.titleMedium,),
+                         Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Text(AppStrings.notCart,style: Theme.of(context).textTheme.titleMedium,),
+                         ),
                       ],
                     );
                   }
@@ -162,11 +165,13 @@ class _CartViewState extends State<CartView> {
                                               .copyWith(
                                                   color: ColorManager.grey),
                                         ),
-                                        Text(
-                                          '${BlocProvider.of<CartBloc>(context).totalAmount}  \$',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline6,
+                                        FittedBox(
+                                          child: Text(
+                                            '${BlocProvider.of<CartBloc>(context).totalAmount}  \$',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6,
+                                          ),
                                         )
                                       ],
                                     )

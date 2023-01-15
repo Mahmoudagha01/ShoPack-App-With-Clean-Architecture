@@ -29,92 +29,94 @@ class _ReviewSheetState extends State<ReviewSheet> {
         key: formKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                AppStrings.whatrate,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              RatingBar(
-                ratingWidget: RatingWidget(
-                  full: const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  half: const Icon(
-                    Icons.star,
-                  ),
-                  empty: const Icon(
-                    Icons.star_border,
-                    color: ColorManager.grey,
-                  ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
                 ),
-                onRatingUpdate: (ratevalue) {
-                  setState(() {
-                    ratings = ratevalue;
-                  });
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                AppStrings.plsshareopinion,
-                style: Theme.of(context).textTheme.headline6,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              MainTFF(
-                  max: 6,
-                  controller: reviewController,
-                  validate: (v) {
-                    return null;
+                Text(
+                  AppStrings.whatrate,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                RatingBar(
+                  ratingWidget: RatingWidget(
+                    full: const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    half: const Icon(
+                      Icons.star,
+                    ),
+                    empty: const Icon(
+                      Icons.star_border,
+                      color: ColorManager.grey,
+                    ),
+                  ),
+                  onRatingUpdate: (ratevalue) {
+                    setState(() {
+                      ratings = ratevalue;
+                    });
                   },
-                  labelText: AppStrings.yourReview,
-                  isPassword: false,
-                  borderRadius: 15,
-                  inputType: TextInputType.text),
-              const SizedBox(
-                height: 20,
-              ),
-              BlocConsumer<SendReviewBloc, SendReviewState>(
-                listener: (context, state) {
-                  if (state is SendReviewLoadedState && state.data.success) {
-                    showSnackbar(AppStrings.sendreviewsuccess, context,
-                        ColorManager.green);
-                  } else if (state is SendReviewLoadedState) {
-                    showSnackbar(state.data.message!, context, Colors.red);
-                  } else if (state is SendReviewErrorState) {
-                    showSnackbar(state.message, context, Colors.red);
-                  }
-                },
-                builder: (context, state) {
-                  return state is SendReviewLoadingState
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : MainButton(
-                          text: AppStrings.sendReview,
-                          ontab: () {
-                            if (formKey.currentState!.validate()) {
-                              BlocProvider.of<SendReviewBloc>(context).add(
-                                  SendReview(widget.id, reviewController.text,
-                                      ratings));
-                              Navigator.pop(context);
-                            }
-                          },
-                          height: 40);
-                },
-              )
-            ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  AppStrings.plsshareopinion,
+                  style: Theme.of(context).textTheme.headline6,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                MainTFF(
+                    max: 6,
+                    controller: reviewController,
+                    validate: (v) {
+                      return null;
+                    },
+                    labelText: AppStrings.yourReview,
+                    isPassword: false,
+                    borderRadius: 15,
+                    inputType: TextInputType.text),
+                const SizedBox(
+                  height: 20,
+                ),
+                BlocConsumer<SendReviewBloc, SendReviewState>(
+                  listener: (context, state) {
+                    if (state is SendReviewLoadedState && state.data.success) {
+                      showSnackbar(AppStrings.sendreviewsuccess, context,
+                          ColorManager.green);
+                    } else if (state is SendReviewLoadedState) {
+                      showSnackbar(state.data.message!, context, Colors.red);
+                    } else if (state is SendReviewErrorState) {
+                      showSnackbar(state.message, context, Colors.red);
+                    }
+                  },
+                  builder: (context, state) {
+                    return state is SendReviewLoadingState
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : MainButton(
+                            text: AppStrings.sendReview,
+                            ontab: () {
+                              if (formKey.currentState!.validate()) {
+                                BlocProvider.of<SendReviewBloc>(context).add(
+                                    SendReview(widget.id, reviewController.text,
+                                        ratings));
+                                Navigator.pop(context);
+                              }
+                            },
+                            height: 40);
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

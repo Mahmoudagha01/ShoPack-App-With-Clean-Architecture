@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopack_user/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:shopack_user/features/cart/presentation/bloc/location_bloc.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/utilities/mediaquery.dart';
@@ -56,7 +55,7 @@ class _DeliveryMethodCardState extends State<DeliveryMethodCard> {
                   fit: BoxFit.fitWidth,
                 ),
               ),
-              Text(deliveryMethods[widget.index]['title']!)
+              FittedBox(child: Text(deliveryMethods[widget.index]['title']!))
             ],
           ),
         ),
