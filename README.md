@@ -3,8 +3,6 @@ This app follow clean architecture proposed By Uncle Bob
 I used BloC as state management to improve widget rebuilding performance. 
 ## Download App
 <a href="https://github.com/Mahmoudagha01/ShoPack-App-With-Clean-Architecture/releases/download/v1.0.0-beta/app-release.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
-<img src="https://cdn.dribbble.com/users/2432994/screenshots/10446127/media/fa0a9ce348e0bfa18b00ba2240543064.png"  /> 
-
 # video
 You can see a Demo video [Here](https://youtu.be/ZHnQVbcstT0)
 
