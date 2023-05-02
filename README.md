@@ -178,9 +178,16 @@ lib
             ├───views
             └───widgets
 ```
-
-
-
+## .env file example 
+```
+CLOUDINARY_NAME=<Your Cloudinary name>
+CLOUDINARY_API_KEY<Your Cloudinary API key>
+CLOUDINARY_SECRET_KEY=<Your Cloudinary Secret key>
+MAP_API_KEY=<Your Google Map Api key>
+PAYMENT_API_KEY=<Paymob Api Key>
+INTEGRATION_ID_CARD=<Paymob Integration Id  Card>
+BASE_URL=https://newshopack.onrender.com/api/v1   //API Base Url
+```
 
 
 
